@@ -10,120 +10,17 @@ from math import ceil
 from datetime import date
 from time import localtime, strftime
 from socket import create_connection
-
-
-def IsInternetAvailable():
-    """
-    Checks internet availability.
-
-    Returns:
-        True:   Internet is available.
-        False:  Internet is not available
-    """
-    try:
-        create_connection(("www.google.com", 80))
-        return True
-    except OSError:
-        pass
-    return False
-
-def CharPolice(suspect_string):
-    """
-    Checks for chars that are illegal in naming a file.
-
-    From given string, function removes \\, /, :, *, ?, ", <, >, | 
-    (chars illegal in naming files) and returns it.
-
-    Args:
-        suspect_string (str): String with potenetial characters to remove.
-
-    Returns:
-        str: Argument string without signs illegal in filenaming.
-    """
-    charlist = [a for a in suspect_string]
-    i = 0
-    while i < len(charlist):
-        if charlist[i] in ["\\", "/", ":", "*", "?", '"', "<", ">", "|"]:
-            charlist.pop(i)
-        else:
-            i += 1
-    
-    policedstring = "".join(charlist)
-    return policedstring
-
-def IllegalToAscii(illegal_string):
-    print("Why in the world did You do it? Maybe do something better with Your life than downloading stuff containing just illegal signs?")
-    return "_".join((str(ord(char)) for char in illegal_string))
-
-def ZerosAtBeginning(number, max_element_number):
-    """
-    Determines a number in name of element present in a playlist.
-
-    Depending on number of max element, function will put an adequate number of 0's
-    before the index.
-
-    Examples:
-        (plist_len = 4):        01, 02, 03, 04
-        (plist_len = 64):    ...08, 09, 10, 11,...
-        (plist_len = 128):   ...008, 009, 010, 011,..., 098, 099, 100, 101,...
-
-    Args:
-        number (int):               number of element in playlist.
-        max_element_number (int):   max number that'll be used.
-
-    Returns:
-        str: zeros determined by function + number + ". "
-    """
-    return ((max_element_number < 10) * f"0{number}. ") + ((max_element_number >= 10) * (f"{(len(str(max_element_number)) - len(str(number))) * '0'}{number}. ")) # I'm really sorry. The same code is written below, but it's readable
-    if max_element_number < 10:
-        return f"0{number}. "
-    digits_of_biggest_number    = len(str(max_element_number))
-    digits_of_number            = len(str(number))
-    gg                          = digits_of_biggest_number - digits_of_number
-    return f"{gg * '0'}{number}. "
-
-def Dots(integer):
-    """
-    Puts dots in long numbers.
-
-    Between every 3 chars puts a dot.
-
-    Args:
-        integer (int): A number into which the function will put dots.
-
-    Returns:
-        str: Inputted integer with dots added    
-    """
-    integer = str(integer)
-    result = ''
-    while len(integer) > 3:
-        result = "." + integer[-3:] + result
-        integer = integer[:-3]
-
-    result = integer + result 
-    return result
-
-def DelDuplicatesFromListOfLists(list_of_lists):
-    """
-    Deletes duplicate lists from a list of lists.
-
-    Args:
-        list_of_lists (list): Self explainatory.
-
-    Returns:
-        list: list_of_lists without duplicates.
-    """
-    curr_el = 0
-    while curr_el + 1 < len(list_of_lists):
-        a = curr_el + 1
-        while a < len(list_of_lists):
-            if list_of_lists[curr_el][0] == list_of_lists[a][0] and list_of_lists[curr_el][1] == list_of_lists[a][1]:
-                list_of_lists.pop(a)
-            else:
-                a += 1
-        curr_el += 1
-    
-    return list_of_lists
+from functions import (CharPolice,
+                       DelDuplicatesFromListOfLists,
+                       Dots,
+                       IllegalToAscii,
+                       IsInternetAvailable,
+                       ReadDelDuplicates,
+                       ReadExtractWriteOrder,
+                       ReadSaveExtension,
+                       RoundOrExact,
+                       ZerosAtBeginning
+)
 
 def GetUrlAndType():
     """
@@ -152,38 +49,6 @@ def GetUrlAndType():
     else:
         print("Invalid URL!\n")
         return [url, 'invalid']
-
-def ReadSaveExtension():
-    """
-    Asks user for extension.
-
-    In infinite loop, forces user to input either 4, 3 or f 
-    to get proper extension.
-
-    Returns:
-        str: Extenstion chosen by user.
-    """
-    user_input = " "
-    format_dict = {"4": "mp4", "3": "mp3", "f": "flac"}
-    while user_input not in format_dict:
-        user_input = input("What format do You want to save as? (4 - mp4, 3 - mp3, f - flac)\n>>").lower()
-    
-    return format_dict[user_input]
-
-def ReadDelDuplicates():
-    """
-    Asks user what to do in case duplicates appear in playlist.
-
-    Returns:
-        boolean: True - delete duplicates, False - leave duplicates.
-    """
-
-    user_input = " "
-    dupl_dict = {"": True, "d": True, "l": False}
-    while user_input not in dupl_dict:
-        user_input = input("Duplicates detected. What should be done about them? (Enter - delete, l - leave)\n>>").lower()
-    
-    return dupl_dict[user_input]
 
 def ReadNumOfTracks(plist_len): 
     """
@@ -286,19 +151,6 @@ def ReadNumbered(min_el_index, max_el_index):
                     if desc_from >= number_of_elements:
                         return ["desc", desc_from]
 
-def ReadExtractWriteOrder():
-    """
-    Asks user for extract order.
-
-    Returns:
-        string: "asc" or "desc".
-    """
-    order = ""
-    result_dict = {"a": "asc", "d": "desc"}
-    while order not in result_dict:
-        order = input("In what order do You want to write elements to file? (a - ascending, d - descending)\n>>").lower()
-    return result_dict[order]
-
 def ReadTrimLens():
     """
     Asks user about cutting names of the elements.
@@ -386,20 +238,6 @@ def NameYourFile(OGtitle, title_number, namecut_list):
     if len(policed_OGtitle) != len(OGtitle):
         print(f"{OGtitle} - has been updated to not contain illegal characters")
     return title_number + policed_ret_title
-
-def RoundOrExact():
-    """
-    Asks user if extracted video views should be exact or rounded.
-
-    Returns:
-        str: "round" or "exact".
-    """
-    input_RE = " "
-    RE_dict = {"": "round", "r": "round", "e": "exact"}
-    input_RE = input("Do You want viewcount on every video be exact or rounded? Extracting exact values will take significantly longer time. (Enter - rounded, e - exact)\n>>").lower()
-
-    if input_RE in RE_dict:
-        return RE_dict[input_RE]
 
 def SaveSingle(url):
     """

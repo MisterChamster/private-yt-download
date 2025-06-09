@@ -124,7 +124,7 @@ def DelDuplicatesFromListOfLists(list_of_lists):
         curr_el += 1
     
     return list_of_lists
-    
+
 def GetUrlAndType():
     """
     Asks user for URL, checks if it's valid and determines action.
@@ -466,6 +466,7 @@ def SavePlist(plist_url):
 
 
     plist_title = plist_dict['title']
+    print(plist_title)
     plist_list = [[el['url'], el['title']] for el in plist_dict['entries']] 
 
     plist_list_no_dupli = DelDuplicatesFromListOfLists(plist_list)

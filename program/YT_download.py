@@ -13,70 +13,16 @@ from socket import create_connection
 from functions import (CharPolice,
                        DelDuplicatesFromListOfLists,
                        Dots,
+                       GetUrlAndType,
                        IllegalToAscii,
                        IsInternetAvailable,
                        ReadDelDuplicates,
                        ReadExtractWriteOrder,
+                       ReadNumOfTracks,
                        ReadSaveExtension,
                        RoundOrExact,
-                       ZerosAtBeginning,
-                       GetUrlAndType
+                       ZerosAtBeginning
 )
-
-
-def ReadNumOfTracks(plist_len): 
-    """
-    Asks user which elements to download.
-
-    If user presses enter, list from 0 to plist_len will be returned.
-    If user inputs an integer, list from 0 to that integer will be returned.
-    If user inputs c, they'll be asked to input number of first and last element. 
-    [start-1, end] will be returned.
-    Else, list from 0 to plist_len will be returned.
-    When input is too big, small or incorrect, a default value will be assigned.
-
-    Args:
-        plist_len (int): Length of playlist considered.
-
-    Returns:
-        list[int, int]: Indexes of first and last element to be downloaded.
-    """
-    num = input("How to download the elements? (Enter - all, integer number - number of elements from start, c - custom settings...)\n>>").lower()
-    if num == '':
-        return [0, plist_len]
-    
-    elif num == 'c':
-        start = input("Starting from element:\n>>")
-        if not start.isdigit():
-            print("Starting from the beginning.")
-            start = 0
-        elif int(start) > plist_len or int(start) < 1:
-            print("Starting from the beginning.")
-            start = 0
-        else:
-            start = int(start) - 1
-
-        end = input("Ending on element:\n>>")  
-        if not end.isdigit():
-            print("Ending at the end.")
-            end = plist_len
-        elif int(end) < start or int(end) > plist_len:
-            print("Ending at the end.")
-            end = plist_len
-        else:
-            end = int(end)
-        return [start, end]
-
-    elif num.isdigit() and int(num) <= plist_len:
-        return [0, int(num)]
-
-    elif num.isdigit() and int(num) > plist_len:
-        print("Number inputted by You is too big! Downloading all the tracks.\n")
-        return [0, plist_len]
-
-    else:
-        print("Downloading whole playlist.\n")
-        return [0, plist_len]
 
 def ReadNumbered(min_el_index, max_el_index):
     """

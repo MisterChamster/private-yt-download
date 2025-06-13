@@ -1,5 +1,7 @@
 # The Jimi Hendrix Experience - "Voodoo Child" (live) video
 # https://youtu.be/qFfnlYbFEiE?si=XRGMojQVJ1CFlsAu
+# Shinji - Soulja boy
+# https://youtu.be/t5WoHi7Oyiw?si=X2tS0FStPcUQkMHQ
 # Ramones - "Ramones" playlist
 # https://youtube.com/playlist?list=PLBnJv6rImVe-LcbIsBXzIp6BpV6hqZnoO&si=jNymhDVGkVd3QHNn
 
@@ -16,6 +18,7 @@ from functions import (CharPolice,
                        GetUrlAndType,
                        IllegalToAscii,
                        IsInternetAvailable,
+                       NameYourFile,
                        ReadDelDuplicates,
                        ReadExtractWriteOrder,
                        ReadNumbered,
@@ -27,50 +30,6 @@ from functions import (CharPolice,
 )
 
 
-def NameYourFile(OGtitle, title_number, namecut_list):
-    """
-    Changes a string to match it with user's desired outcome.
-
-    Trims the title if needed, removes illegal signs and adds index.
-    Due to program's characteristics, function does not handle negative ints in namecut list.
-
-    Args:
-        title (str):                            Title of youtube video.
-        titleindex (str):                       Numbering in filename (after adding zeros).
-        namecut_list (list[a (int), b (int)]):  Number of characters to be cut from start end end of the title.
-
-    Returns:
-        str: Final name of a file.
-    """
-    lens = namecut_list[0]
-    lene = namecut_list[1]
-    policed_OGtitle = CharPolice(OGtitle)
-
-    #nothing remains after policing
-    if policed_OGtitle == "" and title_number == "":
-        return IllegalToAscii(OGtitle)
-
-    #nothing remains after trimming name
-    if (lens + lene >= len(OGtitle) or lens >= len(OGtitle) or lene > len(OGtitle)) and title_number == "":
-        if len(policed_OGtitle) != len(OGtitle):
-            print(f"Length of a trim is larger than the title. Returning original title with illegal chars removed...")
-        else:
-            print("Length of a trim is larger than the title. Returning original title...")
-        return policed_OGtitle
-    
-    if lene == 0:
-        ret_title = OGtitle[lens:]
-    else:
-        ret_title = OGtitle[lens:-lene]
-    policed_ret_title = CharPolice(ret_title)
-
-    if policed_ret_title == "" and title_number == "": #nothing remains after trimming and policing
-        print("After trimming, title contains only illegal signs")
-        return IllegalToAscii(ret_title)
-
-    if len(policed_OGtitle) != len(OGtitle):
-        print(f"{OGtitle} - has been updated to not contain illegal characters")
-    return title_number + policed_ret_title
 
 def SaveSingle(url):
     """
@@ -102,6 +61,7 @@ def SaveSingle(url):
 
     ydl_opts["outtmpl"] = finalname
     ydl_opts["paths"] = {"home": desktop_path}
+    print("Downloading...")
     try:
         with YoutubeDL(ydl_opts) as ydl:
             ydl.download([url])

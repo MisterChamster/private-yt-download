@@ -7,7 +7,7 @@
 
 
 from yt_dlp import YoutubeDL
-from os import chdir, mkdir, path, listdir, getcwd
+from os import chdir, mkdir, path, listdir  #, getcwd
 from math import ceil
 from datetime import date
 from time import localtime, strftime
@@ -19,15 +19,14 @@ from functions import (CharPolice,
                        IllegalToAscii,
                        IsInternetAvailable,
                        NameYourFile,
-                       ReadDelDuplicates,
-                       ReadExtractWriteOrder,
-                       ReadNumbered,
-                       ReadNumOfTracks,
-                       ReadSaveExtension,
-                       ReadTrimLens,
                        RoundOrExact,
-                       ZerosAtBeginning
-)
+                       ZerosAtBeginning)
+from functions_readers import (ReadDelDuplicates,
+                               ReadExtractWriteOrder,
+                               ReadNumbered,
+                               ReadNumOfTracks,
+                               ReadSaveExtension,
+                               ReadTrimLens)
 
 
 

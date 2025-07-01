@@ -295,12 +295,12 @@ def ExtractPlistData(plist_url):
 while True:
     chdir(desktop_path)
     url_and_type = ReadUrlAndType()
-    ydl_opts = {"quiet": True}
 
     if url_and_type[1] == "extract":
         ExtractPlistData(url_and_type[0])
 
-    elif url_and_type[1] != "invalid":
+    elif url_and_type[1] in ["single", "invalid"]:
+        ydl_opts = {"quiet": True}
         format = ReadSaveExtension()
         if format == "mp4":
             ydl_opts["merge_output_format"] = "mp4"

@@ -16,8 +16,8 @@ def ReadUrlAndType():
             return [url, "extract"]
         return [url, 'plist']
 
-    elif (len(url) > 17 and url[:17] == 'https://youtu.be/')  \
-    or (len(url) > 29 and url[:29] == 'https://www.youtube.com/watch'):
+    elif (len(url) > 17 and url[:17] == 'https://youtu.be/') or \
+         (len(url) > 29 and url[:29] == 'https://www.youtube.com/watch'):
         if '&list=' in url:
             url = url[:url.find('&list=')]
         return [url, 'single']

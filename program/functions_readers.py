@@ -1,3 +1,32 @@
+def ReadUrlAndType():
+    """
+    Asks user for URL, checks if it's valid and determines action.
+
+    Returns:
+        list[a, b]:
+            a (str): URL inputted by user
+            b (str): Action type
+    """
+    url = str(input("Enter URL: \n>> "))
+    if (len(url) > 34 and url[:34] == 'https://youtube.com/playlist?list='):
+        inputDE = " "
+        while inputDE not in ["", "d", "e"]:
+            inputDE = input("What do You want to do with playlist? (Enter - download, e - extract playlist data)\n>>").lower()
+        if inputDE == "e":
+            return [url, "extract"]
+        return [url, 'plist']
+
+    elif (len(url) > 17 and url[:17] == 'https://youtu.be/')  \
+    or (len(url) > 29 and url[:29] == 'https://www.youtube.com/watch'):
+        if '&list=' in url:
+            url = url[:url.find('&list=')]
+        return [url, 'single']
+
+    else:
+        print("Invalid URL!\n")
+        return [url, 'invalid']
+
+
 def ReadSaveExtension():
     """
     Asks user for extension.
@@ -15,6 +44,7 @@ def ReadSaveExtension():
 
     return format_dict[user_input]
 
+
 def ReadDelDuplicates():
     """
     Asks user what to do in case duplicates appear in playlist.
@@ -27,8 +57,9 @@ def ReadDelDuplicates():
     dupl_dict = {"": True, "d": True, "l": False}
     while user_input not in dupl_dict:
         user_input = input("Duplicates detected. What should be done about them? (Enter - delete, l - leave)\n>>").lower()
-    
+
     return dupl_dict[user_input]
+
 
 def ReadNumOfTracks(plist_len): 
     """
@@ -50,7 +81,7 @@ def ReadNumOfTracks(plist_len):
     num = input("How to download the elements? (Enter - all, integer number - number of elements from start, c - custom settings...)\n>>").lower()
     if num == '':
         return [0, plist_len]
-    
+
     elif num == 'c':
         start = input("Starting from element:\n>>")
         if not start.isdigit():
@@ -77,22 +108,23 @@ def ReadNumOfTracks(plist_len):
         
     elif num.isdigit() and int(num) <= plist_len:
         return [0, int(num)]
-    
+
     elif num.isdigit() and int(num) > plist_len:
         print("Number inputted by You is too big! Downloading all the tracks.\n")
         return [0, plist_len]
-    
+
     else:
         print("Downloading whole playlist.\n")
         return [0, plist_len]
-    
+
+
 def ReadNumbered(min_el_index, max_el_index):
     """
     Determines numbering in filenames.
 
     In series of questions, function determines if elements should be numbered, 
     and if so, in what order and on what number will the numbering start.
-    
+
     Args:
         min_el_index (int): Index of the first element to be numbered.
         max_el_index (int): Index of the last element to be numbered.
@@ -131,6 +163,7 @@ def ReadNumbered(min_el_index, max_el_index):
                     if desc_from >= number_of_elements:
                         return ["desc", desc_from]
 
+
 def ReadExtractWriteOrder():
     """
     Asks user for extract order.
@@ -143,6 +176,7 @@ def ReadExtractWriteOrder():
     while order not in result_dict:
         order = input("In what order do You want to write elements to file? (a - ascending, d - descending)\n>>").lower()
     return result_dict[order]
+
 
 def ReadTrimLens():
     """

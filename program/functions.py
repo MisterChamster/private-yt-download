@@ -125,34 +125,6 @@ def DelDuplicatesFromListOfLists(list_of_lists):
     
     return list_of_lists
 
-def GetUrlAndType():
-    """
-    Asks user for URL, checks if it's valid and determines action.
-
-    Returns:
-        list[a, b]:
-            a (str): URL inputted by user
-            b (str): Action type
-    """
-    url = str(input("Enter URL: \n>> "))
-    if (len(url) > 34 and url[:34] == 'https://youtube.com/playlist?list='):
-        inputDE = " "
-        while inputDE not in ["", "d", "e"]:
-            inputDE = input("What do You want to do with playlist? (Enter - download, e - extract playlist data)\n>>").lower()
-        if inputDE == "e":
-            return [url, "extract"]
-        return [url, 'plist']
-    
-    elif (len(url) > 17 and url[:17] == 'https://youtu.be/')  \
-    or (len(url) > 29 and url[:29] == 'https://www.youtube.com/watch'):
-        if '&list=' in url:
-            url = url[:url.find('&list=')]
-        return [url, 'single']
-    
-    else:
-        print("Invalid URL!\n")
-        return [url, 'invalid']
-
 
 def NameYourFile(OGtitle, title_number, namecut_list):
     """

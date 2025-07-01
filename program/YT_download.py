@@ -15,13 +15,13 @@ from socket import create_connection
 from functions import (CharPolice,
                        DelDuplicatesFromListOfLists,
                        Dots,
-                       GetUrlAndType,
                        IllegalToAscii,
                        IsInternetAvailable,
                        NameYourFile,
                        RoundOrExact,
                        ZerosAtBeginning)
-from functions_readers import (ReadDelDuplicates,
+from functions_readers import (ReadUrlAndType,
+                               ReadDelDuplicates,
                                ReadExtractWriteOrder,
                                ReadNumbered,
                                ReadNumOfTracks,
@@ -40,7 +40,7 @@ ydl_getdata = {'quiet': True,
 
 while True:
     chdir(desktop_path)
-    url_and_type = GetUrlAndType()
+    url_and_type = ReadUrlAndType()
     ydl_opts = {"quiet": True}
 
     if url_and_type[1] == "extract":

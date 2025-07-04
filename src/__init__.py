@@ -4,7 +4,8 @@ from .modules import (char_police,
                       illegal_to_ascii,
                       is_internet_available,
                       name_your_file,
-                      zeros_at_beginning)
+                      zeros_at_beginning,
+                      get_ydl_options)
 from .modules_reading_common import (ask_url_and_type,
                                      ask_save_ext)
 from .modules_reading_extract import (ask_extract_write_order,

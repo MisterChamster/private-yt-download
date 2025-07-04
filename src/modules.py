@@ -4,6 +4,7 @@ from datetime import date
 from time import localtime, strftime
 from socket import create_connection
 from os import chdir, mkdir, path, listdir
+from .modules_reading_common import ask_save_ext
 
 
 
@@ -170,3 +171,21 @@ def name_your_file(OGtitle, title_number, namecut_list):
     if len(policed_OGtitle) != len(OGtitle):
         print(f"{OGtitle} - has been updated to not contain illegal characters")
     return title_number + policed_ret_title
+
+
+def get_ydl_options():
+    ydl_opts = {"quiet": True}
+    format = ask_save_ext()
+    if format == "mp4":
+        ydl_opts["merge_output_format"] = "mp4"
+        ydl_opts["format"] = "bestvideo+bestaudio/best"
+    elif format == "mp3":
+        ydl_opts["postprocessors"] = [{"key": "FFmpegExtractAudio",
+                                        "preferredcodec": "mp3"}]
+        ydl_opts["format"] = "bestaudio"
+    elif format == "flac":
+        ydl_opts["postprocessors"] = [{"key": "FFmpegExtractAudio",
+                                        "preferredcodec": "flac"}]
+        ydl_opts["format"] = "bestaudio"
+        
+    return ydl_opts

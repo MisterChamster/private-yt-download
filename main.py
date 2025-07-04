@@ -25,7 +25,8 @@ from src import (char_police,
                  ask_num_of_tracks,
                  ask_save_ext,
                  ask_read_trim_lens,
-                 ask_round_or_exact)
+                 ask_round_or_exact,
+                 get_ydl_options)
 
 
 
@@ -39,6 +40,7 @@ def save_single(url):
     Args:
         url (str) - correct URL to youtube video
     """
+    ydl_opts = get_ydl_options()
     ydl_getdata = {'quiet': True,
                    'extract_flat': True,
                    'force_generic_extractor': True}
@@ -87,6 +89,7 @@ def save_plist(plist_url):
     Args:
         plist_url (str): URL of downloaded playlist.
     """
+    ydl_opts = get_ydl_options()
     ydl_getdata = {'quiet': True,
                    'extract_flat': True,
                    'force_generic_extractor': True}
@@ -304,20 +307,6 @@ while True:
         extract_plist_data(url_and_type[0])
 
     elif url_and_type[1] in ["single", "plist"]:
-        ydl_opts = {"quiet": True}
-        format = ask_save_ext()
-        if format == "mp4":
-            ydl_opts["merge_output_format"] = "mp4"
-            ydl_opts["format"] = "bestvideo+bestaudio/best"
-        elif format == "mp3":
-            ydl_opts["postprocessors"] = [{"key": "FFmpegExtractAudio",
-                                           "preferredcodec": "mp3"}]
-            ydl_opts["format"] = "bestaudio"
-        elif format == "flac":
-            ydl_opts["postprocessors"] = [{"key": "FFmpegExtractAudio",
-                                           "preferredcodec": "flac"}]
-            ydl_opts["format"] = "bestaudio"
-
         if url_and_type[1] == "single":
             save_single(url_and_type[0])
         elif url_and_type[1] == "plist":

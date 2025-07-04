@@ -6,10 +6,10 @@ from .modules import (CharPolice,
                        NameYourFile,
                        RoundOrExact,
                        ZerosAtBeginning)
-from .modules_reading import (ReadUrlAndType,
-                               ReadDelDuplicates,
-                               ReadExtractWriteOrder,
-                               ReadNumbered,
-                               ReadNumOfTracks,
-                               ReadSaveExtension,
-                               ReadTrimLens)
+from .modules_reading import (ask_url_and_type,
+                              ask_del_duplicates,
+                              ask_extract_write_order,
+                              ask_numbering,
+                              ask_num_of_tracks,
+                              ask_save_ext,
+                              ask_read_trim_lens)

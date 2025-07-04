@@ -1,4 +1,4 @@
-def ReadUrlAndType():
+def ask_url_and_type():
     """
     Asks user for URL, checks if it's valid and determines action.
 
@@ -27,7 +27,7 @@ def ReadUrlAndType():
         return [url, 'invalid']
 
 
-def ReadSaveExtension():
+def ask_save_ext():
     """
     Asks user for extension.
 
@@ -45,7 +45,7 @@ def ReadSaveExtension():
     return format_dict[user_input]
 
 
-def ReadDelDuplicates():
+def ask_del_duplicates():
     """
     Asks user what to do in case duplicates appear in playlist.
 
@@ -61,7 +61,7 @@ def ReadDelDuplicates():
     return dupl_dict[user_input]
 
 
-def ReadNumOfTracks(plist_len): 
+def ask_num_of_tracks(plist_len): 
     """
     Asks user which elements to download.
 
@@ -118,7 +118,7 @@ def ReadNumOfTracks(plist_len):
         return [0, plist_len]
 
 
-def ReadNumbered(min_el_index, max_el_index):
+def ask_numbering(min_el_index, max_el_index):
     """
     Determines numbering in filenames.
 
@@ -164,7 +164,7 @@ def ReadNumbered(min_el_index, max_el_index):
                         return ["desc", desc_from]
 
 
-def ReadExtractWriteOrder():
+def ask_extract_write_order():
     """
     Asks user for extract order.
 
@@ -178,7 +178,7 @@ def ReadExtractWriteOrder():
     return result_dict[order]
 
 
-def ReadTrimLens():
+def ask_read_trim_lens():
     """
     Asks user about cutting names of the elements.
 

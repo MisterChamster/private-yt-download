@@ -20,13 +20,13 @@ from src import (CharPolice,
                  NameYourFile,
                  RoundOrExact,
                  ZerosAtBeginning)
-from src import (ReadUrlAndType,
-                 ReadDelDuplicates,
-                 ReadExtractWriteOrder,
-                 ReadNumbered,
-                 ReadNumOfTracks,
-                 ReadSaveExtension,
-                 ReadTrimLens)
+from src import (ask_url_and_type,
+                 ask_del_duplicates,
+                 ask_extract_write_order,
+                 ask_numbering,
+                 ask_num_of_tracks,
+                 ask_save_ext,
+                 ask_read_trim_lens)
 
 
 desktop_path = path.join(path.expanduser("~"), "Desktop")
@@ -105,12 +105,12 @@ def SavePlist(plist_url):
 
     plist_list_no_dupli = DelDuplicatesFromListOfLists(plist_list)
     if len(plist_list) != len(plist_list_no_dupli):
-        if ReadDelDuplicates():
+        if ask_del_duplicates():
             plist_list = plist_list_no_dupli
 
     plist_len = plist_dict['playlist_count']
-    index_range = ReadNumOfTracks(plist_len)
-    numbered = ReadNumbered(index_range[0], index_range[1])
+    index_range = ask_num_of_tracks(plist_len)
+    numbered = ask_numbering(index_range[0], index_range[1])
     if numbered[0] != "not":
         temp_filenum = numbered[1]
         if numbered[0] == "asc":
@@ -120,7 +120,7 @@ def SavePlist(plist_url):
     else:
         temp_filenum = ""
 
-    namecut_list = ReadTrimLens()
+    namecut_list = ask_read_trim_lens()
 
     dir_name = CharPolice(plist_title)
     if dir_name == "":
@@ -208,7 +208,7 @@ def ExtractPlistData(plist_url):
     dirname += "_extracts"
     
     round_or_exact = RoundOrExact()
-    write_order = ReadExtractWriteOrder()
+    write_order = ask_extract_write_order()
     if round_or_exact == "round":
         plist_list = [[el["url"], el["title"], el["view_count"]] for el in plist_dict['entries']]
     elif round_or_exact == "exact":
@@ -291,7 +291,7 @@ def ExtractPlistData(plist_url):
 
 while True:
     chdir(desktop_path)
-    url_and_type = ReadUrlAndType()
+    url_and_type = ask_url_and_type()
     print("URLANDTYPE: ", url_and_type[1])
 
     if url_and_type[1] == "extract":
@@ -299,7 +299,7 @@ while True:
 
     elif url_and_type[1] in ["single", "plist"]:
         ydl_opts = {"quiet": True}
-        format = ReadSaveExtension()
+        format = ask_save_ext()
         if format == "mp4":
             ydl_opts["merge_output_format"] = "mp4"
             ydl_opts["format"] = "bestvideo+bestaudio/best"

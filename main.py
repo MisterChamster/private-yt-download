@@ -1,9 +1,9 @@
 # The Jimi Hendrix Experience - "Voodoo Child" (live) video
 # https://youtu.be/qFfnlYbFEiE?si=XRGMojQVJ1CFlsAu
-# Shinji - Soulja boy
+# Shinji - Soulja boy video
 # https://youtu.be/t5WoHi7Oyiw?si=X2tS0FStPcUQkMHQ
-# Ramones - "Ramones" playlist
-# https://youtube.com/playlist?list=PLBnJv6rImVe-LcbIsBXzIp6BpV6hqZnoO&si=jNymhDVGkVd3QHNn
+# Journey in Satchidananda playlist
+# https://youtube.com/playlist?list=OLAK5uy_l61jyu2-HfVxbgW4KFUruUOjU56T0az-s&si=rcgIfaJ2cmolcBDT
 
 
 from os import chdir, path

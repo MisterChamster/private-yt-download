@@ -11,7 +11,6 @@ from .modules import (char_police,
                       name_your_file,
                       zeros_at_beginning,
                       get_ydl_options)
-from .modules_reading_common import (ask_url_and_type)
 from .modules_reading_extract import (ask_extract_write_order,
                                       ask_round_or_exact)
 from .modules_reading_playlist import (ask_del_duplicates,

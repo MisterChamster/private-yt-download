@@ -12,21 +12,21 @@ from math import ceil
 from datetime import date
 from time import localtime, strftime
 # from socket import create_connection
-from functions import (CharPolice,
-                       DelDuplicatesFromListOfLists,
-                       Dots,
-                       IllegalToAscii,
-                       IsInternetAvailable,
-                       NameYourFile,
-                       RoundOrExact,
-                       ZerosAtBeginning)
-from functions_readers import (ReadUrlAndType,
-                               ReadDelDuplicates,
-                               ReadExtractWriteOrder,
-                               ReadNumbered,
-                               ReadNumOfTracks,
-                               ReadSaveExtension,
-                               ReadTrimLens)
+from src import (CharPolice,
+                 DelDuplicatesFromListOfLists,
+                 Dots,
+                 IllegalToAscii,
+                 IsInternetAvailable,
+                 NameYourFile,
+                 RoundOrExact,
+                 ZerosAtBeginning)
+from src import (ReadUrlAndType,
+                 ReadDelDuplicates,
+                 ReadExtractWriteOrder,
+                 ReadNumbered,
+                 ReadNumOfTracks,
+                 ReadSaveExtension,
+                 ReadTrimLens)
 
 
 desktop_path = path.join(path.expanduser("~"), "Desktop")
@@ -292,11 +292,12 @@ def ExtractPlistData(plist_url):
 while True:
     chdir(desktop_path)
     url_and_type = ReadUrlAndType()
+    print("URLANDTYPE: ", url_and_type[1])
 
     if url_and_type[1] == "extract":
         ExtractPlistData(url_and_type[0])
 
-    elif url_and_type[1] in ["single", "invalid"]:
+    elif url_and_type[1] in ["single", "plist"]:
         ydl_opts = {"quiet": True}
         format = ReadSaveExtension()
         if format == "mp4":

@@ -1,1 +1,15 @@
-
+from .modules import (CharPolice,
+                       DelDuplicatesFromListOfLists,
+                       Dots,
+                       IllegalToAscii,
+                       IsInternetAvailable,
+                       NameYourFile,
+                       RoundOrExact,
+                       ZerosAtBeginning)
+from .modules_reading import (ReadUrlAndType,
+                               ReadDelDuplicates,
+                               ReadExtractWriteOrder,
+                               ReadNumbered,
+                               ReadNumOfTracks,
+                               ReadSaveExtension,
+                               ReadTrimLens)

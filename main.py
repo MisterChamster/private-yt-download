@@ -12,14 +12,14 @@ from math import ceil
 from datetime import date
 from time import localtime, strftime
 # from socket import create_connection
-from src import (CharPolice,
-                 DelDuplicatesFromListOfLists,
-                 Dots,
-                 IllegalToAscii,
-                 IsInternetAvailable,
-                 NameYourFile,
-                 RoundOrExact,
-                 ZerosAtBeginning)
+from src import (char_police,
+                 del_duplicates_from_listoflists,
+                 dots,
+                 illegal_to_ascii,
+                 is_internet_available,
+                 name_your_file,
+                 round_or_exact,
+                 zeros_at_beginning)
 from src import (ask_url_and_type,
                  ask_del_duplicates,
                  ask_extract_write_order,
@@ -49,15 +49,15 @@ def SaveSingle(url):
         with YoutubeDL(ydl_getdata) as ydl:
             OGtitle = ydl.extract_info(url, download=False)["title"]
     except:
-        if not IsInternetAvailable():
+        if not is_internet_available():
             print("Internet connection failed.\n\n")
             return
         else:
             print("Something went wrong")
         
-    finalname = CharPolice(OGtitle)
+    finalname = char_police(OGtitle)
     if finalname == "":
-        finalname = IllegalToAscii(OGtitle)
+        finalname = illegal_to_ascii(OGtitle)
     i = 1
     while path.exists(desktop_path + "/" + finalname):
         finalname += "_d"*i
@@ -70,7 +70,7 @@ def SaveSingle(url):
             ydl.download([url])
         print("\n" + finalname + " has been successfully downloaded")
     except:
-        if not IsInternetAvailable():
+        if not is_internet_available():
             print("Internet connection failed.\n\n")
             return
         else:
@@ -92,7 +92,7 @@ def SavePlist(plist_url):
         with YoutubeDL(ydl_getdata) as ydl:
             plist_dict = ydl.extract_info(plist_url, download=False)
     except:
-        if not IsInternetAvailable():
+        if not is_internet_available():
             print("Internet connection failed.\n\n")
             return
         else:
@@ -103,7 +103,7 @@ def SavePlist(plist_url):
     print(plist_title)
     plist_list = [[el['url'], el['title']] for el in plist_dict['entries']] 
 
-    plist_list_no_dupli = DelDuplicatesFromListOfLists(plist_list)
+    plist_list_no_dupli = del_duplicates_from_listoflists(plist_list)
     if len(plist_list) != len(plist_list_no_dupli):
         if ask_del_duplicates():
             plist_list = plist_list_no_dupli
@@ -122,9 +122,9 @@ def SavePlist(plist_url):
 
     namecut_list = ask_read_trim_lens()
 
-    dir_name = CharPolice(plist_title)
+    dir_name = char_police(plist_title)
     if dir_name == "":
-        dir_name = IllegalToAscii(plist_title)
+        dir_name = illegal_to_ascii(plist_title)
 
     while path.exists(desktop_path + "/" + dir_name):
         dir_name += "_d"
@@ -142,9 +142,9 @@ def SavePlist(plist_url):
         vid_OGname = plist_list[index][1]
         
         if numbered[0] != "not":
-            fileindex = ZerosAtBeginning(temp_filenum, last_num)
+            fileindex = zeros_at_beginning(temp_filenum, last_num)
             
-        finalfilename = NameYourFile(vid_OGname, fileindex, namecut_list)
+        finalfilename = name_your_file(vid_OGname, fileindex, namecut_list)
 
         while finalfilename in listdir():
             finalfilename += "_d"
@@ -160,7 +160,7 @@ def SavePlist(plist_url):
                 ydl.download([vid_url])
             print(finalfilename)
         except:
-            if not IsInternetAvailable():
+            if not is_internet_available():
                 print("Internet connection failed.\n\n")
                 return
             else:
@@ -195,19 +195,19 @@ def ExtractPlistData(plist_url):
         with YoutubeDL(ydl_getdata) as ydl:
             plist_dict = ydl.extract_info(plist_url, download=False)
     except:
-        if not IsInternetAvailable():
+        if not is_internet_available():
             print("Internet connection failed.\n\n")
             return
         else:
             print("Something went wrong")
 
     plist_title = plist_dict['title']
-    dir_name = CharPolice(plist_title)
+    dir_name = char_police(plist_title)
     if dir_name == "":
-        dir_name = IllegalToAscii(plist_title)
+        dir_name = illegal_to_ascii(plist_title)
     dirname += "_extracts"
     
-    round_or_exact = RoundOrExact()
+    round_or_exact = round_or_exact()
     write_order = ask_extract_write_order()
     if round_or_exact == "round":
         plist_list = [[el["url"], el["title"], el["view_count"]] for el in plist_dict['entries']]
@@ -219,7 +219,7 @@ def ExtractPlistData(plist_url):
                     temp_vid_dict = ydl.extract_info(el[0], download=False)
                 el.append(temp_vid_dict["view_count"])
         except:
-            if not IsInternetAvailable():
+            if not is_internet_available():
                 print("Internet connection failed.\n\n")
                 return
             else:
@@ -261,7 +261,7 @@ def ExtractPlistData(plist_url):
         modified_date = modified_date[-2:] + "." + modified_date[4:6] + "." + modified_date[:4]
         f.write(f"Playlist last updated on: \t{modified_date}\n")
         f.write(f"Time of this data extract: \t{calendarium}, {current_time} \n")
-        f.write(f"Playlist views so far: \t\t{Dots(plist_dict['view_count'])}\n")
+        f.write(f"Playlist views so far: \t\t{dots(plist_dict['view_count'])}\n")
         f.write(f"Current playlist length: \t{plist_len}\n\n\n\n")
         print("Downloading...")
         
@@ -271,7 +271,7 @@ def ExtractPlistData(plist_url):
 
             try:
                 f.write(f"{index + 1}. {plist_list[pop_index][1]}\n")
-                f.write(f"Views: {Dots(plist_list[pop_index][2])}\n")
+                f.write(f"Views: {dots(plist_list[pop_index][2])}\n")
                 f.write(f"{plist_list[pop_index][0]}\n\n") #URL
             except:
                 total_errors += 1

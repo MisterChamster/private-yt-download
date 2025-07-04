@@ -12,7 +12,7 @@ ydl_getdata = {'quiet': True,
                'force_generic_extractor': True
               }
 
-def IsInternetAvailable():
+def is_internet_available():
     """
     Checks internet availability.
 
@@ -27,7 +27,7 @@ def IsInternetAvailable():
         pass
     return False
 
-def CharPolice(suspect_string):
+def char_police(suspect_string):
     """
     Checks for chars that are illegal in naming a file.
 
@@ -51,11 +51,11 @@ def CharPolice(suspect_string):
     policedstring = "".join(charlist)
     return policedstring
 
-def IllegalToAscii(illegal_string):
+def illegal_to_ascii(illegal_string):
     print("Why in the world did You do it? Maybe do something better with Your life than downloading stuff containing just illegal signs?")
     return "_".join((str(ord(char)) for char in illegal_string))
 
-def ZerosAtBeginning(number, max_element_number):
+def zeros_at_beginning(number, max_element_number):
     """
     Determines a number in name of element present in a playlist.
 
@@ -82,7 +82,7 @@ def ZerosAtBeginning(number, max_element_number):
     gg                          = digits_of_biggest_number - digits_of_number
     return f"{gg * '0'}{number}. "
 
-def Dots(integer):
+def dots(integer):
     """
     Puts dots in long numbers.
 
@@ -103,7 +103,7 @@ def Dots(integer):
     result = integer + result 
     return result
 
-def DelDuplicatesFromListOfLists(list_of_lists):
+def del_duplicates_from_listoflists(list_of_lists):
     """
     Deletes duplicate lists from a list of lists.
 
@@ -126,7 +126,7 @@ def DelDuplicatesFromListOfLists(list_of_lists):
     return list_of_lists
 
 
-def NameYourFile(OGtitle, title_number, namecut_list):
+def name_your_file(OGtitle, title_number, namecut_list):
     """
     Changes a string to match it with user's desired outcome.
 
@@ -143,11 +143,11 @@ def NameYourFile(OGtitle, title_number, namecut_list):
     """
     lens = namecut_list[0]
     lene = namecut_list[1]
-    policed_OGtitle = CharPolice(OGtitle)
+    policed_OGtitle = char_police(OGtitle)
 
     #nothing remains after policing
     if policed_OGtitle == "" and title_number == "":
-        return IllegalToAscii(OGtitle)
+        return illegal_to_ascii(OGtitle)
 
     #nothing remains after trimming name
     if (lens + lene >= len(OGtitle) or lens >= len(OGtitle) or lene > len(OGtitle)) and title_number == "":
@@ -161,17 +161,17 @@ def NameYourFile(OGtitle, title_number, namecut_list):
         ret_title = OGtitle[lens:]
     else:
         ret_title = OGtitle[lens:-lene]
-    policed_ret_title = CharPolice(ret_title)
+    policed_ret_title = char_police(ret_title)
 
     if policed_ret_title == "" and title_number == "": #nothing remains after trimming and policing
         print("After trimming, title contains only illegal signs")
-        return IllegalToAscii(ret_title)
+        return illegal_to_ascii(ret_title)
 
     if len(policed_OGtitle) != len(OGtitle):
         print(f"{OGtitle} - has been updated to not contain illegal characters")
     return title_number + policed_ret_title
 
-def RoundOrExact():
+def round_or_exact():
     """
     Asks user if extracted video views should be exact or rounded.
 
@@ -199,15 +199,15 @@ def RoundOrExact():
 #         with YoutubeDL(ydl_getdata) as ydl:
 #             OGtitle = ydl.extract_info(url, download=False)["title"]
 #     except:
-#         if not IsInternetAvailable():
+#         if not is_internet_available():
 #             print("Internet connection failed.\n\n")
 #             return
 #         else:
 #             print("Something went wrong")
         
-#     finalname = CharPolice(OGtitle)
+#     finalname = char_police(OGtitle)
 #     if finalname == "":
-#         finalname = IllegalToAscii(OGtitle)
+#         finalname = illegal_to_ascii(OGtitle)
 #     i = 1
 #     while path.exists(desktop_path + "/" + finalname):
 #         finalname += "_d"*i
@@ -220,7 +220,7 @@ def RoundOrExact():
 #             ydl.download([url])
 #         print("\n" + finalname + " has been successfully downloaded")
 #     except:
-#         if not IsInternetAvailable():
+#         if not is_internet_available():
 #             print("Internet connection failed.\n\n")
 #             return
 #         else:
@@ -242,7 +242,7 @@ def RoundOrExact():
 #         with YoutubeDL(ydl_getdata) as ydl:
 #             plist_dict = ydl.extract_info(plist_url, download=False)
 #     except:
-#         if not IsInternetAvailable():
+#         if not is_internet_available():
 #             print("Internet connection failed.\n\n")
 #             return
 #         else:
@@ -253,7 +253,7 @@ def RoundOrExact():
 #     print(plist_title)
 #     plist_list = [[el['url'], el['title']] for el in plist_dict['entries']] 
 
-#     plist_list_no_dupli = DelDuplicatesFromListOfLists(plist_list)
+#     plist_list_no_dupli = del_duplicates_from_listoflists(plist_list)
 #     if len(plist_list) != len(plist_list_no_dupli):
 #         if ReadDelDuplicates():
 #             plist_list = plist_list_no_dupli
@@ -272,9 +272,9 @@ def RoundOrExact():
 
 #     namecut_list = ReadTrimLens()
 
-#     dir_name = CharPolice(plist_title)
+#     dir_name = char_police(plist_title)
 #     if dir_name == "":
-#         dir_name = IllegalToAscii(plist_title)
+#         dir_name = illegal_to_ascii(plist_title)
 
 #     while path.exists(desktop_path + "/" + dir_name):
 #         dir_name += "_d"
@@ -292,9 +292,9 @@ def RoundOrExact():
 #         vid_OGname = plist_list[index][1]
         
 #         if numbered[0] != "not":
-#             fileindex = ZerosAtBeginning(temp_filenum, last_num)
+#             fileindex = zeros_at_beginning(temp_filenum, last_num)
             
-#         finalfilename = NameYourFile(vid_OGname, fileindex, namecut_list)
+#         finalfilename = name_your_file(vid_OGname, fileindex, namecut_list)
 
 #         while finalfilename in listdir():
 #             finalfilename += "_d"
@@ -310,7 +310,7 @@ def RoundOrExact():
 #                 ydl.download([vid_url])
 #             print(finalfilename)
 #         except:
-#             if not IsInternetAvailable():
+#             if not is_internet_available():
 #                 print("Internet connection failed.\n\n")
 #                 return
 #             else:
@@ -345,19 +345,19 @@ def RoundOrExact():
 #         with YoutubeDL(ydl_getdata) as ydl:
 #             plist_dict = ydl.extract_info(plist_url, download=False)
 #     except:
-#         if not IsInternetAvailable():
+#         if not is_internet_available():
 #             print("Internet connection failed.\n\n")
 #             return
 #         else:
 #             print("Something went wrong")
 
 #     plist_title = plist_dict['title']
-#     dir_name = CharPolice(plist_title)
+#     dir_name = char_police(plist_title)
 #     if dir_name == "":
-#         dir_name = IllegalToAscii(plist_title)
+#         dir_name = illegal_to_ascii(plist_title)
 #     dirname += "_extracts"
     
-#     round_or_exact = RoundOrExact()
+#     round_or_exact = round_or_exact()
 #     write_order = ReadExtractWriteOrder()
 #     if round_or_exact == "round":
 #         plist_list = [[el["url"], el["title"], el["view_count"]] for el in plist_dict['entries']]
@@ -369,7 +369,7 @@ def RoundOrExact():
 #                     temp_vid_dict = ydl.extract_info(el[0], download=False)
 #                 el.append(temp_vid_dict["view_count"])
 #         except:
-#             if not IsInternetAvailable():
+#             if not is_internet_available():
 #                 print("Internet connection failed.\n\n")
 #                 return
 #             else:
@@ -411,7 +411,7 @@ def RoundOrExact():
 #         modified_date = modified_date[-2:] + "." + modified_date[4:6] + "." + modified_date[:4]
 #         f.write(f"Playlist last updated on: \t{modified_date}\n")
 #         f.write(f"Time of this data extract: \t{calendarium}, {current_time} \n")
-#         f.write(f"Playlist views so far: \t\t{Dots(plist_dict['view_count'])}\n")
+#         f.write(f"Playlist views so far: \t\t{dots(plist_dict['view_count'])}\n")
 #         f.write(f"Current playlist length: \t{plist_len}\n\n\n\n")
 #         print("Downloading...")
         
@@ -421,7 +421,7 @@ def RoundOrExact():
 
 #             try:
 #                 f.write(f"{index + 1}. {plist_list[pop_index][1]}\n")
-#                 f.write(f"Views: {Dots(plist_list[pop_index][2])}\n")
+#                 f.write(f"Views: {dots(plist_list[pop_index][2])}\n")
 #                 f.write(f"{plist_list[pop_index][0]}\n\n") #URL
 #             except:
 #                 total_errors += 1

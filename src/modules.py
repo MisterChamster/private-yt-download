@@ -176,11 +176,11 @@ def get_ydl_options():
         ydl_opts["format"] = "bestvideo+bestaudio/best"
     elif format == "mp3":
         ydl_opts["postprocessors"] = [{"key": "FFmpegExtractAudio",
-                                        "preferredcodec": "mp3"}]
+                                       "preferredcodec": "mp3"}]
         ydl_opts["format"] = "bestaudio"
     elif format == "flac":
         ydl_opts["postprocessors"] = [{"key": "FFmpegExtractAudio",
-                                        "preferredcodec": "flac"}]
+                                       "preferredcodec": "flac"}]
         ydl_opts["format"] = "bestaudio"
         
     return ydl_opts

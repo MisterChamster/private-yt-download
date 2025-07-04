@@ -7,9 +7,9 @@ from .modules import (char_police,
                       round_or_exact,
                       zeros_at_beginning)
 from .modules_reading_common import (ask_url_and_type,
-                                     ask_del_duplicates,
-                                     ask_numbering,
-                                     ask_num_of_tracks,
-                                     ask_save_ext,
-                                     ask_read_trim_lens)
+                                     ask_save_ext)
 from .modules_reading_extract import ask_extract_write_order
+from .modules_reading_playlist import (ask_del_duplicates,
+                                       ask_num_of_tracks,
+                                       ask_numbering,
+                                       ask_read_trim_lens)

@@ -29,7 +29,7 @@ from src import (char_police,
 
 
 
-def SaveSingle(url):
+def save_single(url):
     """
     Downloads element from given URL
 
@@ -75,7 +75,7 @@ def SaveSingle(url):
             print("Something went wrong")
 
 
-def SavePlist(plist_url): 
+def save_plist(plist_url): 
     """
     Downloads elements from a youtube playlist.
 
@@ -176,7 +176,7 @@ def SavePlist(plist_url):
         print("\n" + "Downloading " + plist_title + " didn't go smooth. There have been " + str(total_errors) + " exceptions")
 
 
-def ExtractPlistData(plist_url):
+def extract_plist_data(plist_url):
     """
     Extracts data from a playlist to a file.
 
@@ -301,7 +301,7 @@ while True:
     print("URLANDTYPE: ", url_and_type[1])
 
     if url_and_type[1] == "extract":
-        ExtractPlistData(url_and_type[0])
+        extract_plist_data(url_and_type[0])
 
     elif url_and_type[1] in ["single", "plist"]:
         ydl_opts = {"quiet": True}
@@ -319,9 +319,9 @@ while True:
             ydl_opts["format"] = "bestaudio"
 
         if url_and_type[1] == "single":
-            SaveSingle(url_and_type[0])
+            save_single(url_and_type[0])
         elif url_and_type[1] == "plist":
-            SavePlist(url_and_type[0])
+            save_plist(url_and_type[0])
 
     again = " "
     while again not in ["", "y", "e"]:

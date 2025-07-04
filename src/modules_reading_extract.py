@@ -1,6 +1,12 @@
-from yt_dlp import YoutubeDL
-from math import ceil
-from datetime import date
-from time import localtime, strftime
-from socket import create_connection
-from os import chdir, mkdir, path, listdir
+def ask_extract_write_order():
+    """
+    Asks user for extract order.
+
+    Returns:
+        string: "asc" or "desc".
+    """
+    order = ""
+    result_dict = {"a": "asc", "d": "desc"}
+    while order not in result_dict:
+        order = input("In what order do You want to write elements to file? (a - ascending, d - descending)\n>>").lower()
+    return result_dict[order]

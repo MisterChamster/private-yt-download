@@ -25,55 +25,9 @@ from src import (char_police,
                  ask_num_of_tracks,
                  ask_read_trim_lens,
                  ask_round_or_exact,
-                 get_ydl_options)
+                 get_ydl_options,
+                 save_single)
 
-
-
-def save_single(url):
-    """
-    Downloads element from given URL
-
-    Extracts video title from URL, checks if it's correct, adjusts YoutubeDL 
-    object parameters and downloads.
-
-    Args:
-        url (str) - correct URL to youtube video
-    """
-    ydl_opts = get_ydl_options()
-    ydl_getdata = {'quiet': True,
-                   'extract_flat': True,
-                   'force_generic_extractor': True}
-    desktop_path = path.join(path.expanduser("~"), "Desktop")
-    try:
-        with YoutubeDL(ydl_getdata) as ydl:
-            OGtitle = ydl.extract_info(url, download=False)["title"]
-    except:
-        if not is_internet_available():
-            print("Internet connection failed.\n\n")
-            return
-        else:
-            print("Something went wrong")
-
-    finalname = char_police(OGtitle)
-    if finalname == "":
-        finalname = illegal_to_ascii(OGtitle)
-    i = 1
-    while path.exists(desktop_path + "/" + finalname):
-        finalname += "_d"*i
-        i += 1
-
-    ydl_opts["outtmpl"] = finalname
-    ydl_opts["paths"] = {"home": desktop_path}
-    try:
-        with YoutubeDL(ydl_opts) as ydl:
-            ydl.download([url])
-        print("\n" + finalname + " has been successfully downloaded")
-    except:
-        if not is_internet_available():
-            print("Internet connection failed.\n\n")
-            return
-        else:
-            print("Something went wrong")
 
 
 def save_plist(plist_url): 

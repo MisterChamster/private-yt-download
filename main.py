@@ -28,11 +28,6 @@ from src import (char_police,
                  ask_round_or_exact)
 
 
-desktop_path = path.join(path.expanduser("~"), "Desktop")
-ydl_getdata = {'quiet': True,
-               'extract_flat': True,
-               'force_generic_extractor': True
-              }
 
 def SaveSingle(url):
     """
@@ -44,6 +39,10 @@ def SaveSingle(url):
     Args:
         url (str) - correct URL to youtube video
     """
+    ydl_getdata = {'quiet': True,
+                   'extract_flat': True,
+                   'force_generic_extractor': True}
+    desktop_path = path.join(path.expanduser("~"), "Desktop")
     try:
         with YoutubeDL(ydl_getdata) as ydl:
             OGtitle = ydl.extract_info(url, download=False)["title"]
@@ -53,7 +52,7 @@ def SaveSingle(url):
             return
         else:
             print("Something went wrong")
-        
+
     finalname = char_police(OGtitle)
     if finalname == "":
         finalname = illegal_to_ascii(OGtitle)
@@ -75,6 +74,7 @@ def SaveSingle(url):
         else:
             print("Something went wrong")
 
+
 def SavePlist(plist_url): 
     """
     Downloads elements from a youtube playlist.
@@ -87,6 +87,10 @@ def SavePlist(plist_url):
     Args:
         plist_url (str): URL of downloaded playlist.
     """
+    ydl_getdata = {'quiet': True,
+                   'extract_flat': True,
+                   'force_generic_extractor': True}
+    desktop_path = path.join(path.expanduser("~"), "Desktop")
     try:
         with YoutubeDL(ydl_getdata) as ydl:
             plist_dict = ydl.extract_info(plist_url, download=False)
@@ -134,8 +138,6 @@ def SavePlist(plist_url):
     ydl_opts["paths"] = {"home": desktop_path + "/" + dir_name}
     print("Downloading...")
 
-
-    
     for index in range(index_range[0], index_range[1]):
         vid_url = plist_list[index][0]
         vid_OGname = plist_list[index][1]
@@ -165,7 +167,6 @@ def SavePlist(plist_url):
             else:
                 total_errors += 1
                 print(f"{finalfilename} could not be downloaded. Here's link to this video: {vid_url}")
-       
 
     if total_errors == 0:
         print("\n" + plist_title + " playlist has been successfully downloaded")
@@ -173,6 +174,7 @@ def SavePlist(plist_url):
         print("\n" + "Downloading " + plist_title + " didn't go smooth. There has been 1 exception")
     else:
         print("\n" + "Downloading " + plist_title + " didn't go smooth. There have been " + str(total_errors) + " exceptions")
+
 
 def ExtractPlistData(plist_url):
     """
@@ -189,7 +191,10 @@ def ExtractPlistData(plist_url):
     Args:
         plist_url (str): url of a playlist.
     """
-    
+    ydl_getdata = {'quiet': True,
+                   'extract_flat': True,
+                   'force_generic_extractor': True}
+    desktop_path = path.join(path.expanduser("~"), "Desktop")
     try:
         with YoutubeDL(ydl_getdata) as ydl:
             plist_dict = ydl.extract_info(plist_url, download=False)
@@ -288,7 +293,9 @@ def ExtractPlistData(plist_url):
     else:
         print(f"Number of errors during extraction: {total_errors}")
 
+
 while True:
+    desktop_path = path.join(path.expanduser("~"), "Desktop")
     chdir(desktop_path)
     url_and_type = ask_url_and_type()
     print("URLANDTYPE: ", url_and_type[1])

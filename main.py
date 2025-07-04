@@ -6,26 +6,8 @@
 # https://youtube.com/playlist?list=PLBnJv6rImVe-LcbIsBXzIp6BpV6hqZnoO&si=jNymhDVGkVd3QHNn
 
 
-from yt_dlp import YoutubeDL
-from os import chdir, mkdir, path, listdir
-from math import ceil
-from datetime import date
-from time import localtime, strftime
-from src import (char_police,
-                 del_duplicates_from_listoflists,
-                 dots,
-                 illegal_to_ascii,
-                 is_internet_available,
-                 name_your_file,
-                 zeros_at_beginning,
-                 ask_url_and_type,
-                 ask_del_duplicates,
-                 ask_extract_write_order,
-                 ask_numbering,
-                 ask_num_of_tracks,
-                 ask_read_trim_lens,
-                 ask_round_or_exact,
-                 get_ydl_options,
+from os import chdir, path
+from src import (ask_url_and_type,
                  save_single,
                  save_plist,
                  extract_plist_data)

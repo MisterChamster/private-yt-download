@@ -23,7 +23,6 @@ from src import (char_police,
                  ask_extract_write_order,
                  ask_numbering,
                  ask_num_of_tracks,
-                 ask_save_ext,
                  ask_read_trim_lens,
                  ask_round_or_exact,
                  get_ydl_options)

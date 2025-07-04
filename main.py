@@ -310,12 +310,12 @@ while True:
             ydl_opts["merge_output_format"] = "mp4"
             ydl_opts["format"] = "bestvideo+bestaudio/best"
         elif format == "mp3":
-            ydl_opts["postprocessors"] = [{  "key": "FFmpegExtractAudio",
-                                             "preferredcodec": "mp3"}]
+            ydl_opts["postprocessors"] = [{"key": "FFmpegExtractAudio",
+                                           "preferredcodec": "mp3"}]
             ydl_opts["format"] = "bestaudio"
         elif format == "flac":
-            ydl_opts["postprocessors"] = [{  "key": "FFmpegExtractAudio",
-                                             "preferredcodec": "flac"}]
+            ydl_opts["postprocessors"] = [{"key": "FFmpegExtractAudio",
+                                           "preferredcodec": "flac"}]
             ydl_opts["format"] = "bestaudio"
 
         if url_and_type[1] == "single":

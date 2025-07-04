@@ -6,11 +6,6 @@ from socket import create_connection
 from os import chdir, mkdir, path, listdir
 
 
-desktop_path = path.join(path.expanduser("~"), "Desktop")
-ydl_getdata = {'quiet': True,
-               'extract_flat': True,
-               'force_generic_extractor': True
-              }
 
 def is_internet_available():
     """
@@ -26,6 +21,7 @@ def is_internet_available():
     except OSError:
         pass
     return False
+
 
 def char_police(suspect_string):
     """
@@ -51,9 +47,11 @@ def char_police(suspect_string):
     policedstring = "".join(charlist)
     return policedstring
 
+
 def illegal_to_ascii(illegal_string):
     print("Why in the world did You do it? Maybe do something better with Your life than downloading stuff containing just illegal signs?")
     return "_".join((str(ord(char)) for char in illegal_string))
+
 
 def zeros_at_beginning(number, max_element_number):
     """
@@ -82,6 +80,7 @@ def zeros_at_beginning(number, max_element_number):
     gg                          = digits_of_biggest_number - digits_of_number
     return f"{gg * '0'}{number}. "
 
+
 def dots(integer):
     """
     Puts dots in long numbers.
@@ -102,6 +101,7 @@ def dots(integer):
 
     result = integer + result 
     return result
+
 
 def del_duplicates_from_listoflists(list_of_lists):
     """

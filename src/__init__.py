@@ -4,11 +4,11 @@ from .modules import (char_police,
                       illegal_to_ascii,
                       is_internet_available,
                       name_your_file,
-                      round_or_exact,
                       zeros_at_beginning)
 from .modules_reading_common import (ask_url_and_type,
                                      ask_save_ext)
-from .modules_reading_extract import ask_extract_write_order
+from .modules_reading_extract import (ask_extract_write_order,
+                                      ask_round_or_exact)
 from .modules_reading_playlist import (ask_del_duplicates,
                                        ask_num_of_tracks,
                                        ask_numbering,

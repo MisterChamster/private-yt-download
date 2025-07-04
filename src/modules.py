@@ -171,19 +171,6 @@ def name_your_file(OGtitle, title_number, namecut_list):
         print(f"{OGtitle} - has been updated to not contain illegal characters")
     return title_number + policed_ret_title
 
-def round_or_exact():
-    """
-    Asks user if extracted video views should be exact or rounded.
-
-    Returns:
-        str: "round" or "exact".
-    """
-    input_RE = " "
-    RE_dict = {"": "round", "r": "round", "e": "exact"}
-    input_RE = input("Do You want viewcount on every video be exact or rounded? Extracting exact values will take significantly longer time. (Enter - rounded, e - exact)\n>>").lower()
-
-    if input_RE in RE_dict:
-        return RE_dict[input_RE]
 
 # def SaveSingle(url):
 #     """

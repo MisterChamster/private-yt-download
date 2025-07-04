@@ -11,22 +11,21 @@ from os import chdir, mkdir, path, listdir
 from math import ceil
 from datetime import date
 from time import localtime, strftime
-# from socket import create_connection
 from src import (char_police,
                  del_duplicates_from_listoflists,
                  dots,
                  illegal_to_ascii,
                  is_internet_available,
                  name_your_file,
-                 round_or_exact,
-                 zeros_at_beginning)
-from src import (ask_url_and_type,
+                 zeros_at_beginning,
+                 ask_url_and_type,
                  ask_del_duplicates,
                  ask_extract_write_order,
                  ask_numbering,
                  ask_num_of_tracks,
                  ask_save_ext,
-                 ask_read_trim_lens)
+                 ask_read_trim_lens,
+                 ask_round_or_exact)
 
 
 desktop_path = path.join(path.expanduser("~"), "Desktop")
@@ -207,7 +206,7 @@ def ExtractPlistData(plist_url):
         dir_name = illegal_to_ascii(plist_title)
     dirname += "_extracts"
     
-    round_or_exact = round_or_exact()
+    round_or_exact = ask_round_or_exact()
     write_order = ask_extract_write_order()
     if round_or_exact == "round":
         plist_list = [[el["url"], el["title"], el["view_count"]] for el in plist_dict['entries']]

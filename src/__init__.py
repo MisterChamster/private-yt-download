@@ -14,4 +14,5 @@ from .modules_reading_playlist import (ask_del_duplicates,
                                        ask_num_of_tracks,
                                        ask_numbering,
                                        ask_read_trim_lens)
-from .modules_big_routes import (save_single)
+from .modules_big_routes import (save_single,
+                                 save_plist)

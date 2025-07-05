@@ -1,10 +1,10 @@
 import os
 from .module_askers_common import (ask_url,
-                                   ask_plist_action,
-                                   check_url_type)
+                                   ask_plist_action)
 from .module_big_routes import (save_single,
                                 save_plist,
                                 extract_plist_data)
+from .module_utils import check_url_type
 
 
 

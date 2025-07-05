@@ -21,19 +21,6 @@ def ask_plist_action():
             return "extract"
 
 
-def check_url_type(url):
-    if (len(url) > 34 and url[:34] == 'https://youtube.com/playlist?list='):
-        return 'plist'
-
-    elif (len(url) > 17 and url[:17] == 'https://youtu.be/') or \
-         (len(url) > 29 and url[:29] == 'https://www.youtube.com/watch'):
-        return 'single'
-
-    else:
-        print("Invalid URL!\n")
-        return 'invalid'
-
-
 def ask_save_ext():
     """
     Asks user for extension.

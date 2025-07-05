@@ -6,8 +6,9 @@
 # https://youtube.com/playlist?list=OLAK5uy_l61jyu2-HfVxbgW4KFUruUOjU56T0az-s&si=rcgIfaJ2cmolcBDT
 
 
-from os import chdir, path
-from src import (ask_url_and_type,
+import os
+from src import (ask_url,
+                 ask_url_and_type,
                  save_single,
                  save_plist,
                  extract_plist_data)
@@ -15,8 +16,9 @@ from src import (ask_url_and_type,
 
 
 while True:
-    desktop_path = path.join(path.expanduser("~"), "Desktop")
-    chdir(desktop_path)
+    desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
+    os.chdir(desktop_path)
+    # url = ask_url()
     url_and_type = ask_url_and_type()
 
     if url_and_type[1] == "extract":

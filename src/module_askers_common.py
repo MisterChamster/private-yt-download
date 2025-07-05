@@ -1,3 +1,8 @@
+def ask_url():
+    print("Enter URL: \n>> ", end="")
+    url = str(input())
+    return url
+
 def ask_url_and_type():
     """
     Asks user for URL, checks if it's valid and determines action.

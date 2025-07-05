@@ -3,6 +3,22 @@ def ask_url():
     url = str(input())
     return url
 
+
+def ask_plist_action():
+    while True:
+        print("Choose playlist option:" \
+              "Enter - download" \
+              "e     - extract playlist data\n>> ")
+        action = str(input())
+
+        if action not in ["", "e"]:
+            print("Incorrect input.\n")
+        elif action == "":
+            return "download"
+        elif action == "e":
+            return "extract"
+
+
 def ask_url_and_type():
     """
     Asks user for URL, checks if it's valid and determines action.
@@ -45,6 +61,6 @@ def ask_save_ext():
     user_input = " "
     format_dict = {"4": "mp4", "3": "mp3", "f": "flac"}
     while user_input not in format_dict:
-        user_input = input("What format do You want to save as? (4 - mp4, 3 - mp3, f - flac)\n>>").lower()
+        user_input = input("What format do You want to save as? (4 - mp4, 3 - mp3, f - flac)\n>> ").lower()
 
     return format_dict[user_input]

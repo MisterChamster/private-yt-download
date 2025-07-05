@@ -8,9 +8,9 @@ def ask_url():
 
 def ask_plist_action():
     while True:
-        print("Choose playlist option:" \
-              "Enter - download" \
-              "e     - extract playlist data\n>> ")
+        print("Choose playlist option:\n" \
+              "Enter - download\n" \
+              "e     - extract playlist data\n\n>> ", end="")
         action = str(input())
 
         if action not in ["", "e"]:
@@ -21,23 +21,26 @@ def ask_plist_action():
             return "extract"
 
 
-def check_url_type():
-    url = str(input("Enter URL: \n>> "))
+def check_url_type(url):
+    # url = str(input("Enter URL: \n>> "))
     if (len(url) > 34 and url[:34] == 'https://youtube.com/playlist?list='):
-        inputDE = " "
-        while inputDE not in ["", "d", "e"]:
-            inputDE = input("What do You want to do with playlist? (Enter - download, e - extract playlist data)\n>>").lower()
-        if inputDE == "e":
-            return [url, "extract"]
-        return [url, 'plist']
+        # inputDE = " "
+        # while inputDE not in ["", "d", "e"]:
+        #     inputDE = input("What do You want to do with playlist? (Enter - download, e - extract playlist data)\n>>").lower()
+        # if inputDE == "e":
+        #     return [url, "extract"]
+        # return [url, 'plist']
+        return 'plist'
 
     elif (len(url) > 17 and url[:17] == 'https://youtu.be/') or \
          (len(url) > 29 and url[:29] == 'https://www.youtube.com/watch'):
-        return [url, 'single']
+        # return [url, 'single']
+        return 'single'
 
     else:
         print("Invalid URL!\n")
-        return [url, 'invalid']
+        # return [url, 'invalid']
+        return 'invalid'
 
 
 def ask_save_ext():

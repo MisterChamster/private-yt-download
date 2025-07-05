@@ -11,24 +11,32 @@ from src import (ask_url,
                  check_url_type,
                  save_single,
                  save_plist,
-                 extract_plist_data)
+                 extract_plist_data,
+                 ask_plist_action)
 
 
 
 while True:
     desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
     os.chdir(desktop_path)
-    # url = ask_url()
-    url_and_type = check_url_type()
+    print()
+    url = ask_url()
+    print()
+    url_type = check_url_type(url)
 
-    if url_and_type[1] == "extract":
-        extract_plist_data(url_and_type[0])
+    if url_type == 'plist':
+        url_type = ask_plist_action()
 
-    elif url_and_type[1] in ["single", "plist"]:
-        if url_and_type[1] == "single":
-            save_single(url_and_type[0])
-        elif url_and_type[1] == "plist":
-            save_plist(url_and_type[0])
+        if url_type == 'download':
+            print()
+            save_plist(url)
+        elif url_type == 'extract':
+            print()
+            extract_plist_data(url)
+
+    elif url_type == "single":
+        print()
+        save_single(url)
 
     again = " "
     while again not in ["", "y", "e"]:

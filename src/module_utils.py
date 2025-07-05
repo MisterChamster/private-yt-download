@@ -3,7 +3,7 @@ from .module_askers_common import ask_save_ext
 
 
 
-def check_url_type(url):
+def determine_url_type(url):
     if (len(url) > 34 and url[:34] == 'https://youtube.com/playlist?list='):
         return 'plist'
 

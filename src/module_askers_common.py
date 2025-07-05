@@ -1,6 +1,8 @@
 def ask_url():
     print("Enter URL: \n>> ", end="")
     url = str(input())
+    if '&list=' in url:
+        url = url[:url.find('&list=')]
     return url
 
 
@@ -31,8 +33,6 @@ def check_url_type():
 
     elif (len(url) > 17 and url[:17] == 'https://youtu.be/') or \
          (len(url) > 29 and url[:29] == 'https://www.youtube.com/watch'):
-        if '&list=' in url:
-            url = url[:url.find('&list=')]
         return [url, 'single']
 
     else:

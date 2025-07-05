@@ -11,9 +11,9 @@ from .module import (char_police,
                       name_your_file,
                       zeros_at_beginning,
                       get_ydl_options)
-from .module_reading_extract import (ask_extract_write_order,
+from .module_askers_extract import (ask_extract_write_order,
                                       ask_round_or_exact)
-from .module_reading_playlist import (ask_del_duplicates,
+from .module_askers_playlist import (ask_del_duplicates,
                                        ask_num_of_tracks,
                                        ask_numbering,
                                        ask_read_trim_lens)

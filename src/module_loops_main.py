@@ -14,10 +14,10 @@ def main_loop():
         os.chdir(desktop_path)
         print()
         url = ask_url()
-        print()
         url_type = check_url_type(url)
 
         if url_type == 'plist':
+            print()
             url_type = ask_plist_action()
 
             if url_type == 'download':
@@ -35,5 +35,4 @@ def main_loop():
         while again not in ["", "y", "e"]:
             again = input("\nWhat now? (Enter - run program again, e - end program)\n>>").lower()
         if again == "e":
-            print()
             break

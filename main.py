@@ -8,7 +8,7 @@
 
 import os
 from src import (ask_url,
-                 ask_url_and_type,
+                 check_url_type,
                  save_single,
                  save_plist,
                  extract_plist_data)
@@ -19,7 +19,7 @@ while True:
     desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
     os.chdir(desktop_path)
     # url = ask_url()
-    url_and_type = ask_url_and_type()
+    url_and_type = check_url_type()
 
     if url_and_type[1] == "extract":
         extract_plist_data(url_and_type[0])

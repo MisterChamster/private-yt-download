@@ -19,15 +19,7 @@ def ask_plist_action():
             return "extract"
 
 
-def ask_url_and_type():
-    """
-    Asks user for URL, checks if it's valid and determines action.
-
-    Returns:
-        list[a, b]:
-            a (str): URL inputted by user
-            b (str): Action type
-    """
+def check_url_type():
     url = str(input("Enter URL: \n>> "))
     if (len(url) > 34 and url[:34] == 'https://youtube.com/playlist?list='):
         inputDE = " "

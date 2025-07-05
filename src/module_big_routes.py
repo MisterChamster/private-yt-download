@@ -3,7 +3,7 @@ from os import chdir, mkdir, path, listdir
 from math import ceil
 from datetime import date
 from time import localtime, strftime
-from .module import (char_police,
+from .module_utils import (char_police,
                       del_duplicates_from_listoflists,
                       dots,
                       illegal_to_ascii,

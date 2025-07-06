@@ -1,5 +1,6 @@
 from yt_dlp import YoutubeDL
 from os import chdir, mkdir, path, listdir
+from .module_askers_common import ask_save_ext
 from .module_utils import (char_police,
                            del_duplicates_from_listoflists,
                            illegal_to_ascii,
@@ -26,7 +27,9 @@ def save_plist(plist_url):
     Args:
         plist_url (str): URL of downloaded playlist.
     """
-    ydl_opts = get_ydl_options()
+    extension = ask_save_ext()
+    print()
+    ydl_opts = get_ydl_options(extension)
     ydl_getdata = {'quiet': True,
                    'extract_flat': True,
                    'force_generic_extractor': True}

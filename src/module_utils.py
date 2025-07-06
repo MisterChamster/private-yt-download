@@ -159,17 +159,16 @@ def name_your_file(OGtitle, title_number, namecut_list):
     return title_number + policed_ret_title
 
 
-def get_ydl_options():
+def get_ydl_options(extension):
     ydl_opts = {"quiet": True}
-    format = ask_save_ext()
-    if format == "mp4":
+    if extension == "mp4":
         ydl_opts["merge_output_format"] = "mp4"
         ydl_opts["format"] = "bestvideo+bestaudio/best"
-    elif format == "mp3":
+    elif extension == "mp3":
         ydl_opts["postprocessors"] = [{"key": "FFmpegExtractAudio",
                                        "preferredcodec": "mp3"}]
         ydl_opts["format"] = "bestaudio"
-    elif format == "flac":
+    elif extension == "flac":
         ydl_opts["postprocessors"] = [{"key": "FFmpegExtractAudio",
                                        "preferredcodec": "flac"}]
         ydl_opts["format"] = "bestaudio"

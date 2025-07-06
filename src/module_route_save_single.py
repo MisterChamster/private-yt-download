@@ -1,5 +1,6 @@
 from yt_dlp import YoutubeDL
 from os import path
+from .module_askers_common import ask_save_ext
 from .module_utils import (char_police,
                            illegal_to_ascii,
                            is_internet_available,
@@ -17,7 +18,9 @@ def save_single(url):
     Args:
         url (str) - correct URL to youtube video
     """
-    ydl_opts = get_ydl_options()
+    extension = ask_save_ext()
+    print()
+    ydl_opts = get_ydl_options(extension)
     ydl_getdata = {'quiet': True,
                    'extract_flat': True,
                    'force_generic_extractor': True}
@@ -46,7 +49,7 @@ def save_single(url):
     try:
         with YoutubeDL(ydl_opts) as ydl:
             ydl.download([url])
-        print("\n" + finalname + " has been successfully downloaded")
+        print(f"{finalname} has been successfully downloaded.")
     except:
         if not is_internet_available():
             print("Internet connection failed.\n\n")

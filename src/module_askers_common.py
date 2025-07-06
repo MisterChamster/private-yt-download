@@ -1,5 +1,7 @@
 def ask_url():
-    print("Enter URL: \n>> ", end="")
+    print("Enter URL of YouTube video or playlist:\n" \
+    "(to exit input 'exit')" \
+    "\n>> ", end="")
     url = str(input())
     if '&list=' in url:
         url = url[:url.find('&list=')]
@@ -10,7 +12,7 @@ def ask_save_ext():
     """
     Asks user for extension.
 
-    In infinite loop, forces user to input either 4, 3 or f 
+    In infinite loop, forces user to input either 4, 3 or f
     to get proper extension.
 
     Returns:

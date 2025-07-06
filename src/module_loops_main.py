@@ -11,25 +11,18 @@ def main_loop():
         desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
         os.chdir(desktop_path)
         print()
+        print("=============================================================")
+        print("=======================  Welcome to   =======================")
+        print("======================= YT Downloader =======================")
+        print("=============================================================\n")
         url = ask_url()
+        if url == "exit":
+            return
         url_type = determine_url_type(url)
 
         if url_type == 'plist':
             print()
-            # url_type = ask_plist_action()
-            # if url_type == 'download':
-                # print()
             save_plist(url)
-            # elif url_type == 'extract':
-            #     print()
-            #     extract_plist_data(url)
-
         elif url_type == "single":
             print()
             save_single(url)
-
-        again = " "
-        while again not in ["", "y", "e"]:
-            again = input("\nWhat now? (Enter - run program again, e - end program)\n>>").lower()
-        if again == "e":
-            break

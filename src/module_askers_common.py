@@ -16,9 +16,18 @@ def ask_save_ext():
     Returns:
         str: Extenstion chosen by user.
     """
-    user_input = " "
-    format_dict = {"4": "mp4", "3": "mp3", "f": "flac"}
-    while user_input not in format_dict:
-        user_input = input("What format do You want to save as? (4 - mp4, 3 - mp3, f - flac)\n>> ").lower()
+    while True:
+        print("Choose file format for saving:\n" \
+        "4 - mp4\n" \
+        "3 - mp3\n" \
+        "f - flac\n\n>> ", end="")
+        user_input = str(input())
 
-    return format_dict[user_input]
+        if user_input == "4":
+            return "mp4"
+        elif user_input == "3":
+            return "mp3"
+        elif user_input == "f":
+            return "flac"
+        else:
+            print("Invalid input!")

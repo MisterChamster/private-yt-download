@@ -6,21 +6,6 @@ def ask_url():
     return url
 
 
-def ask_plist_action():
-    while True:
-        print("Choose playlist option:\n" \
-              "Enter - download\n" \
-              "e     - extract playlist data\n\n>> ", end="")
-        action = str(input())
-
-        if action not in ["", "e"]:
-            print("Incorrect input.\n")
-        elif action == "":
-            return "download"
-        elif action == "e":
-            return "extract"
-
-
 def ask_save_ext():
     """
     Asks user for extension.

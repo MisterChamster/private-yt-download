@@ -90,28 +90,6 @@ def zeros_at_beginning(number, max_element_number):
     return f"{gg * '0'}{number}. "
 
 
-def dots(integer):
-    """
-    Puts dots in long numbers.
-
-    Between every 3 chars puts a dot.
-
-    Args:
-        integer (int): A number into which the function will put dots.
-
-    Returns:
-        str: Inputted integer with dots added    
-    """
-    integer = str(integer)
-    result = ''
-    while len(integer) > 3:
-        result = "." + integer[-3:] + result
-        integer = integer[:-3]
-
-    result = integer + result 
-    return result
-
-
 def del_duplicates_from_listoflists(list_of_lists):
     """
     Deletes duplicate lists from a list of lists.

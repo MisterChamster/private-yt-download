@@ -22,7 +22,7 @@ def ask_save_ext():
         print("Choose file format for saving:\n" \
         "4 - mp4\n" \
         "3 - mp3\n" \
-        "f - flac\n\n>> ", end="")
+        "f - flac\n>> ", end="")
         user_input = str(input())
 
         if user_input == "4":
@@ -32,4 +32,4 @@ def ask_save_ext():
         elif user_input == "f":
             return "flac"
         else:
-            print("Invalid input!")
+            print("Invalid input!\n")

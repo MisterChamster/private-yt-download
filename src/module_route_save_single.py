@@ -32,9 +32,9 @@ def save_single(url):
     except:
         if not is_internet_available():
             print("Internet connection failed.\n\n")
-            return
         else:
-            print("Something went wrong")
+            print("Something went wrong.\n\n")
+        return
 
     finalname = char_police(og_title)
     if finalname == "":
@@ -46,13 +46,14 @@ def save_single(url):
 
     ydl_opts["outtmpl"] = finalname
     ydl_opts["paths"] = {"home": desktop_path}
+    print("Downloading...")
     try:
         with YoutubeDL(ydl_opts) as ydl:
             ydl.download([url])
-        print(f"{finalname} has been successfully downloaded.")
+        print(f"{finalname} has been successfully downloaded.\n\n")
     except:
         if not is_internet_available():
             print("Internet connection failed.\n\n")
-            return
         else:
-            print("Something went wrong")
+            print("Something went wrong.\n\n")
+        return

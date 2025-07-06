@@ -7,10 +7,10 @@ from .module_utils import determine_url_type
 
 
 def main_loop():
+    print()
     while True:
         desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
         os.chdir(desktop_path)
-        print()
         print("=============================================================")
         print("=======================  Welcome to   =======================")
         print("======================= YT Downloader =======================")

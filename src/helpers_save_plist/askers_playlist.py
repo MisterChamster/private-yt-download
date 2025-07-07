@@ -57,10 +57,8 @@ def ask_num_of_tracks(plist_len):
             end = plist_len
         else:
             end = int(end)
-
         return [start, end]
 
-        
     elif num.isdigit() and int(num) <= plist_len:
         return [0, int(num)]
 

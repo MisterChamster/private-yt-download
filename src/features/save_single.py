@@ -29,15 +29,15 @@ def save_single(url):
     if save_path == "":
         print("Empty path was chosen.")
         return
+    ydl_opts["paths"] = {"home": save_path}
 
     finalname = illegal_char_remover(og_title)
     i = 1
     while path.exists(save_path + "/" + finalname):
         finalname += "_d"*i
         i += 1
-
     ydl_opts["outtmpl"] = finalname
-    ydl_opts["paths"] = {"home": save_path}
+
     print("Downloading...")
     try:
         with YoutubeDL(ydl_opts) as ydl:

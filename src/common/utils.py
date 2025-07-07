@@ -27,7 +27,7 @@ def is_internet_available():
         create_connection(("www.google.com", 80))
         return True
     except OSError:
-        pass
+        return False
     return False
 
 
@@ -80,10 +80,11 @@ def zeros_at_beginning(number, max_element_number):
     return ((max_element_number < 10) * f"0{number}. ") + ((max_element_number >= 10) * (f"{(len(str(max_element_number)) - len(str(number))) * '0'}{number}. ")) # I'm really sorry. The same code is written below, but it's readable
     if max_element_number < 10:
         return f"0{number}. "
-    digits_of_biggest_number    = len(str(max_element_number))
-    digits_of_number            = len(str(number))
-    gg                          = digits_of_biggest_number - digits_of_number
-    return f"{gg * '0'}{number}. "
+    else:
+        digits_of_biggest_number    = len(str(max_element_number))
+        digits_of_number            = len(str(number))
+        gg                          = digits_of_biggest_number - digits_of_number
+        return f"{gg * '0'}{number}. "
 
 
 def del_duplicates_from_listoflists(list_of_lists):
@@ -126,11 +127,7 @@ def name_your_file(OGtitle, title_number, namecut_list):
     """
     lens = namecut_list[0]
     lene = namecut_list[1]
-    policed_OGtitle = char_police(OGtitle)
-
-    #nothing remains after policing
-    if policed_OGtitle == "" and title_number == "":
-        return illegal_to_ascii(OGtitle)
+    policed_OGtitle = illegal_char_remover(OGtitle)
 
     #nothing remains after trimming name
     if (lens + lene >= len(OGtitle) or lens >= len(OGtitle) or lene > len(OGtitle)) and title_number == "":
@@ -144,11 +141,7 @@ def name_your_file(OGtitle, title_number, namecut_list):
         ret_title = OGtitle[lens:]
     else:
         ret_title = OGtitle[lens:-lene]
-    policed_ret_title = char_police(ret_title)
-
-    if policed_ret_title == "" and title_number == "": #nothing remains after trimming and policing
-        print("After trimming, title contains only illegal signs")
-        return illegal_to_ascii(ret_title)
+    policed_ret_title = illegal_char_remover(ret_title)
 
     if len(policed_OGtitle) != len(OGtitle):
         print(f"{OGtitle} - has been updated to not contain illegal characters")

@@ -1,3 +1,6 @@
+from tkinter import filedialog
+import os
+
 def ask_url():
     print("Enter URL of YouTube video or playlist:\n" \
     "(to exit input 'exit')" \
@@ -33,3 +36,12 @@ def ask_save_ext():
             return "flac"
         else:
             print("Invalid input!\n")
+
+
+def ask_save_path():
+    original_path = os.getcwd()
+    desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
+    os.chdir(desktop_path)
+    folder_selected = filedialog.askdirectory(title="Select Download Folder")
+    os.chdir(original_path)
+    return folder_selected

@@ -3,15 +3,15 @@ from os import chdir, mkdir, path, listdir
 from src.common.askers import (ask_save_ext,
                                ask_save_path)
 from src.common.utils import (illegal_char_remover,
-                              del_duplicates_from_listoflists,
                               is_internet_available,
-                              name_file_on_plist,
-                              zeros_at_beginning,
                               get_ydl_options)
 from src.helpers_save_plist.askers_playlist import (ask_del_duplicates,
                                                     ask_num_of_tracks,
                                                     ask_numbering,
                                                     ask_read_trim_lens)
+from src.helpers_save_plist.save_plist_utils import (del_duplicates_from_listoflists,
+                                                     name_file_on_plist,
+                                                     zeros_at_beginning,)
 from src.common.ydl_support import get_plist_dict
 
 

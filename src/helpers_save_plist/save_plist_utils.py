@@ -41,30 +41,45 @@ def del_duplicates_from_listoflists(list_of_lists):
     Returns:
         list: list_of_lists without duplicates.
     """
-    curr_el = 0
-    while curr_el + 1 < len(list_of_lists):
-        a = curr_el + 1
+    i = 0
+    while i + 1 < len(list_of_lists):
+        a = i + 1
         while a < len(list_of_lists):
-            if list_of_lists[curr_el][0] == list_of_lists[a][0] and list_of_lists[curr_el][1] == list_of_lists[a][1]:
+            if list_of_lists[i][0] == list_of_lists[a][0] and list_of_lists[i][1] == list_of_lists[a][1]:
                 list_of_lists.pop(a)
             else:
                 a += 1
-        curr_el += 1
+        i += 1
 
     return list_of_lists
 
 
-def get_indexes_of_doubled_item(list_of_items, searched_item):
+def get_indexes_of_searched_item(list_of_items, searched_item):
     indexes_list = []
     i = 0
     while i < len(list_of_items):
         if list_of_items[i] == searched_item:
-            indexes_list += i
+            indexes_list.append(i)
         i += 1
+    return indexes_list
 
-    if len(indexes_list) > 1:
-        return indexes_list
-    return None
+
+def get_indexes_of_duplicates(list_of_items):
+    list_of_appearances = []
+    list_of_lists_of_appearances = []
+    i = 0
+    while i+1 < len(list_of_items):
+        item_appearances = get_indexes_of_searched_item(list_of_items, list_of_items[i])
+        if len(item_appearances) > 1:
+            list_of_lists_of_appearances.append(item_appearances[1:])
+        i += 1
+    
+    for item1 in list_of_lists_of_appearances:
+        for item2 in item1:
+            list_of_appearances.append(item2)
+            list_of_appearances = list(set(list_of_appearances))
+    # print(list_of_appearances)
+    return list_of_appearances
 
 
 def name_file_on_plist(OGtitle, title_number, namecut_list):

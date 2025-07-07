@@ -11,7 +11,8 @@ from src.helpers_save_plist.askers_playlist import (ask_del_duplicates,
                                                     ask_read_trim_lens)
 from src.helpers_save_plist.save_plist_utils import (del_duplicates_from_listoflists,
                                                      name_file_on_plist,
-                                                     zeros_at_beginning,)
+                                                     zeros_at_beginning,
+                                                     get_indexes_of_duplicates)
 from src.common.ydl_support import get_plist_dict
 
 
@@ -28,11 +29,6 @@ def save_plist(plist_url):
     Args:
         plist_url (str): URL of downloaded playlist.
     """
-    # Get save extension from user and correct ydl options
-    extension = ask_save_ext()
-    print()
-    ydl_opts = get_ydl_options(extension)
-
     # Get playlist dictionary
     plist_dict = get_plist_dict(plist_url)
     if plist_dict == None:
@@ -43,11 +39,18 @@ def save_plist(plist_url):
     print(plist_title)
     print()
 
+    # Get save extension from user and correct ydl options
+    extension = ask_save_ext()
+    print()
+    ydl_opts = get_ydl_options(extension)
+
     # START WORK HERE
     # Divide the list into two lists and add numbering list for the future
     plist_list = [[el['url'], el['title']] for el in plist_dict['entries']]
     # plist_urls = [el['url'] for el in plist_dict['entries']]
 
+    # duplicates_indexes = get_indexes_of_duplicates(plist_list)
+    # print(duplicates_indexes)
     plist_list_no_dupli = del_duplicates_from_listoflists(plist_list)
     if len(plist_list) != len(plist_list_no_dupli):
         if ask_del_duplicates():

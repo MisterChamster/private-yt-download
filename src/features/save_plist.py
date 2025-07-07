@@ -5,7 +5,7 @@ from src.common.askers import (ask_save_ext,
 from src.common.utils import (illegal_char_remover,
                               del_duplicates_from_listoflists,
                               is_internet_available,
-                              name_your_file,
+                              name_file_on_plist,
                               zeros_at_beginning,
                               get_ydl_options)
 from src.helpers_save_plist.askers_playlist import (ask_del_duplicates,
@@ -94,7 +94,7 @@ def save_plist(plist_url):
         if numbered[0] != "not":
             fileindex = zeros_at_beginning(temp_filenum, last_num)
             
-        finalfilename = name_your_file(vid_OGname, fileindex, namecut_list)
+        finalfilename = name_file_on_plist(vid_OGname, fileindex, namecut_list)
 
         while finalfilename in listdir():
             finalfilename += "_d"

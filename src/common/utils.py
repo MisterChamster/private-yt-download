@@ -123,7 +123,7 @@ def get_indexes_of_doubled_item(list_of_items, searched_item):
     return None
 
 
-def name_your_file(OGtitle, title_number, namecut_list):
+def name_file_on_plist(OGtitle, title_number, namecut_list):
     """
     Changes a string to match it with user's desired outcome.
 

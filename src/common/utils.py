@@ -106,8 +106,21 @@ def del_duplicates_from_listoflists(list_of_lists):
             else:
                 a += 1
         curr_el += 1
-    
+
     return list_of_lists
+
+
+def get_indexes_of_doubled_item(list_of_items, searched_item):
+    indexes_list = []
+    i = 0
+    while i < len(list_of_items):
+        if list_of_items[i] == searched_item:
+            indexes_list += i
+        i += 1
+
+    if len(indexes_list) > 1:
+        return indexes_list
+    return None
 
 
 def name_your_file(OGtitle, title_number, namecut_list):

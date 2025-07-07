@@ -45,7 +45,8 @@ def save_plist(plist_url):
 
     # START WORK HERE
     # Divide the list into two lists and add numbering list for the future
-    plist_list = [[el['url'], el['title']] for el in plist_dict['entries']] 
+    plist_list = [[el['url'], el['title']] for el in plist_dict['entries']]
+    # plist_urls = [el['url'] for el in plist_dict['entries']]
 
     plist_list_no_dupli = del_duplicates_from_listoflists(plist_list)
     if len(plist_list) != len(plist_list_no_dupli):

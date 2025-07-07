@@ -1,17 +1,15 @@
 def ask_del_duplicates():
-    """
-    Asks user what to do in case duplicates appear in playlist.
-
-    Returns:
-        boolean: True - delete duplicates, False - leave duplicates.
-    """
-
     user_input = " "
-    dupl_dict = {"": True, "d": True, "l": False}
-    while user_input not in dupl_dict:
-        user_input = input("Duplicates detected. What should be done about them? (Enter - delete, l - leave)\n>>").lower()
+    while True:
+        print("Duplicates detected. What should be done about them?\n" \
+              "d - delete\n" \
+              "l - leave\n>> ")
+        user_input = str(input())
 
-    return dupl_dict[user_input]
+        if user_input == "d":
+            return True
+        elif user_input == "l":
+            return False
 
 
 def ask_num_of_tracks(plist_len): 

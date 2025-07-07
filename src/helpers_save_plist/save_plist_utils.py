@@ -64,6 +64,16 @@ def get_indexes_of_searched_item(list_of_items, searched_item):
     return indexes_list
 
 
+def are_duplicates(list_of_items):
+    i = 0
+    while i+1 < len(list_of_items):
+        item_appearances = get_indexes_of_searched_item(list_of_items, list_of_items[i])
+        if len(item_appearances) > 1:
+            return True
+        i += 1
+    return False
+
+
 def get_indexes_of_duplicates(list_of_items):
     list_of_appearances = []
     list_of_lists_of_appearances = []
@@ -78,7 +88,6 @@ def get_indexes_of_duplicates(list_of_items):
         for item2 in item1:
             list_of_appearances.append(item2)
             list_of_appearances = list(set(list_of_appearances))
-    # print(list_of_appearances)
     return list_of_appearances
 
 

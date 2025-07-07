@@ -1,9 +1,9 @@
 def ask_del_duplicates():
     user_input = " "
     while True:
-        print("Duplicates detected. What should be done about them?\n" \
-              "d - delete\n" \
-              "l - leave\n>> ")
+        print("Duplicates detected. Choose handling option:\n" \
+              "d - Delete duplicates\n" \
+              "l - Leave duplicates\n>> ", end="")
         user_input = str(input())
 
         if user_input == "d":
@@ -29,7 +29,11 @@ def ask_num_of_tracks(plist_len):
     Returns:
         list[int, int]: Indexes of first and last element to be downloaded.
     """
-    num = input("How to download the elements? (Enter - all, integer number - number of elements from start, c - custom settings...)\n>>").lower()
+    print("Choose elements to download:\n" \
+          "Enter   - All elements\n" \
+          "Integer - Number of elements from start\n" \
+          "c       - Custom settings...\n>> ", end="")
+    num = str(input())
     if num == '':
         return [0, plist_len]
 
@@ -88,7 +92,12 @@ def ask_numbering(min_el_index, max_el_index):
     user_input = " "
 
     while True:
-        user_input = input("Do You want elements to be numbered? (Enter - starting on 1, integer - starting on integer, n - no, c - custom...)\n>>").lower()
+        print("Choose numbering option:\n" \
+              "Enter   - Starting on 1\n" \
+              "Integer - Starting on integer\n" \
+              "n       - No numbering\n" \
+              "c       - Custom numbering...\n>> ", end="")
+        user_input = str(input())
 
         if user_input == "" or user_input == "y":
             return ["asc", 1]
@@ -127,7 +136,12 @@ def ask_read_trim_lens():
     inputSC = " "
     namecut_list = [0, 0]
     while inputSC not in ["", "s", "b", "e"]:
-        inputSC = input("Do You want to trim names of all elements? (Enter - no, s - at the start, e - at the end, b - both)\n>>").lower()
+        print("Choose name trimming option:\n" \
+              "Enter - No trimming\n" \
+              "s     - Trim at the start\n" \
+              "e     - Trim at the end\n" \
+              "b     - Trim on both sides\n>> ", end="")
+        inputSC = str(input())
 
     if inputSC == "s":
         namecut_list[0] = str(input("Input the string or length You want to trim at the start:\n>>"))

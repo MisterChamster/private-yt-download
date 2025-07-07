@@ -1,6 +1,7 @@
 from yt_dlp import YoutubeDL
 from os import path
-from src.common.askers import ask_save_ext
+from src.common.askers import (ask_save_ext,
+                               ask_save_path)
 from src.common.utils import (char_police,
                               illegal_to_ascii,
                               is_internet_available,
@@ -24,7 +25,6 @@ def save_single(url):
     ydl_getdata = {'quiet': True,
                    'extract_flat': True,
                    'force_generic_extractor': True}
-    desktop_path = path.join(path.expanduser("~"), "Desktop")
 
     try:
         with YoutubeDL(ydl_getdata) as ydl:
@@ -36,16 +36,17 @@ def save_single(url):
             print("Something went wrong.\n\n")
         return
 
+    save_path = ask_save_path()
     finalname = char_police(og_title)
     if finalname == "":
         finalname = illegal_to_ascii(og_title)
     i = 1
-    while path.exists(desktop_path + "/" + finalname):
+    while path.exists(save_path + "/" + finalname):
         finalname += "_d"*i
         i += 1
 
     ydl_opts["outtmpl"] = finalname
-    ydl_opts["paths"] = {"home": desktop_path}
+    ydl_opts["paths"] = {"home": save_path}
     print("Downloading...")
     try:
         with YoutubeDL(ydl_opts) as ydl:

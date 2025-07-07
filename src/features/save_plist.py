@@ -1,6 +1,7 @@
 from yt_dlp import YoutubeDL
 from os import chdir, mkdir, path, listdir
-from src.common.askers import ask_save_ext
+from src.common.askers import (ask_save_ext,
+                               ask_save_path)
 from src.common.utils import (char_police,
                               del_duplicates_from_listoflists,
                               illegal_to_ascii,
@@ -33,7 +34,6 @@ def save_plist(plist_url):
     ydl_getdata = {'quiet': True,
                    'extract_flat': True,
                    'force_generic_extractor': True}
-    desktop_path = path.join(path.expanduser("~"), "Desktop")
     try:
         with YoutubeDL(ydl_getdata) as ydl:
             plist_dict = ydl.extract_info(plist_url, download=False)
@@ -77,13 +77,14 @@ def save_plist(plist_url):
     if dir_name == "":
         dir_name = illegal_to_ascii(plist_title)
 
-    while path.exists(desktop_path + "/" + dir_name):
+    save_path = ask_save_path()
+    while path.exists(save_path + "/" + dir_name):
         dir_name += "_d"
     mkdir(dir_name)
     chdir(dir_name)
     total_errors = 0
     fileindex = ""
-    ydl_opts["paths"] = {"home": desktop_path + "/" + dir_name}
+    ydl_opts["paths"] = {"home": save_path + "/" + dir_name}
     print("Downloading...")
 
     for index in range(index_range[0], index_range[1]):

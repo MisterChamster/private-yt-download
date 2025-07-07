@@ -42,6 +42,6 @@ def ask_save_path():
     original_path = os.getcwd()
     desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
     os.chdir(desktop_path)
-    folder_selected = filedialog.askdirectory(title="Select Download Folder")
+    folder_selected = filedialog.askdirectory(title="Select download folder")
     os.chdir(original_path)
     return folder_selected

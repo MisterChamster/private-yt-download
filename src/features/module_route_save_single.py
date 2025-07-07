@@ -1,7 +1,7 @@
 from yt_dlp import YoutubeDL
 from os import path
-from .module_askers_common import ask_save_ext
-from .module_utils import (char_police,
+from src.module_askers_common import ask_save_ext
+from src.module_utils import (char_police,
                            illegal_to_ascii,
                            is_internet_available,
                            get_ydl_options)

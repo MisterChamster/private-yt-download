@@ -1,14 +1,14 @@
 from yt_dlp import YoutubeDL
 from os import chdir, mkdir, path, listdir
-from .module_askers_common import ask_save_ext
-from .module_utils import (char_police,
+from src.module_askers_common import ask_save_ext
+from src.module_utils import (char_police,
                            del_duplicates_from_listoflists,
                            illegal_to_ascii,
                            is_internet_available,
                            name_your_file,
                            zeros_at_beginning,
                            get_ydl_options)
-from .module_askers_playlist import (ask_del_duplicates,
+from src.module_askers_playlist import (ask_del_duplicates,
                                      ask_num_of_tracks,
                                      ask_numbering,
                                      ask_read_trim_lens)

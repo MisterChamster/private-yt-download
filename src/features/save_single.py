@@ -2,7 +2,7 @@ from yt_dlp import YoutubeDL
 from os import path
 from src.common.askers import (ask_save_ext,
                                ask_save_path)
-from src.common.utils import (char_police,
+from src.common.utils import (illegal_char_remover,
                               illegal_to_ascii,
                               is_internet_available,
                               get_ydl_options)
@@ -22,6 +22,7 @@ def save_single(url):
     """
     extension = ask_save_ext()
     print()
+
     ydl_opts = get_ydl_options(extension)
     og_title = get_video_title(url)
 
@@ -30,7 +31,7 @@ def save_single(url):
         print("Empty path was input.")
         return
 
-    finalname = char_police(og_title)
+    finalname = illegal_char_remover(og_title)
     if finalname == "":
         finalname = illegal_to_ascii(og_title)
     i = 1

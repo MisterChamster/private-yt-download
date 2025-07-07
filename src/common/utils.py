@@ -31,9 +31,9 @@ def is_internet_available():
     return False
 
 
-def char_police(suspect_string):
+def illegal_char_remover(suspect_string):
     """
-    Checks for chars that are illegal in naming a file.
+    Removes chars that are illegal in naming a file from string.
 
     From given string, function removes \\, /, :, *, ?, ", <, >, | 
     (chars illegal in naming files) and returns it.
@@ -51,7 +51,7 @@ def char_police(suspect_string):
             charlist.pop(i)
         else:
             i += 1
-    
+
     policedstring = "".join(charlist)
     return policedstring
 

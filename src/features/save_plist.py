@@ -78,6 +78,10 @@ def save_plist(plist_url):
         dir_name = illegal_to_ascii(plist_title)
 
     save_path = ask_save_path()
+    if save_path == "":
+        print("Empty path was input.")
+        return
+
     while path.exists(save_path + "/" + dir_name):
         dir_name += "_d"
     mkdir(dir_name)

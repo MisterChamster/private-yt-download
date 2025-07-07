@@ -26,6 +26,10 @@ def save_single(url):
     og_title = get_video_title(url)
 
     save_path = ask_save_path()
+    if save_path == "":
+        print("Empty path was input.")
+        return
+
     finalname = char_police(og_title)
     if finalname == "":
         finalname = illegal_to_ascii(og_title)

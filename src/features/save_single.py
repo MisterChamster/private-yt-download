@@ -6,6 +6,7 @@ from src.common.utils import (char_police,
                               illegal_to_ascii,
                               is_internet_available,
                               get_ydl_options)
+from src.common.ydl_support import get_video_title
 
 
 
@@ -22,19 +23,7 @@ def save_single(url):
     extension = ask_save_ext()
     print()
     ydl_opts = get_ydl_options(extension)
-    ydl_getdata = {'quiet': True,
-                   'extract_flat': True,
-                   'force_generic_extractor': True}
-
-    try:
-        with YoutubeDL(ydl_getdata) as ydl:
-            og_title = ydl.extract_info(url, download=False)["title"]
-    except:
-        if not is_internet_available():
-            print("Internet connection failed.\n\n")
-        else:
-            print("Something went wrong.\n\n")
-        return
+    og_title = get_video_title(url)
 
     save_path = ask_save_path()
     finalname = char_police(og_title)

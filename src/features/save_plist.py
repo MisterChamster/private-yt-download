@@ -4,7 +4,6 @@ from src.common.askers import (ask_save_ext,
                                ask_save_path)
 from src.common.utils import (illegal_char_remover,
                               del_duplicates_from_listoflists,
-                              illegal_to_ascii,
                               is_internet_available,
                               name_your_file,
                               zeros_at_beginning,
@@ -75,12 +74,10 @@ def save_plist(plist_url):
     print()
 
     dir_name = illegal_char_remover(plist_title)
-    if dir_name == "":
-        dir_name = illegal_to_ascii(plist_title)
 
     save_path = ask_save_path()
     if save_path == "":
-        print("Empty path was input.")
+        print("Empty path was chosen.")
         return
 
     while path.exists(save_path + "/" + dir_name):

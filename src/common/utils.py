@@ -53,12 +53,9 @@ def illegal_char_remover(suspect_string):
             i += 1
 
     policedstring = "".join(charlist)
+    if policedstring == "":
+        return "Invalid title"
     return policedstring
-
-
-def illegal_to_ascii(illegal_string):
-    print("Why in the world did You do it? Maybe do something better with Your life than downloading stuff containing just illegal signs?")
-    return "_".join((str(ord(char)) for char in illegal_string))
 
 
 def zeros_at_beginning(number, max_element_number):

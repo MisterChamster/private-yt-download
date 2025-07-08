@@ -9,11 +9,11 @@ from src.helpers_save_plist.askers_playlist import (ask_del_duplicates,
                                                     ask_num_of_tracks,
                                                     ask_numbering,
                                                     ask_read_trim_lens)
-from src.helpers_save_plist.save_plist_utils import (del_duplicates_from_listoflists,
-                                                     name_file_on_plist,
+from src.helpers_save_plist.save_plist_utils import (name_file_on_plist,
                                                      zeros_at_beginning,
                                                      get_indexes_of_duplicates,
-                                                     are_duplicates)
+                                                     are_duplicates,
+                                                     del_indexes)
 from src.common.ydl_support import get_plist_dict
 
 
@@ -40,17 +40,20 @@ def save_plist(plist_url):
     print(plist_title)
     print()
 
-    plist_list = [[el['url'], el['title']] for el in plist_dict['entries']]
+    # plist_list = [[el['url'], el['title']] for el in plist_dict['entries']]
     plist_urls = [el['url'] for el in plist_dict['entries']]
-    # plist_vid_titles = [el['title'] for el in plist_dict['entries']]
-    # plist_vid_indexes = [el for el in range(0, len(plist_urls))]
+    plist_vid_titles = [el['title'] for el in plist_dict['entries']]
+    plist_vid_indexes = [el for el in range(0, len(plist_urls))]
 
     # START WORK HERE
-    # You have a list of indexes of duplicates. Delete indexes (from highest to lowest) from all plist lists
     if are_duplicates(plist_urls):
         if ask_del_duplicates():
-            plist_list_no_dupli = del_duplicates_from_listoflists(plist_list)
-            plist_list = plist_list_no_dupli
+            dupli_indexes = get_indexes_of_duplicates(plist_urls)
+
+            plist_urls = del_indexes(plist_urls, dupli_indexes)
+            plist_vid_titles = del_indexes(plist_vid_titles, dupli_indexes)
+            plist_vid_indexes = del_indexes(plist_vid_indexes, dupli_indexes)
+            # plist_list = del_indexes(plist_list, dupli_indexes)
         print()
 
     # Get save extension from user and correct ydl options
@@ -59,7 +62,7 @@ def save_plist(plist_url):
     ydl_opts = get_ydl_options(extension)
 
 
-    plist_len = plist_dict['playlist_count']
+    plist_len = len(plist_urls)
     index_range = ask_num_of_tracks(plist_len)
     print()
     numbered = ask_numbering(index_range[0], index_range[1])
@@ -82,6 +85,7 @@ def save_plist(plist_url):
     if save_path == "":
         print("Empty path was chosen.")
         return
+    chdir(save_path)
 
     while path.exists(save_path + "/" + dir_name):
         dir_name += "_d"
@@ -93,8 +97,8 @@ def save_plist(plist_url):
     print("Downloading...")
 
     for index in range(index_range[0], index_range[1]):
-        vid_url = plist_list[index][0]
-        vid_OGname = plist_list[index][1]
+        vid_url = plist_urls[index]
+        vid_OGname = plist_vid_titles[index]
         
         if numbered[0] != "not":
             fileindex = zeros_at_beginning(temp_filenum, last_num)

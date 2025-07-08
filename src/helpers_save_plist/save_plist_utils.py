@@ -31,29 +31,6 @@ def zeros_at_beginning(number, max_element_number):
         return f"{gg * '0'}{number}. "
 
 
-def del_duplicates_from_listoflists(list_of_lists):
-    """
-    Deletes duplicate lists from a list of lists.
-
-    Args:
-        list_of_lists (list): Self explainatory.
-
-    Returns:
-        list: list_of_lists without duplicates.
-    """
-    i = 0
-    while i + 1 < len(list_of_lists):
-        a = i + 1
-        while a < len(list_of_lists):
-            if list_of_lists[i][0] == list_of_lists[a][0] and list_of_lists[i][1] == list_of_lists[a][1]:
-                list_of_lists.pop(a)
-            else:
-                a += 1
-        i += 1
-
-    return list_of_lists
-
-
 def get_indexes_of_searched_item(list_of_items, searched_item):
     indexes_list = []
     i = 0
@@ -89,6 +66,14 @@ def get_indexes_of_duplicates(list_of_items):
             list_of_appearances.append(item2)
             list_of_appearances = list(set(list_of_appearances))
     return list_of_appearances
+
+
+def del_indexes(list_of_items, indexes_list):
+    indexes_list.sort()
+    indexes_list.reverse()
+    for i in indexes_list:
+        list_of_items.pop(i)
+    return list_of_items
 
 
 def name_file_on_plist(OGtitle, title_number, namecut_list):

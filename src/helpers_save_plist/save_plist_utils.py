@@ -69,6 +69,8 @@ def are_duplicates(list_of_items):
     while i+1 < len(list_of_items):
         item_appearances = get_indexes_of_searched_item(list_of_items, list_of_items[i])
         if len(item_appearances) > 1:
+            print("Duplicates:")
+            print(item_appearances)
             return True
         i += 1
     return False

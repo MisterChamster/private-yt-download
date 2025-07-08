@@ -47,7 +47,7 @@ def save_plist(plist_url):
 
     # START WORK HERE
     # You have a list of indexes of duplicates. Delete indexes (from highest to lowest) from all plist lists
-    if are_duplicates(plist_url):
+    if are_duplicates(plist_urls):
         if ask_del_duplicates():
             plist_list_no_dupli = del_duplicates_from_listoflists(plist_list)
             plist_list = plist_list_no_dupli

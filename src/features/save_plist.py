@@ -40,11 +40,13 @@ def save_plist(plist_url):
     print(plist_title)
     print()
 
-    # START WORK HERE
-    # Divide the list into two lists and add numbering list for the future
     plist_list = [[el['url'], el['title']] for el in plist_dict['entries']]
     # plist_urls = [el['url'] for el in plist_dict['entries']]
+    # plist_vid_titles = [el['title'] for el in plist_dict['entries']]
+    # plist_vid_indexes = [el for el in range(0, len(plist_urls))]
 
+    # START WORK HERE
+    # You have a list of indexes of duplicates. Delete indexes (from highest to lowest) from all plist lists
     if are_duplicates:
         if ask_del_duplicates():
             plist_list_no_dupli = del_duplicates_from_listoflists(plist_list)

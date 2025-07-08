@@ -40,12 +40,15 @@ def save_plist(plist_url):
     print(f"Playlist: {plist_title}")
     print()
 
-    # plist_list = [[el['url'], el['title']] for el in plist_dict['entries']]
+    # Get lists with videos data
     plist_urls = [el['url'] for el in plist_dict['entries']]
     plist_vid_titles = [el['title'] for el in plist_dict['entries']]
     plist_vid_indexes = [el for el in range(0, len(plist_urls))]
 
     # START WORK HERE
+    # Make a ls function
+
+    # Check and handle duplicates
     if are_duplicates(plist_urls):
         if ask_del_duplicates():
             dupli_indexes = get_indexes_of_duplicates(plist_urls)
@@ -53,7 +56,6 @@ def save_plist(plist_url):
             plist_urls = del_indexes(plist_urls, dupli_indexes)
             plist_vid_titles = del_indexes(plist_vid_titles, dupli_indexes)
             plist_vid_indexes = del_indexes(plist_vid_indexes, dupli_indexes)
-            # plist_list = del_indexes(plist_list, dupli_indexes)
         print()
 
     # Get save extension from user and correct ydl options
@@ -98,12 +100,12 @@ def save_plist(plist_url):
 
     for index in range(index_range[0], index_range[1]):
         vid_url = plist_urls[index]
-        vid_OGname = plist_vid_titles[index]
-        
+        vid_og_name = plist_vid_titles[index]
+
         if numbered[0] != "not":
             fileindex = zeros_at_beginning(temp_filenum, last_num)
-            
-        finalfilename = name_file_on_plist(vid_OGname, fileindex, namecut_list)
+
+        finalfilename = name_file_on_plist(vid_og_name, fileindex, namecut_list)
 
         while finalfilename in listdir():
             finalfilename += "_d"

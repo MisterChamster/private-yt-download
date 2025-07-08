@@ -37,7 +37,7 @@ def save_plist(plist_url):
 
     # Get playlist title
     plist_title = plist_dict['title']
-    print(plist_title)
+    print(f"Playlist: {plist_title}")
     print()
 
     # plist_list = [[el['url'], el['title']] for el in plist_dict['entries']]
@@ -94,7 +94,7 @@ def save_plist(plist_url):
     total_errors = 0
     fileindex = ""
     ydl_opts["paths"] = {"home": save_path + "/" + dir_name}
-    print("Downloading...")
+    print(f"Downloading {plist_title}...")
 
     for index in range(index_range[0], index_range[1]):
         vid_url = plist_urls[index]
@@ -127,8 +127,8 @@ def save_plist(plist_url):
                 print(f"{finalfilename} could not be downloaded. Here's link to this video: {vid_url}")
 
     if total_errors == 0:
-        print("\n" + plist_title + " playlist has been successfully downloaded")
+        print("\n" + plist_title + " playlist has been successfully downloaded.\n\n")
     elif total_errors == 1:
-        print("\n" + "Downloading " + plist_title + " didn't go smooth. There has been 1 exception")
+        print("\n" + "Downloading " + plist_title + " didn't go smooth. There has been 1 exception.\n\n")
     else:
-        print("\n" + "Downloading " + plist_title + " didn't go smooth. There have been " + str(total_errors) + " exceptions")
+        print("\n" + "Downloading " + plist_title + " didn't go smooth. There have been " + str(total_errors) + " exceptions.\n\n")

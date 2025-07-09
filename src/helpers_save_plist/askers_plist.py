@@ -172,7 +172,6 @@ def ask_numbering(min_el_index, max_el_index):
             a (str): Naming order ("asc", "desc", "not").
             b (int): Number of first downloaded element.
     """
-    user_input = " "
 
     while True:
         print("Choose numbering option:\n" \

@@ -60,14 +60,15 @@ def save_plist(plist_url):
     print()
     ydl_opts = get_ydl_options(extension)
 
+    # Make user specify which elements to download
     plist_list = [[i+1, plist_vid_titles[i], plist_urls[i]] for i in range(0, len(plist_urls))]
     plist_list = trim_plist_loop(plist_list)
     if plist_list == None:
         return
-    print("||||||||||||||PRINTING ALL ELEMENTS SLAY||||||||||||||")
-    for el in plist_list:
-        print(el)
-    print()
+    # print("||||||||||||||PRINTING ALL ELEMENTS SLAY||||||||||||||")
+    # for el in plist_list:
+    #     print(el)
+    # print()
 
     # START DEAD CODE
     plist_len = len(plist_urls)

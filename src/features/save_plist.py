@@ -5,7 +5,7 @@ from src.common.askers import (ask_save_ext,
 from src.common.utils import (illegal_char_remover,
                               is_internet_available,
                               get_ydl_options)
-from src.helpers_save_plist.askers_playlist import (ask_del_duplicates,
+from src.helpers_save_plist.askers_plist import (ask_del_duplicates,
                                                     ask_num_of_tracks,
                                                     ask_numbering,
                                                     ask_read_trim_lens)
@@ -43,10 +43,6 @@ def save_plist(plist_url):
     # Get lists with videos data
     plist_urls = [el['url'] for el in plist_dict['entries']]
     plist_vid_titles = [el['title'] for el in plist_dict['entries']]
-    plist_vid_indexes = [el for el in range(0, len(plist_urls))]
-
-    # START WORK HERE
-    # Make a ls function
 
     # Check and handle duplicates
     if are_duplicates(plist_urls):
@@ -55,14 +51,19 @@ def save_plist(plist_url):
 
             plist_urls = del_indexes(plist_urls, dupli_indexes)
             plist_vid_titles = del_indexes(plist_vid_titles, dupli_indexes)
-            plist_vid_indexes = del_indexes(plist_vid_indexes, dupli_indexes)
         print()
+    # I don't care about indexing b4 deleting duplicates and neither should you
+    plist_vid_indexes = [el for el in range(0, len(plist_urls))]
 
     # Get save extension from user and correct ydl options
     extension = ask_save_ext()
     print()
     ydl_opts = get_ydl_options(extension)
 
+
+    # START WORK HERE
+    # ask_which_tracks
+    # Make a ls function
 
     plist_len = len(plist_urls)
     index_range = ask_num_of_tracks(plist_len)

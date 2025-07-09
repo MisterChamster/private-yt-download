@@ -90,8 +90,8 @@ def ask_trimming_main_menu():
 def ask_custom_trim():
     while True:
         print("Choose custom trimming option:\n" \
-              "te    - Trim one element\n" \
-              "tr    - Trim a range of elements\n" \
+              "te    - Trim one element...\n" \
+              "tr    - Trim a range of elements...\n" \
               "rt    - Return\n>> ", end="")
         asker = str(input())
 
@@ -204,6 +204,19 @@ def ask_numbering(min_el_index, max_el_index):
                     desc_from = int(desc_from)
                     if desc_from >= number_of_elements:
                         return ["desc", desc_from]
+
+
+def ask_numbering_main_menu():
+    while True:
+        print("Choose numbering option:\n" \
+              "Enter - Starting on 1\n" \
+              "n     - No numbering\n" \
+              "i     - Starting on integer...\n" \
+              "e     - Ending on integer...\n" \
+              "r     - Reverse current numbering\n" \
+              "o     - Original numbering\n>> ", end="")
+        action = str(input())
+        return action
 
 
 def ask_read_trim_lens():

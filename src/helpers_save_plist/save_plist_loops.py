@@ -1,7 +1,8 @@
 from src.helpers_save_plist.askers_plist import (ask_trimming_main_menu,
                                                  ask_custom_trim,
                                                  ask_el_trim,
-                                                 ask_multiple_trim)
+                                                 ask_multiple_trim,
+                                                 ask_numbering_main_menu)
 from src.helpers_save_plist.save_plist_utils import (list_vids,
                                                      del_by_number,
                                                      del_by_range)
@@ -59,4 +60,7 @@ def custom_trim_loop(plist_list):
 
 
 def numbering_loop(plist_list):
-    return plist_list
+    og_numbering = [el[0] for el in plist_list]
+    while True:
+        action = ask_numbering_main_menu()
+        return plist_list

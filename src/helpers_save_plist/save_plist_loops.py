@@ -64,4 +64,19 @@ def numbering_loop(plist_list):
     final_numbering = og_numbering
     while True:
         action = ask_numbering_main_menu()
-        return plist_list
+        if action == "o":
+            final_numbering = [i+1 for i in range(0, len(final_numbering))]
+        elif action == "n":
+            final_numbering = []
+        elif action == "b":
+            pass
+        elif action == "e":
+            pass
+        elif action == "r":
+            final_numbering = final_numbering[::-1]
+        elif action == "og":
+            final_numbering = og_numbering
+        elif action == "ls":
+            pass
+        elif action == "s":
+            return plist_list

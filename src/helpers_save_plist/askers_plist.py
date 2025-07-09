@@ -211,7 +211,7 @@ def ask_numbering_main_menu():
         print("Choose numbering option:\n" \
               "o  - Starting on 1\n" \
               "n  - No numbering\n" \
-              "i  - Starting on integer...\n" \
+              "b  - Beginning on integer...\n" \
               "e  - Ending on integer...\n" \
               "r  - Reverse current numbering\n" \
               "og - Original numbering\n" \
@@ -219,7 +219,7 @@ def ask_numbering_main_menu():
               "s  - Save\n>> ", end="")
         action = str(input())
 
-        if action not in ["o", "n", "i", "e", "r", "og", "ls", "s"]:
+        if action not in ["o", "n", "b", "e", "r", "og", "ls", "s"]:
             print("Incorrect input.\n")
         return action
 

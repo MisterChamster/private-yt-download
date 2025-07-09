@@ -21,6 +21,9 @@ def trim_plist_loop(plist_list):
 
 def custom_trim_loop(plist_list):
     while True:
+        list_vids(plist_list)
+        print()
+
         action = ask_custom_trim()
         print()
 
@@ -28,19 +31,18 @@ def custom_trim_loop(plist_list):
             # START WORK HERE
             # List all elements first
             number_to_trim = ask_el_trim()
-            print()
             if number_to_trim is None:
                 continue
             number_to_trim = int(number_to_trim)
             if number_to_trim == 0 or number_to_trim > len(plist_list):
-                print("Number is not an element on videos list.")
+                print("Number is not an element on videos list.\n")
             else:
+                print()
                 plist_list = del_by_number(plist_list, number_to_trim)
         elif action == "tr":
-            # List all elements first
             pass
-        elif action == "ls":
-            list_vids(plist_list)
-            print()
+        # elif action == "ls":
+        #     list_vids(plist_list)
+        #     print()
         elif action == "rt":
             return plist_list

@@ -87,17 +87,17 @@ def ask_trimming_main_menu():
             return asker
 
 
-#Delete ls
 def ask_custom_trim():
     while True:
         print("Choose custom trimming option:\n" \
               "te    - Trim one element\n" \
               "tr    - Trim a range of elements\n" \
-              "ls    - List all videos\n" \
+            #   "ls    - List all videos\n" \
               "rt    - Return\n>> ", end="")
         asker = str(input())
 
-        if asker not in ["te", "tr", "ls", "rt"]:
+        # if asker not in ["te", "tr", "ls", "rt"]:
+        if asker not in ["te", "tr", "rt"]:
             print("Incorrect input.\n")
         else:
             return asker

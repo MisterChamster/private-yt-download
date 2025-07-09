@@ -87,6 +87,7 @@ def ask_trimming_main_menu():
             return asker
 
 
+#Delete ls
 def ask_custom_trim():
     while True:
         print("Choose custom trimming option:\n" \
@@ -104,11 +105,14 @@ def ask_custom_trim():
 
 def ask_el_trim():
     while True:
-        print("Input number of the element to trim:\n >> ", end="")
+        print("Input number of the element to trim:\n" \
+              "(to exit input 'exit')\n>> ", end="")
         asker = str(input())
 
-        if not asker.isdigit():
+        if not asker.isdigit() and asker != "exit":
             print("Incorrect input.\n")
+        elif asker == "exit":
+            return None
         else:
             return asker
 

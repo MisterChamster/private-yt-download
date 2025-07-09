@@ -63,6 +63,9 @@ def save_plist(plist_url):
     plist_list = [[i+1, plist_vid_titles[i], plist_urls[i]] for i in range(0, len(plist_urls))]
     # START WORK HERE
     plist_list = trim_plist_loop(plist_list)
+    for el in plist_list:
+        print(el)
+    print()
 
     plist_len = len(plist_urls)
     index_range = ask_num_of_tracks(plist_len)

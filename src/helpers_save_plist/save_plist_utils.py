@@ -82,6 +82,15 @@ def list_vids(plist_list):
         print(f"{plist_list[i][0]}. {plist_list[i][1]}")
 
 
+def del_by_number(plist_list, number):
+    i = 0
+    while i < len(plist_list):
+        if plist_list[i][0] == number:
+            plist_list.pop(i)
+            return plist_list
+        i += 1
+
+
 def name_file_on_plist(OGtitle, title_number, namecut_list):
     """
     Changes a string to match it with user's desired outcome.

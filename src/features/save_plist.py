@@ -15,7 +15,8 @@ from src.helpers_save_plist.save_plist_utils import (name_file_on_plist,
                                                      are_duplicates,
                                                      del_indexes)
 from src.common.ydl_support import get_plist_dict
-from src.helpers_save_plist.save_plist_loops import trim_plist_loop
+from src.helpers_save_plist.save_plist_loops import (trim_plist_loop,
+                                                     numbering_loop)
 
 
 
@@ -77,6 +78,8 @@ def save_plist(plist_url):
     # END DEAD CODE
 
     # START WORK HERE
+    plist_list = numbering_loop(plist_list)
+
     numbered = ask_numbering(index_range[0], index_range[1])
     print()
     if numbered[0] != "not":

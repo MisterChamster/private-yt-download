@@ -56,3 +56,7 @@ def custom_trim_loop(plist_list):
 
         elif action == "rt":
             return plist_list
+
+
+def numbering_loop(plist_list):
+    return plist_list

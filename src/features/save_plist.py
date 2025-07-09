@@ -8,7 +8,8 @@ from src.common.utils import (illegal_char_remover,
 from src.helpers_save_plist.askers_plist import (ask_del_duplicates,
                                                     ask_num_of_tracks,
                                                     ask_numbering,
-                                                    ask_read_trim_lens)
+                                                    ask_read_trim_lens,
+                                                    ask_which_tracks)
 from src.helpers_save_plist.save_plist_utils import (name_file_on_plist,
                                                      zeros_at_beginning,
                                                      get_indexes_of_duplicates,
@@ -53,7 +54,6 @@ def save_plist(plist_url):
             plist_vid_titles = del_indexes(plist_vid_titles, dupli_indexes)
         print()
     # I don't care about indexing b4 deleting duplicates and neither should you
-    plist_vid_indexes = [el for el in range(0, len(plist_urls))]
 
     # Get save extension from user and correct ydl options
     extension = ask_save_ext()
@@ -64,7 +64,10 @@ def save_plist(plist_url):
     # START WORK HERE
     # ask_which_tracks
     # Make a ls function
-    #branching test
+    plist_list = [[i, plist_vid_titles[i], plist_urls[i]] for i in range(0, len(plist_urls))]
+    plist_list = ask_which_tracks(plist_list)
+    for i in range(0, len(plist_list)):
+        print(plist_list[i])
 
     plist_len = len(plist_urls)
     index_range = ask_num_of_tracks(plist_len)

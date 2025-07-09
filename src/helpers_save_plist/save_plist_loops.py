@@ -12,10 +12,15 @@ def trim_plist_loop(plist_list):
     while True:
         action = ask_trimming_main_menu()
         print()
+
         if action == "all":
             return plist_list
+
         elif action == "c":
             plist_list = custom_trim_loop(plist_list)
+            if plist_list == None:
+                return None
+
         elif action == "ls":
             list_vids(plist_list)
             print()
@@ -23,6 +28,10 @@ def trim_plist_loop(plist_list):
 
 def custom_trim_loop(plist_list):
     while True:
+        if not plist_list:
+            print("All elements have been removed.")
+            return None
+
         list_vids(plist_list)
         print()
 

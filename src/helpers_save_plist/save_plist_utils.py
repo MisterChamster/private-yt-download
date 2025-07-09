@@ -76,6 +76,12 @@ def del_indexes(list_of_items, indexes_list):
     return list_of_items
 
 
+def list_vids(plist_list):
+    # print("Hello! I list videos. You're pretty.")
+    for i in range(0, len(plist_list)):
+        print(f"{plist_list[i][0]}. {plist_list[i][1]}")
+
+
 def name_file_on_plist(OGtitle, title_number, namecut_list):
     """
     Changes a string to match it with user's desired outcome.

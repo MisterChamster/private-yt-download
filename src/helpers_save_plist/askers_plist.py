@@ -71,6 +71,23 @@ def ask_num_of_tracks(plist_len):
         return [0, plist_len]
 
 
+def ask_trimming_main_menu():
+    while True:
+        print("Choose which elements to download:\n" \
+              "Enter - All elements\n" \
+              "c     - Custom settings...\n" \
+              "ls    - List all videos\n" \
+              "rt    - Return\n>> ", end="")
+        asker = str(input())
+
+        if not asker in ["", "c", "ls", "rt"]:
+            print("Incorrect input.\n")
+        else:
+            if asker == "":
+                return "all"
+            return asker
+
+
 def ask_numbering(min_el_index, max_el_index):
     """
     Determines numbering in filenames.

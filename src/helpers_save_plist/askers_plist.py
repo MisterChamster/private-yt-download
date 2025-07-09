@@ -101,7 +101,7 @@ def ask_custom_trim():
             return asker
 
 
-def ask_el_trim(plist_len):
+def ask_el_trim(plist_numbers):
     while True:
         print("Input number of the element to trim:\n" \
               "(to exit input 'exit')\n>> ", end="")
@@ -112,13 +112,13 @@ def ask_el_trim(plist_len):
         elif not asker.isdigit():
             print("Incorrect input.\n")
         el_number = int(asker)
-        if el_number == 0 or el_number > plist_len:
+        if el_number not in plist_numbers:
             print("Number is not an element on videos list.\n")
         else:
             return el_number
 
 
-def ask_multiple_trim(plist_len):
+def ask_multiple_trim(plist_len, plist_numbers):
     while True:
         print("Input number of the first element to trim:\n" \
               "(to exit input 'exit')\n>> ", end="")
@@ -130,7 +130,7 @@ def ask_multiple_trim(plist_len):
             print("Incorrect input.\n")
 
         start_el = int(asker)
-        if start_el == 0 or start_el > plist_len:
+        if start_el not in plist_numbers:
             print("Number is not an element on videos list.\n")
         else:
             break
@@ -148,10 +148,10 @@ def ask_multiple_trim(plist_len):
             print("Incorrect input.\n")
 
         end_el = int(asker2)
-        if end_el > plist_len:
+        if end_el not in plist_numbers:
             print("Number is not an element on videos list.\n")
         elif end_el < start_el:
-            print("End number can't be higher than the start.\n")
+            print("End number can't be smaller than the start number.\n")
         else:
             return [start_el, end_el]
 

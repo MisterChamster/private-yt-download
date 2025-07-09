@@ -39,14 +39,16 @@ def custom_trim_loop(plist_list):
         print()
 
         if action == "te":
-            number_to_trim = ask_el_trim(len(plist_list))
+            plist_numbers = [i[0] for i in plist_list]
+            number_to_trim = ask_el_trim(plist_numbers)
             if number_to_trim is None:
                 continue
             print()
             plist_list = del_by_number(plist_list, number_to_trim)
 
         elif action == "tr":
-            trim_range = ask_multiple_trim(len(plist_list))
+            plist_numbers = [i[0] for i in plist_list]
+            trim_range = ask_multiple_trim(len(plist_list), plist_numbers)
             if trim_range is None:
                 continue
             print()

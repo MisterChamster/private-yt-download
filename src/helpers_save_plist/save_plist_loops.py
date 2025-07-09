@@ -38,9 +38,9 @@ def custom_trim_loop(plist_list):
 
         elif action == "tr":
             trim_range = ask_multiple_trim(len(plist_list))
+            if trim_range is None:
+                continue
             print()
-            print("Trim range: ")
-            print(trim_range)
             # START WORK HERE
             plist_list = del_by_range(plist_list, trim_range[0], trim_range[1])
 

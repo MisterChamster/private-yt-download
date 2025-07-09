@@ -92,6 +92,9 @@ def del_by_number(plist_list, number):
 
 
 def del_by_range(plist_list, start_el, end_el):
+    print(plist_list)
+    for i in range(start_el, end_el):
+        print(i)
     return plist_list
 
 

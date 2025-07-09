@@ -19,7 +19,13 @@ def custom_trim_loop(plist_list):
     while True:
         action = ask_custom_trim()
         print()
-        if action == "ls":
+
+        # WORK HERE
+        if action == "te":
+            pass
+        elif action == "tr":
+            pass
+        elif action == "ls":
             list_vids(plist_list)
             print()
         elif action == "rt":

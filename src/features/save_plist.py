@@ -60,7 +60,6 @@ def save_plist(plist_url):
     print()
     ydl_opts = get_ydl_options(extension)
 
-
     plist_list = [[i+1, plist_vid_titles[i], plist_urls[i]] for i in range(0, len(plist_urls))]
     # START WORK HERE
     plist_list = trim_plist_loop(plist_list)

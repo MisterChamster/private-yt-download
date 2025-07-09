@@ -118,7 +118,7 @@ def ask_el_trim(plist_numbers):
             return el_number
 
 
-def ask_multiple_trim(plist_len, plist_numbers):
+def ask_multiple_trim(plist_numbers):
     while True:
         print("Input number of the first element to trim:\n" \
               "(to exit input 'exit')\n>> ", end="")

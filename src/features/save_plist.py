@@ -71,7 +71,7 @@ def save_plist(plist_url):
 
     # START DEAD CODE
     plist_len = len(plist_urls)
-    index_range = ask_num_of_tracks(plist_len)
+    index_range = [0, 1]#ask_num_of_tracks(plist_len)
     print()
     # END DEAD CODE
 

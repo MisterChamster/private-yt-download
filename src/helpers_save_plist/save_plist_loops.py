@@ -48,11 +48,10 @@ def custom_trim_loop(plist_list):
 
         elif action == "tr":
             plist_numbers = [i[0] for i in plist_list]
-            trim_range = ask_multiple_trim(len(plist_list), plist_numbers)
+            trim_range = ask_multiple_trim(plist_numbers)
             if trim_range is None:
                 continue
             print()
-            # START WORK HERE
             plist_list = del_by_range(plist_list, trim_range[0], trim_range[1])
 
         elif action == "rt":

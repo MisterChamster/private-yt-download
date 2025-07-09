@@ -29,20 +29,12 @@ def custom_trim_loop(plist_list):
 
         if action == "te":
             # START WORK HERE
-            # List all elements first
-            number_to_trim = ask_el_trim()
+            number_to_trim = ask_el_trim(len(plist_list))
             if number_to_trim is None:
                 continue
-            number_to_trim = int(number_to_trim)
-            if number_to_trim == 0 or number_to_trim > len(plist_list):
-                print("Number is not an element on videos list.\n")
-            else:
-                print()
-                plist_list = del_by_number(plist_list, number_to_trim)
+            print()
+            plist_list = del_by_number(plist_list, number_to_trim)
         elif action == "tr":
             pass
-        # elif action == "ls":
-        #     list_vids(plist_list)
-        #     print()
         elif action == "rt":
             return plist_list

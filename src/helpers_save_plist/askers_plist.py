@@ -92,27 +92,28 @@ def ask_custom_trim():
         print("Choose custom trimming option:\n" \
               "te    - Trim one element\n" \
               "tr    - Trim a range of elements\n" \
-            #   "ls    - List all videos\n" \
               "rt    - Return\n>> ", end="")
         asker = str(input())
 
-        # if asker not in ["te", "tr", "ls", "rt"]:
         if asker not in ["te", "tr", "rt"]:
             print("Incorrect input.\n")
         else:
             return asker
 
 
-def ask_el_trim():
+def ask_el_trim(plist_len):
     while True:
         print("Input number of the element to trim:\n" \
               "(to exit input 'exit')\n>> ", end="")
         asker = str(input())
 
-        if not asker.isdigit() and asker != "exit":
-            print("Incorrect input.\n")
-        elif asker == "exit":
+        if asker == "exit":
             return None
+        elif not asker.isdigit():
+            print("Incorrect input.\n")
+        asker = int(asker)
+        if asker == 0 or asker > plist_len:
+            print("Number is not an element on videos list.\n")
         else:
             return asker
 

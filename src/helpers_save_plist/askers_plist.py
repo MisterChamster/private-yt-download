@@ -102,6 +102,17 @@ def ask_custom_trim():
             return asker
 
 
+def ask_el_trim():
+    while True:
+        print("Input number of the element to trim:\n >> ", end="")
+        asker = str(input())
+
+        if not asker.isdigit():
+            print("Incorrect input.\n")
+        else:
+            return asker
+
+
 def ask_numbering(min_el_index, max_el_index):
     """
     Determines numbering in filenames.

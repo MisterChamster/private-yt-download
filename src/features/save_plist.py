@@ -68,7 +68,6 @@ def save_plist(plist_url):
     plist_list = ask_which_tracks(plist_list)
     for i in range(0, len(plist_list)):
         print(plist_list[i])
-        #test branching
 
     plist_len = len(plist_urls)
     index_range = ask_num_of_tracks(plist_len)

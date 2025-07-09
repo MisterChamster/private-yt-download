@@ -209,13 +209,18 @@ def ask_numbering(min_el_index, max_el_index):
 def ask_numbering_main_menu():
     while True:
         print("Choose numbering option:\n" \
-              "Enter - Starting on 1\n" \
-              "n     - No numbering\n" \
-              "i     - Starting on integer...\n" \
-              "e     - Ending on integer...\n" \
-              "r     - Reverse current numbering\n" \
-              "o     - Original numbering\n>> ", end="")
+              "o  - Starting on 1\n" \
+              "n  - No numbering\n" \
+              "i  - Starting on integer...\n" \
+              "e  - Ending on integer...\n" \
+              "r  - Reverse current numbering\n" \
+              "og - Original numbering\n" \
+              "ls - List current numbering\n" \
+              "s  - Save\n>> ", end="")
         action = str(input())
+
+        if action not in ["o", "n", "i", "e", "r", "og", "ls", "s"]:
+            print("Incorrect input.\n")
         return action
 
 

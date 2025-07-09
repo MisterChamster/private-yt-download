@@ -61,6 +61,7 @@ def custom_trim_loop(plist_list):
 
 def numbering_loop(plist_list):
     og_numbering = [el[0] for el in plist_list]
+    final_numbering = og_numbering
     while True:
         action = ask_numbering_main_menu()
         return plist_list

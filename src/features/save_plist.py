@@ -61,10 +61,8 @@ def save_plist(plist_url):
     ydl_opts = get_ydl_options(extension)
 
 
-    # START WORK HERE
-    # ask_which_tracks
-    # Make a ls function
     plist_list = [[i+1, plist_vid_titles[i], plist_urls[i]] for i in range(0, len(plist_urls))]
+    # START WORK HERE
     plist_list = trim_plist_loop(plist_list)
 
     plist_len = len(plist_urls)

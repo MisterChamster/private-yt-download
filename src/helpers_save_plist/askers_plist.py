@@ -74,17 +74,29 @@ def ask_num_of_tracks(plist_len):
 def ask_trimming_main_menu():
     while True:
         print("Choose which elements to download:\n" \
-              "Enter - All elements\n" \
+              "Enter - All current elements\n" \
               "c     - Custom settings...\n" \
-              "ls    - List all videos\n" \
-              "rt    - Return\n>> ", end="")
+              "ls    - List all current elements\n>> ", end="")
         asker = str(input())
 
-        if not asker in ["", "c", "ls", "rt"]:
+        if not asker in ["", "c", "ls"]:
             print("Incorrect input.\n")
         else:
             if asker == "":
                 return "all"
+            return asker
+
+
+def ask_custom_trim():
+    while True:
+        print("Choose custom trimming option:\n" \
+              "ls    - List all videos\n" \
+              "rt    - Return\n>> ", end="")
+        asker = str(input())
+
+        if asker not in ["ls", "rt"]:
+            print("Incorrect input.\n")
+        else:
             return asker
 
 

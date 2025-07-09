@@ -29,7 +29,7 @@ def trim_plist_loop(plist_list):
 def custom_trim_loop(plist_list):
     while True:
         if not plist_list:
-            print("All elements have been removed.")
+            print("All elements have been removed.\n\n")
             return None
 
         list_vids(plist_list)

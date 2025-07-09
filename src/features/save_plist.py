@@ -61,7 +61,6 @@ def save_plist(plist_url):
     ydl_opts = get_ydl_options(extension)
 
     plist_list = [[i+1, plist_vid_titles[i], plist_urls[i]] for i in range(0, len(plist_urls))]
-    # START WORK HERE
     plist_list = trim_plist_loop(plist_list)
     if plist_list == None:
         return
@@ -70,9 +69,13 @@ def save_plist(plist_url):
         print(el)
     print()
 
+    # START DEAD CODE
     plist_len = len(plist_urls)
     index_range = ask_num_of_tracks(plist_len)
     print()
+    # END DEAD CODE
+
+    # START WORK HERE
     numbered = ask_numbering(index_range[0], index_range[1])
     print()
     if numbered[0] != "not":

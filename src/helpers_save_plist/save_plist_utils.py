@@ -91,6 +91,10 @@ def del_by_number(plist_list, number):
         i += 1
 
 
+def del_by_range(plist_list, num):
+    return
+
+
 def name_file_on_plist(OGtitle, title_number, namecut_list):
     """
     Changes a string to match it with user's desired outcome.

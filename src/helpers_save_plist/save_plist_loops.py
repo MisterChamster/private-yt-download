@@ -1,6 +1,7 @@
 from src.helpers_save_plist.askers_plist import (ask_trimming_main_menu,
                                                  ask_custom_trim,
-                                                 ask_el_trim)
+                                                 ask_el_trim,
+                                                 ask_multiple_trim)
 from src.helpers_save_plist.save_plist_utils import (list_vids,
                                                      del_by_number)
 
@@ -28,13 +29,19 @@ def custom_trim_loop(plist_list):
         print()
 
         if action == "te":
-            # START WORK HERE
             number_to_trim = ask_el_trim(len(plist_list))
             if number_to_trim is None:
                 continue
             print()
             plist_list = del_by_number(plist_list, number_to_trim)
+
         elif action == "tr":
+            trim_range = ask_multiple_trim(len(plist_list))
+            print()
+            print("Trim range: ")
+            print(trim_range)
+            # START WORK HERE
             pass
+
         elif action == "rt":
             return plist_list

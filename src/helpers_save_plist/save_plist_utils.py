@@ -91,8 +91,8 @@ def del_by_number(plist_list, number):
         i += 1
 
 
-def del_by_range(plist_list, num):
-    return
+def del_by_range(plist_list, start_el, end_el):
+    return plist_list
 
 
 def name_file_on_plist(OGtitle, title_number, namecut_list):

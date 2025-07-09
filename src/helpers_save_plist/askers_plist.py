@@ -129,8 +129,8 @@ def ask_multiple_trim(plist_len):
         elif not asker.isdigit():
             print("Incorrect input.\n")
 
-        first_el = int(asker)
-        if first_el == 0 or first_el > plist_len:
+        start_el = int(asker)
+        if start_el == 0 or start_el > plist_len:
             print("Number is not an element on videos list.\n")
         else:
             break
@@ -147,13 +147,13 @@ def ask_multiple_trim(plist_len):
         elif not asker2.isdigit():
             print("Incorrect input.\n")
 
-        last_el = int(asker2)
-        if last_el > plist_len:
+        end_el = int(asker2)
+        if end_el > plist_len:
             print("Number is not an element on videos list.\n")
-        elif last_el < first_el:
-            print("Last number can't be higher than the first.\n")
+        elif end_el < start_el:
+            print("End number can't be higher than the start.\n")
         else:
-            return [first_el, last_el]
+            return [start_el, end_el]
 
 
 def ask_numbering(min_el_index, max_el_index):

@@ -3,7 +3,8 @@ from src.helpers_save_plist.askers_plist import (ask_trimming_main_menu,
                                                  ask_el_trim,
                                                  ask_multiple_trim)
 from src.helpers_save_plist.save_plist_utils import (list_vids,
-                                                     del_by_number)
+                                                     del_by_number,
+                                                     del_by_range)
 
 
 
@@ -41,7 +42,7 @@ def custom_trim_loop(plist_list):
             print("Trim range: ")
             print(trim_range)
             # START WORK HERE
-            pass
+            plist_list = del_by_range(plist_list, trim_range[0], trim_range[1])
 
         elif action == "rt":
             return plist_list

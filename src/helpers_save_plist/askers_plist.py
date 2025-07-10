@@ -111,6 +111,7 @@ def ask_el_trim(plist_numbers):
             return None
         elif not asker.isdigit():
             print("Incorrect input.\n")
+            continue
         el_number = int(asker)
         if el_number not in plist_numbers:
             print("Number is not an element on videos list.\n")
@@ -128,6 +129,7 @@ def ask_multiple_trim(plist_numbers):
             return None
         elif not asker.isdigit():
             print("Incorrect input.\n")
+            continue
 
         start_el = int(asker)
         if start_el not in plist_numbers:
@@ -146,6 +148,7 @@ def ask_multiple_trim(plist_numbers):
             return None
         elif not asker2.isdigit():
             print("Incorrect input.\n")
+            continue
 
         end_el = int(asker2)
         if end_el not in plist_numbers:
@@ -221,6 +224,22 @@ def ask_numbering_main_menu():
         if action not in ["o", "n", "b", "e", "r", "og", "s"]:
             print("Incorrect input.\n")
         return action
+
+
+def ask_first_number():
+    while True:
+        print("Input the number of the first element:\n" \
+              "(to exit input 'exit')\n>> ", end="")
+        asker = str(input())
+
+        if asker == "exit":
+            return None
+        elif not asker.isdigit():
+            print("Incorrect input.\n")
+            continue
+
+        first_el_num = int(asker)
+        return first_el_num
 
 
 def ask_read_trim_lens():

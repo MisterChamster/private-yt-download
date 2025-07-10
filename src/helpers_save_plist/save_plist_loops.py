@@ -2,7 +2,8 @@ from src.helpers_save_plist.askers_plist import (ask_trimming_main_menu,
                                                  ask_custom_trim,
                                                  ask_el_trim,
                                                  ask_multiple_trim,
-                                                 ask_numbering_main_menu)
+                                                 ask_numbering_main_menu,
+                                                 ask_first_number)
 from src.helpers_save_plist.save_plist_utils import (list_vids,
                                                      del_by_number,
                                                      del_by_range,
@@ -70,14 +71,18 @@ def numbering_loop(plist_list):
 
         action = ask_numbering_main_menu()
         if action == "o":
-            final_numbering = [i+1 for i in range(0, len(final_numbering))]
+            final_numbering = [i+1 for i in range(0, len(og_numbering))]
             print()
         elif action == "n":
             final_numbering = []
             print()
         elif action == "b":
-            # Ask for first element (asker)
-            pass
+            first_el_num = ask_first_number()
+            if first_el_num == None:
+                print()
+                continue
+            final_numbering = [i for i in range(first_el_num, first_el_num+len(og_numbering))]
+            # Test it
         elif action == "e":
             # Ask for last element (asker)
             pass

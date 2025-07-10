@@ -62,7 +62,8 @@ def ask_numbering_main_menu():
 
         if action not in ["o", "n", "b", "e", "r", "og", "s"]:
             print("Incorrect input.\n")
-        return action
+        else:
+            return action
 
 
 def ask_first_number():
@@ -75,10 +76,9 @@ def ask_first_number():
             return None
         elif not asker.isdigit():
             print("Incorrect input.\n")
-            continue
-
-        first_el_num = int(asker)
-        return first_el_num
+        else:
+            first_el_num = int(asker)
+            return first_el_num
 
 
 def ask_last_number(plist_len):
@@ -97,5 +97,5 @@ def ask_last_number(plist_len):
         last_el_num = int(asker)
         if last_el_num < lowest_possible:
             print("Given number is too small.\n")
-            continue
-        return last_el_num
+        else:
+            return last_el_num

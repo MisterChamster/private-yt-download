@@ -75,6 +75,7 @@ def save_plist(plist_url):
 
     # START WORK HERE
     # Create trim names loop
+    # Trim names BEFORE indexing style??
 
     return
     # START DEAD CODE

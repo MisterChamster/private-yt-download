@@ -119,4 +119,17 @@ def trim_names_loop(plist_list):
         print()
 
         action = ask_trim_names_main_menu()
-        return None
+        print()
+
+        if action == "tas":
+            pass
+        elif action == "tae":
+            pass
+        elif action == "tre":
+            pass
+        elif action == "tae":
+            pass
+        elif action == "tsv":
+            pass
+        elif action == "s":
+            return final_names

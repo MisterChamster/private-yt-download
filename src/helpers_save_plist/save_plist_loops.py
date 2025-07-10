@@ -78,7 +78,7 @@ def numbering_loop(plist_list):
             print()
 
         elif action == "n":
-            final_numbering = []
+            final_numbering = None
             print()
 
         elif action == "b":
@@ -100,10 +100,9 @@ def numbering_loop(plist_list):
             print()
 
         elif action == "og":
-
             final_numbering = og_numbering
             print()
 
         elif action == "s":
             print()
-            return plist_list
+            return final_numbering

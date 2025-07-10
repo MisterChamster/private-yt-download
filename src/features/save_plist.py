@@ -67,15 +67,20 @@ def save_plist(plist_url):
     if plist_list == None:
         return
 
+    # Get indexing style from user
+    plist_indexes = numbering_loop(plist_list)
+    is_numbered = True
+    if plist_indexes == None:
+        is_numbered = False
+
     # START WORK HERE
-    plist_list = numbering_loop(plist_list)
+    # Create trim names loop
 
-
+    return
     # START DEAD CODE
     plist_len = len(plist_urls)
     index_range = [0, 1]#ask_num_of_tracks(plist_len)
     print()
-    # END DEAD CODE
 
     numbered = ask_numbering(index_range[0], index_range[1])
     print()
@@ -87,6 +92,7 @@ def save_plist(plist_url):
             last_num = index_range[0] - plist_len
     else:
         temp_filenum = ""
+    # END DEAD CODE
 
     namecut_list = ask_read_trim_lens()
     print()

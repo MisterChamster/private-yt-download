@@ -5,7 +5,7 @@ from .save_plist import save_plist
 
 
 
-def main_loop():
+def main_loop() -> None:
     print()
     while True:
         print("=============================================================")

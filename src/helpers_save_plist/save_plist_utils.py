@@ -2,7 +2,7 @@ from src.common.utils import illegal_char_remover
 
 
 
-def zeros_at_beginning(number, max_element_number):
+def zeros_at_beginning(number: int, max_element_number: int) -> str:
     """
     Determines a number in name of element present in a playlist.
 
@@ -31,7 +31,7 @@ def zeros_at_beginning(number, max_element_number):
         return f"{gg * '0'}{number}. "
 
 
-def get_indexes_of_searched_item(list_of_items, searched_item):
+def get_indexes_of_searched_item(list_of_items: list, searched_item: int | str) -> list:
     indexes_list = []
     i = 0
     while i < len(list_of_items):
@@ -41,7 +41,7 @@ def get_indexes_of_searched_item(list_of_items, searched_item):
     return indexes_list
 
 
-def are_duplicates(list_of_items):
+def are_duplicates(list_of_items: list) -> bool:
     i = 0
     while i+1 < len(list_of_items):
         item_appearances = get_indexes_of_searched_item(list_of_items, list_of_items[i])
@@ -51,7 +51,7 @@ def are_duplicates(list_of_items):
     return False
 
 
-def get_indexes_of_duplicates(list_of_items):
+def get_indexes_of_duplicates(list_of_items: list) -> list:
     list_of_appearances = []
     list_of_lists_of_appearances = []
     i = 0
@@ -68,7 +68,7 @@ def get_indexes_of_duplicates(list_of_items):
     return list_of_appearances
 
 
-def del_indexes(list_of_items, indexes_list):
+def del_indexes(list_of_items: list, indexes_list: list) -> list:
     indexes_list.sort()
     indexes_list.reverse()
     for i in indexes_list:
@@ -76,13 +76,13 @@ def del_indexes(list_of_items, indexes_list):
     return list_of_items
 
 
-def list_vids(plist_list):
+def list_vids(plist_list: list) -> None:
     # print("Hello! I list videos. You're pretty.")
     for i in range(0, len(plist_list)):
         print(f"{plist_list[i][0]}. {plist_list[i][1]}")
 
 
-def del_by_number(plist_list, number):
+def del_by_number(plist_list: list, number: int) -> list:
     i = 0
     while i < len(plist_list):
         if plist_list[i][0] == number:
@@ -91,23 +91,23 @@ def del_by_number(plist_list, number):
         i += 1
 
 
-def del_by_range(plist_list, start_el, end_el):
+def del_by_range(plist_list: list, start_el: int, end_el: int) -> list:
     for i in range(start_el, end_el+1):
         del_by_number(plist_list, i)
     return plist_list
 
 
-def list_vids_custom_url(plist_list, plist_urls):
+def list_vids_custom_url(plist_list: list, plist_urls: list) -> None:
     for i in range(0, len(plist_list)):
         print(f"{plist_urls[i]}. {plist_list[i][1]}")
 
 
-def list_vid_names(plist_vid_titles):
+def list_vid_names(plist_vid_titles: list) -> None:
     for i in range(0, len(plist_vid_titles)):
         print(plist_vid_titles[i])
 
 
-def name_file_on_plist(OGtitle, title_number, namecut_list):
+def name_file_on_plist(OGtitle: str, title_number: str, namecut_list: list) -> str:
     """
     Changes a string to match it with user's desired outcome.
 

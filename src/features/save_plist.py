@@ -20,7 +20,7 @@ from src.helpers_save_plist.save_plist_loops import (trim_vids_loop,
 
 
 
-def save_plist(plist_url): 
+def save_plist(plist_url: list) -> None:
     # Get playlist dictionary
     plist_dict = get_plist_dict(plist_url)
     if plist_dict == None:

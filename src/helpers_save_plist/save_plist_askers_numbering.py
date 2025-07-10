@@ -1,4 +1,4 @@
-def ask_numbering(min_el_index, max_el_index):
+def ask_numbering(min_el_index: int, max_el_index: int) -> list:
     """
     Determines numbering in filenames.
 
@@ -48,7 +48,7 @@ def ask_numbering(min_el_index, max_el_index):
                         return ["desc", desc_from]
 
 
-def ask_numbering_main_menu():
+def ask_numbering_main_menu() -> str:
     while True:
         print("Choose numbering option:\n" \
               "o  - Starting on 1\n" \
@@ -66,7 +66,7 @@ def ask_numbering_main_menu():
             return action
 
 
-def ask_first_number():
+def ask_first_number() -> int:
     while True:
         print("Input the number of the first element:\n" \
               "(to exit input 'exit')\n>> ", end="")
@@ -81,7 +81,7 @@ def ask_first_number():
             return first_el_num
 
 
-def ask_last_number(plist_len):
+def ask_last_number(plist_len: int) -> int:
     lowest_possible = plist_len - 1
     while True:
         print(f"Input the number of the last element ({lowest_possible} or higher):\n" \

@@ -1,4 +1,4 @@
-def ask_del_duplicates():
+def ask_del_duplicates() -> bool:
     user_input = " "
     while True:
         print("Duplicates detected. Choose handling option:\n" \
@@ -12,7 +12,7 @@ def ask_del_duplicates():
             return False
 
 
-def ask_read_trim_lens():
+def ask_read_trim_lens() -> list:
     """
     Asks user about cutting names of the elements.
 

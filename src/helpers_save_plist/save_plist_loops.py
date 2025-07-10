@@ -17,7 +17,7 @@ from src.helpers_save_plist.save_plist_askers_trim_names import (ask_trim_names_
 
 
 
-def trim_vids_loop(plist_list):
+def trim_vids_loop(plist_list: list) -> list:
     while True:
         action = ask_trimming_main_menu()
         print()
@@ -35,7 +35,7 @@ def trim_vids_loop(plist_list):
             print()
 
 
-def custom_trim_loop(plist_list):
+def custom_trim_loop(plist_list: list) -> list:
     while True:
         if not plist_list:
             print("All elements have been removed.\n\n")
@@ -67,7 +67,7 @@ def custom_trim_loop(plist_list):
             return plist_list
 
 
-def numbering_loop(plist_list):
+def numbering_loop(plist_list: list) -> list:
     og_numbering = [el[0] for el in plist_list]
     final_numbering = og_numbering
     while True:
@@ -113,7 +113,7 @@ def numbering_loop(plist_list):
             return final_numbering
 
 
-def trim_names_loop(plist_list):
+def trim_names_loop(plist_list: list) -> list:
     og_names = [el[1] for el in plist_list]
     final_names = og_names
     while True:
@@ -155,7 +155,7 @@ def trim_names_loop(plist_list):
             return final_names
 
 
-def get_trim_length_loop():
+def get_trim_length_loop() -> int:
     trim_len = 0
     input_type = ask_length_type()
     if input_type == None:

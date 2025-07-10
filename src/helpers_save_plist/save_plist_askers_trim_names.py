@@ -1,4 +1,4 @@
-def ask_trim_names_main_menu():
+def ask_trim_names_main_menu() -> str:
     while True:
         print("Choose element name trimming option:\n" \
               "tas - Trim all names at the start...\n" \
@@ -15,7 +15,7 @@ def ask_trim_names_main_menu():
             return asker
 
 
-def ask_length_type():
+def ask_length_type() -> str:
     while True:
         print("Choose trim length value type:\n" \
               "i  - Input integer value...\n" \
@@ -31,7 +31,7 @@ def ask_length_type():
             return asker
 
 
-def ask_length_int():
+def ask_length_int() -> int:
     while True:
         print("Input a number of characters to cut:\n" \
               "(to exit input 'exit')\n>> ", end="")
@@ -45,7 +45,7 @@ def ask_length_int():
             return int(asker)
 
 
-def ask_length_str():
+def ask_length_str() -> str:
     while True:
         print("Input string to cut (will count its characters):\n" \
               "(to exit input 'exit')\n>> ", end="")

@@ -71,6 +71,7 @@ def save_plist(plist_url):
     # Get indexing style from user
     plist_indexes = numbering_loop(plist_list)
     is_numbered = True
+    #integrate numbering with plist list
     if plist_indexes == None:
         is_numbered = False
 

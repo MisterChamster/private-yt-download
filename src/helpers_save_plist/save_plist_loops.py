@@ -109,4 +109,8 @@ def numbering_loop(plist_list):
 
 
 def trim_names_loop(plist_list):
-    return None
+    og_names = [el[1] for el in plist_list]
+    final_names = og_names
+    while True:
+        print("Current names:")
+        return None

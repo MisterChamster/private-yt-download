@@ -5,7 +5,8 @@ from src.helpers_save_plist.askers_plist import (ask_trimming_main_menu,
                                                  ask_numbering_main_menu)
 from src.helpers_save_plist.save_plist_utils import (list_vids,
                                                      del_by_number,
-                                                     del_by_range)
+                                                     del_by_range,
+                                                     list_vids_custom_url)
 
 
 
@@ -63,8 +64,10 @@ def numbering_loop(plist_list):
     og_numbering = [el[0] for el in plist_list]
     final_numbering = og_numbering
     while True:
-        # print("Current numbering:")
-        #list with numbering here
+        print("Current numbering:")
+        list_vids_custom_url(plist_list, final_numbering)
+        print()
+
         action = ask_numbering_main_menu()
         if action == "o":
             final_numbering = [i+1 for i in range(0, len(final_numbering))]

@@ -66,19 +66,16 @@ def save_plist(plist_url):
     plist_list = trim_plist_loop(plist_list)
     if plist_list == None:
         return
-    # print("||||||||||||||PRINTING ALL ELEMENTS SLAY||||||||||||||")
-    # for el in plist_list:
-    #     print(el)
-    # print()
+
+    # START WORK HERE
+    plist_list = numbering_loop(plist_list)
+
 
     # START DEAD CODE
     plist_len = len(plist_urls)
     index_range = [0, 1]#ask_num_of_tracks(plist_len)
     print()
     # END DEAD CODE
-
-    # START WORK HERE
-    plist_list = numbering_loop(plist_list)
 
     numbered = ask_numbering(index_range[0], index_range[1])
     print()

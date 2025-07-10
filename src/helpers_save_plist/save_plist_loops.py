@@ -115,4 +115,7 @@ def trim_names_loop(plist_list):
     while True:
         print("Current names:")
         list_vid_names(final_names)
+        print()
+
+        action = None
         return None

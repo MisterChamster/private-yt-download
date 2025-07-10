@@ -15,8 +15,9 @@ from src.helpers_save_plist.save_plist_utils import (name_file_on_plist,
                                                      are_duplicates,
                                                      del_indexes)
 from src.common.ydl_support import get_plist_dict
-from src.helpers_save_plist.save_plist_loops import (trim_plist_loop,
-                                                     numbering_loop)
+from src.helpers_save_plist.save_plist_loops import (trim_vids_loop,
+                                                     numbering_loop,
+                                                     trim_names_loop)
 
 
 
@@ -63,7 +64,7 @@ def save_plist(plist_url):
 
     # Make user specify which elements to download
     plist_list = [[i+1, plist_vid_titles[i], plist_urls[i]] for i in range(0, len(plist_urls))]
-    plist_list = trim_plist_loop(plist_list)
+    plist_list = trim_vids_loop(plist_list)
     if plist_list == None:
         return
 
@@ -76,6 +77,7 @@ def save_plist(plist_url):
     # START WORK HERE
     # Create trim names loop
     # Trim names BEFORE indexing style??
+    plist_vid_titles = trim_names_loop(plist_list)
 
     return
     # START DEAD CODE

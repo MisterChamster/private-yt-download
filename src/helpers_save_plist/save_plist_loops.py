@@ -12,7 +12,7 @@ from src.helpers_save_plist.save_plist_utils import (list_vids,
 
 
 
-def trim_plist_loop(plist_list):
+def trim_vids_loop(plist_list):
     while True:
         action = ask_trimming_main_menu()
         print()
@@ -106,3 +106,7 @@ def numbering_loop(plist_list):
         elif action == "s":
             print()
             return final_numbering
+
+
+def trim_names_loop(plist_list):
+    return None

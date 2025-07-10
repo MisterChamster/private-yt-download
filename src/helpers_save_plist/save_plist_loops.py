@@ -1,5 +1,6 @@
 from src.helpers_save_plist.save_plist_askers_numbering import (ask_numbering_main_menu,
-                                                                ask_first_number)
+                                                                ask_first_number,
+                                                                ask_last_number)
 from src.helpers_save_plist.save_plist_askers_trim_elements import(ask_trimming_main_menu,
                                                                    ask_custom_trim,
                                                                    ask_el_trim,
@@ -44,17 +45,17 @@ def custom_trim_loop(plist_list):
         if action == "te":
             plist_numbers = [i[0] for i in plist_list]
             number_to_trim = ask_el_trim(plist_numbers)
+            print()
             if number_to_trim is None:
                 continue
-            print()
             plist_list = del_by_number(plist_list, number_to_trim)
 
         elif action == "tr":
             plist_numbers = [i[0] for i in plist_list]
             trim_range = ask_multiple_trim(plist_numbers)
+            print()
             if trim_range is None:
                 continue
-            print()
             plist_list = del_by_range(plist_list, trim_range[0], trim_range[1])
 
         elif action == "rt":
@@ -70,6 +71,7 @@ def numbering_loop(plist_list):
         print()
 
         action = ask_numbering_main_menu()
+        print()
         if action == "o":
             final_numbering = [i+1 for i in range(0, len(og_numbering))]
             print()
@@ -78,12 +80,13 @@ def numbering_loop(plist_list):
             print()
         elif action == "b":
             first_el_num = ask_first_number()
+            print()
             if first_el_num == None:
-                print()
                 continue
             final_numbering = [i for i in range(first_el_num, first_el_num+len(og_numbering))]
             # Test it
         elif action == "e":
+            last_num = ask_last_number(len(plist_list))
             # Ask for last element (asker)
             pass
         elif action == "r":

@@ -79,3 +79,7 @@ def ask_first_number():
 
         first_el_num = int(asker)
         return first_el_num
+
+
+def ask_last_number(plist_len):
+    return 

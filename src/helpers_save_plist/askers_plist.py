@@ -215,11 +215,10 @@ def ask_numbering_main_menu():
               "e  - Ending on integer...\n" \
               "r  - Reverse current numbering\n" \
               "og - Original numbering\n" \
-              "ls - List current numbering\n" \
               "s  - Save\n>> ", end="")
         action = str(input())
 
-        if action not in ["o", "n", "b", "e", "r", "og", "ls", "s"]:
+        if action not in ["o", "n", "b", "e", "r", "og", "s"]:
             print("Incorrect input.\n")
         return action
 

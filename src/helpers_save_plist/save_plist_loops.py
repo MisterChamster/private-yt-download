@@ -63,6 +63,7 @@ def numbering_loop(plist_list):
     og_numbering = [el[0] for el in plist_list]
     final_numbering = og_numbering
     while True:
+        # print("Current numbering:")
         #list with numbering here
         action = ask_numbering_main_menu()
         if action == "o":
@@ -83,9 +84,6 @@ def numbering_loop(plist_list):
         elif action == "og":
             final_numbering = og_numbering
             print()
-        elif action == "ls":
-            #list with numbering here
-            pass
         elif action == "s":
             print()
             return plist_list

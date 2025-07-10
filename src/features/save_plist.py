@@ -6,9 +6,9 @@ from src.common.utils import (illegal_char_remover,
                               is_internet_available,
                               get_ydl_options)
 from src.helpers_save_plist.save_plist_askers import (ask_del_duplicates,
-                                                      ask_num_of_tracks,
-                                                      ask_numbering,
                                                       ask_read_trim_lens)
+from src.helpers_save_plist.save_plist_askers_trim_elements import ask_num_of_tracks
+from src.helpers_save_plist.save_plist_askers_numbering import ask_numbering
 from src.helpers_save_plist.save_plist_utils import (name_file_on_plist,
                                                      zeros_at_beginning,
                                                      get_indexes_of_duplicates,

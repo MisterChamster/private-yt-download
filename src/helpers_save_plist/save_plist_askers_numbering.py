@@ -82,4 +82,20 @@ def ask_first_number():
 
 
 def ask_last_number(plist_len):
-    return 
+    lowest_possible = plist_len - 1
+    while True:
+        print(f"Input the number of the last element ({lowest_possible} or higher):\n" \
+              "(to exit input 'exit')\n>> ", end="")
+        asker = str(input())
+
+        if asker == "exit":
+            return None
+        elif not asker.isdigit():
+            print("Incorrect input.\n")
+            continue
+
+        last_el_num = int(asker)
+        if last_el_num < lowest_possible:
+            print("Given number is too small.\n")
+            continue
+        return last_el_num

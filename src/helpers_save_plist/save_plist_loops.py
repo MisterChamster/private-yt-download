@@ -72,29 +72,38 @@ def numbering_loop(plist_list):
 
         action = ask_numbering_main_menu()
         print()
+
         if action == "o":
             final_numbering = [i+1 for i in range(0, len(og_numbering))]
             print()
+
         elif action == "n":
             final_numbering = []
             print()
+
         elif action == "b":
             first_el_num = ask_first_number()
             print()
             if first_el_num == None:
                 continue
             final_numbering = [i for i in range(first_el_num, first_el_num+len(og_numbering))]
-            # Test it
+
         elif action == "e":
-            last_num = ask_last_number(len(plist_list))
-            # Ask for last element (asker)
-            pass
+            last_el_num = ask_last_number(len(og_numbering))
+            print()
+            if last_el_num == None:
+                continue
+            final_numbering = [i for i in range(last_el_num-len(og_numbering)+1, last_el_num+2)]
+
         elif action == "r":
             final_numbering = final_numbering[::-1]
             print()
+
         elif action == "og":
+
             final_numbering = og_numbering
             print()
+
         elif action == "s":
             print()
             return plist_list

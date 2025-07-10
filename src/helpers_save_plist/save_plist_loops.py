@@ -10,6 +10,7 @@ from src.helpers_save_plist.save_plist_utils import (list_vids,
                                                      del_by_range,
                                                      list_vids_custom_url,
                                                      list_vid_names)
+from src.helpers_save_plist.save_plist_askers_trim_names import ask_trim_names_main_menu
 
 
 
@@ -117,5 +118,5 @@ def trim_names_loop(plist_list):
         list_vid_names(final_names)
         print()
 
-        action = None
+        action = ask_trim_names_main_menu()
         return None

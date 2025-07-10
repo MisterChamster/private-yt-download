@@ -21,17 +21,6 @@ from src.helpers_save_plist.save_plist_loops import (trim_vids_loop,
 
 
 def save_plist(plist_url): 
-    """
-    Downloads elements from a youtube playlist.
-
-    Gets a list of all urls and their respective names from a playlist, handles
-    duplicates, reads number of tracks, numbering method and cutting names of 
-    files. Then, makes a directory on desktop and starts downloading them, 
-    assigning correct names to every file.
-
-    Args:
-        plist_url (str): URL of downloaded playlist.
-    """
     # Get playlist dictionary
     plist_dict = get_plist_dict(plist_url)
     if plist_dict == None:

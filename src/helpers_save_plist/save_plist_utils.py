@@ -102,6 +102,11 @@ def list_vids_custom_url(plist_list, plist_urls):
         print(f"{plist_urls[i]}. {plist_list[i][1]}")
 
 
+def list_vid_names(plist_vid_titles):
+    for i in range(0, len(plist_vid_titles)):
+        print(plist_vid_titles[i])
+
+
 def name_file_on_plist(OGtitle, title_number, namecut_list):
     """
     Changes a string to match it with user's desired outcome.

@@ -8,7 +8,8 @@ from src.helpers_save_plist.save_plist_askers_trim_elements import(ask_trimming_
 from src.helpers_save_plist.save_plist_utils import (list_vids,
                                                      del_by_number,
                                                      del_by_range,
-                                                     list_vids_custom_url)
+                                                     list_vids_custom_url,
+                                                     list_vid_names)
 
 
 
@@ -113,4 +114,5 @@ def trim_names_loop(plist_list):
     final_names = og_names
     while True:
         print("Current names:")
+        list_vid_names(final_names)
         return None

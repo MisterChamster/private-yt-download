@@ -4,7 +4,7 @@ def ask_trim_names_main_menu() -> str:
               "tas - Trim all names at the start...\n" \
               "tae - Trim all names at the end...\n" \
               "tre - Trim a range of elements... \n" \
-              "tsv - Trim specific tracks by value...\n" \
+              "tsv - Trim specific elements...\n" \
               "og  - Return all elements to original names\n" \
               "s   - Save\n>> ", end="")
         asker = str(input())

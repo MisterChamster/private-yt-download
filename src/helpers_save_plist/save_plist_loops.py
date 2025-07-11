@@ -113,6 +113,7 @@ def numbering_loop(plist_list: list) -> list:
             return final_numbering
 
 
+# START WORK HERE
 def trim_names_loop(plist_list: list) -> list:
     og_names = [el[1] for el in plist_list]
     final_names = og_names

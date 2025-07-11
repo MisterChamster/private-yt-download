@@ -56,17 +56,15 @@ def save_plist(plist_url: list) -> None:
     if plist_list == None:
         return
 
+    # START WORK HERE
+    plist_vid_titles = trim_names_loop(plist_list)
+
     # Get indexing style from user
     plist_indexes = numbering_loop(plist_list)
     is_numbered = True
     #integrate numbering with plist list
     if plist_indexes == None:
         is_numbered = False
-
-    # START WORK HERE
-    # Create trim names loop
-    # Trim names BEFORE indexing style??
-    plist_vid_titles = trim_names_loop(plist_list)
 
     return
     # START DEAD CODE

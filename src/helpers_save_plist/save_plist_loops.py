@@ -129,29 +129,31 @@ def trim_names_loop(plist_list: list) -> list:
             trim_len = get_trim_length_loop()
             if trim_len == None:
                 continue
-            pass
+            for el in final_names:
+                el = el[trim_len:]
+
         elif action == "tae":
             trim_len = get_trim_length_loop()
             if trim_len == None:
                 continue
-            pass
+            for el in final_names:
+                el = el[:trim_len]
+
         elif action == "tre":
             trim_len = get_trim_length_loop()
             if trim_len == None:
                 continue
             pass
-        elif action == "tae":
-            trim_len = get_trim_length_loop()
-            if trim_len == None:
-                continue
-            pass
+
         elif action == "tsv":
             trim_len = get_trim_length_loop()
             if trim_len == None:
                 continue
             pass
+
         elif action == "og":
             final_names = og_names
+
         elif action == "s":
             return final_names
 

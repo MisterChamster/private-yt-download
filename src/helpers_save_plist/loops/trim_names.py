@@ -23,16 +23,14 @@ def trim_names_loop(plist_list: list) -> list:
             trim_len = get_trim_length_loop()
             if trim_len == None:
                 continue
-            for el in final_names:
-                el = el[trim_len:]
+            final_names = [el[trim_len:] for el in final_names]
 
         elif action == "trim_all_end":
             trim_len = get_trim_length_loop()
             print()
             if trim_len == None:
                 continue
-            for el in final_names:
-                el = el[:trim_len]
+            final_names = [el[:trim_len] for el in final_names]
 
         elif action == "trim_range":
             trim_len = get_trim_length_loop()

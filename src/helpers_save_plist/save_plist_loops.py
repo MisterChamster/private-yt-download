@@ -81,37 +81,37 @@ def numbering_loop(plist_list: list) -> list:
         action = ask_numbering_main_menu()
         print()
 
-        if action == "o":
+        if action == "start_on_1":
             final_numbering = [i+1 for i in range(0, len(og_numbering))]
             print()
 
-        elif action == "n":
+        elif action == "no_numbering":
             final_numbering = None
             print()
 
-        elif action == "b":
+        elif action == "begin_on_integer":
             first_el_num = ask_first_number()
             print()
             if first_el_num == None:
                 continue
             final_numbering = [i for i in range(first_el_num, first_el_num+len(og_numbering))]
 
-        elif action == "e":
+        elif action == "end_on_integer":
             last_el_num = ask_last_number(len(og_numbering))
             print()
             if last_el_num == None:
                 continue
             final_numbering = [i for i in range(last_el_num-len(og_numbering)+1, last_el_num+2)]
 
-        elif action == "r":
+        elif action == "reverse_numbering":
             final_numbering = final_numbering[::-1]
             print()
 
-        elif action == "og":
+        elif action == "original_numbering":
             final_numbering = og_numbering
             print()
 
-        elif action == "s":
+        elif action == "save":
             print()
             return final_numbering
 

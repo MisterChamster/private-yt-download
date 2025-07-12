@@ -49,6 +49,13 @@ def ask_numbering(min_el_index: int, max_el_index: int) -> list:
 
 
 def ask_numbering_main_menu() -> str:
+    returns_dict = {"o":  "start_on_1",
+                    "n":  "no_numbering",
+                    "b":  "begin_on_integer",
+                    "e":  "end_on_integer",
+                    "r":  "reverse_numbering",
+                    "og": "original_numbering",
+                    "s":  "save"}
     while True:
         print("Choose numbering option:\n" \
               "o  - Starting on 1\n" \
@@ -63,7 +70,7 @@ def ask_numbering_main_menu() -> str:
         if action not in ["o", "n", "b", "e", "r", "og", "s"]:
             print("Incorrect input.\n")
         else:
-            return action
+            return returns_dict[action]
 
 
 def ask_first_number() -> int:

@@ -3,8 +3,8 @@ def ask_trim_names_main_menu() -> str:
         print("Choose element name trimming option:\n" \
               "tas - Trim all names at the start...\n" \
               "tae - Trim all names at the end...\n" \
-              "tre - Trim a range of elements... \n" \
-              "tsv - Trim specific elements...\n" \
+              "tre - Trim name of elements in range... \n" \
+              "tsv - Trim name of a specific element...\n" \
               "og  - Return all elements to original names\n" \
               "s   - Save\n>> ", end="")
         asker = str(input())
@@ -54,3 +54,11 @@ def ask_length_str() -> str:
         if asker == "exit":
             return None
         return asker
+
+
+def ask_el_name_trim() -> int:
+    return
+
+
+def ask_multiple_trim() -> list:
+    return

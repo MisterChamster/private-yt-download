@@ -1,4 +1,4 @@
-from src.helpers_save_plist.utils import (list_vid_names)
+from src.helpers_save_plist.utils import list_vid_names
 from src.helpers_save_plist.askers.trim_names import (ask_trim_names_main_menu,
                                                       ask_length_type,
                                                       ask_length_int,
@@ -28,6 +28,7 @@ def trim_names_loop(plist_list: list) -> list:
 
         elif action == "trim_all_end":
             trim_len = get_trim_length_loop()
+            print()
             if trim_len == None:
                 continue
             for el in final_names:
@@ -35,6 +36,7 @@ def trim_names_loop(plist_list: list) -> list:
 
         elif action == "trim_range":
             trim_len = get_trim_length_loop()
+            print()
             if trim_len == None:
                 continue
             # START WORK HERE
@@ -42,6 +44,7 @@ def trim_names_loop(plist_list: list) -> list:
 
         elif action == "trim_specific":
             trim_len = get_trim_length_loop()
+            print()
             if trim_len == None:
                 continue
             # START WORK HERE
@@ -58,15 +61,18 @@ def get_trim_length_loop() -> int:
     trim_len = 0
     while True:
         input_type = ask_length_type()
+        print()
 
         if input_type == "input_integer":
             trim_len = ask_length_int()
+            print()
             if trim_len == None:
                 return None
             return trim_len
 
         elif input_type == "input_string":
             trim_len = ask_length_str()
+            print()
             if trim_len == None:
                 return None
             return trim_len

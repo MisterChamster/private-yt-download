@@ -23,7 +23,6 @@ def trim_vids_loop(plist_list: list) -> list:
     while True:
         action = ask_trimming_main_menu()
         print()
-        print(f"ACTION!!!!!: {action}\n")
 
         if action == "all":
             return plist_list

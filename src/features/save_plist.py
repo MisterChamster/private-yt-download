@@ -5,18 +5,18 @@ from src.common.askers import (ask_save_ext,
 from src.common.utils import (illegal_char_remover,
                               is_internet_available,
                               get_ydl_options)
-from src.helpers_save_plist.save_plist_askers_common import (ask_del_duplicates,
-                                                             ask_read_trim_lens)
-from src.helpers_save_plist.save_plist_askers_numbering import ask_numbering
-from src.helpers_save_plist.save_plist_utils import (name_file_on_plist,
-                                                     zeros_at_beginning,
-                                                     get_indexes_of_duplicates,
-                                                     are_duplicates,
-                                                     del_indexes)
+from src.helpers_save_plist.askers_common import (ask_del_duplicates,
+                                                  ask_read_trim_lens)
+from src.helpers_save_plist.askers_numbering import ask_numbering
+from src.helpers_save_plist.utils import (name_file_on_plist,
+                                          zeros_at_beginning,
+                                          get_indexes_of_duplicates,
+                                          are_duplicates,
+                                          del_indexes)
 from src.common.ydl_support import get_plist_dict
-from src.helpers_save_plist.save_plist_loops import (trim_vids_loop,
-                                                     numbering_loop,
-                                                     trim_names_loop)
+from src.helpers_save_plist.loops import (trim_vids_loop,
+                                          numbering_loop,
+                                          trim_names_loop)
 
 
 

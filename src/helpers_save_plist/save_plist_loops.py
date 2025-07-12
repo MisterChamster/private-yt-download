@@ -13,7 +13,9 @@ from src.helpers_save_plist.save_plist_utils import (list_vids,
 from src.helpers_save_plist.save_plist_askers_trim_names import (ask_trim_names_main_menu,
                                                                  ask_length_type,
                                                                  ask_length_int,
-                                                                 ask_length_str)
+                                                                 ask_length_str,
+                                                                 ask_el_name_trim,
+                                                                 ask_multiple_name_trim)
 
 
 
@@ -139,13 +141,13 @@ def trim_names_loop(plist_list: list) -> list:
             for el in final_names:
                 el = el[:trim_len]
 
-        elif action == "tre":
+        elif action == "tr":
             trim_len = get_trim_length_loop()
             if trim_len == None:
                 continue
             pass
 
-        elif action == "tsv":
+        elif action == "ts":
             trim_len = get_trim_length_loop()
             if trim_len == None:
                 continue

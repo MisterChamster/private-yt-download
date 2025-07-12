@@ -104,7 +104,7 @@ def list_vids_custom_url(plist_list: list, plist_urls: list) -> None:
 
 def list_vid_names(plist_vid_titles: list) -> None:
     for i in range(0, len(plist_vid_titles)):
-        print(plist_vid_titles[i])
+        print(f"{i}. {plist_vid_titles[i]}")
 
 
 def name_file_on_plist(OGtitle: str, title_number: str, namecut_list: list) -> str:

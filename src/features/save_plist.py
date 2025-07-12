@@ -5,8 +5,8 @@ from src.common.askers import (ask_save_ext,
 from src.common.utils import (illegal_char_remover,
                               is_internet_available,
                               get_ydl_options)
-from src.helpers_save_plist.save_plist_askers import (ask_del_duplicates,
-                                                      ask_read_trim_lens)
+from src.helpers_save_plist.save_plist_askers_common import (ask_del_duplicates,
+                                                             ask_read_trim_lens)
 from src.helpers_save_plist.save_plist_askers_numbering import ask_numbering
 from src.helpers_save_plist.save_plist_utils import (name_file_on_plist,
                                                      zeros_at_beginning,

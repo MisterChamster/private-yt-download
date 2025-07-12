@@ -115,7 +115,6 @@ def numbering_loop(plist_list: list) -> list:
             return final_numbering
 
 
-# START WORK HERE
 def trim_names_loop(plist_list: list) -> list:
     og_names = [el[1] for el in plist_list]
     final_names = og_names
@@ -145,12 +144,14 @@ def trim_names_loop(plist_list: list) -> list:
             trim_len = get_trim_length_loop()
             if trim_len == None:
                 continue
+            # START WORK HERE
             pass
 
         elif action == "trim_specific":
             trim_len = get_trim_length_loop()
             if trim_len == None:
                 continue
+            # START WORK HERE
             pass
 
         elif action == "original_names":

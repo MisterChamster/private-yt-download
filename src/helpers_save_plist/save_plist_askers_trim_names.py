@@ -1,4 +1,10 @@
 def ask_trim_names_main_menu() -> str:
+    returns_dict = {"tas": "trim_all_start",
+                    "tae": "trim_all_end",
+                    "tr":  "trim_range",
+                    "ts":  "trim_specific",
+                    "og":  "original_names",
+                    "s":   "save"}
     while True:
         print("Choose element name trimming option:\n" \
               "tas - Trim all names at the start...\n" \
@@ -12,10 +18,13 @@ def ask_trim_names_main_menu() -> str:
         if asker not in ["tas", "tae", "tr", "ts", "og", "s"]:
             print("Incorrect input.\n")
         else:
-            return asker
+            return returns_dict[asker]
 
 
 def ask_length_type() -> str:
+    returns_dict = {"i":  "input_integer",
+                    "s":  "input_string",
+                    "rt": "return"}
     while True:
         print("Choose trim length value type:\n" \
               "i  - Input integer value...\n" \
@@ -25,10 +34,8 @@ def ask_length_type() -> str:
 
         if asker not in ["i", "s", "rt"]:
             print("Incorrect input.\n")
-        elif asker == "rt":
-            return None
         else:
-            return asker
+            return returns_dict[asker]
 
 
 def ask_length_int() -> int:

@@ -128,53 +128,55 @@ def trim_names_loop(plist_list: list) -> list:
         action = ask_trim_names_main_menu()
         print()
 
-        if action == "tas":
+        if action == "trim_all_start":
             trim_len = get_trim_length_loop()
             if trim_len == None:
                 continue
             for el in final_names:
                 el = el[trim_len:]
 
-        elif action == "tae":
+        elif action == "trim_all_end":
             trim_len = get_trim_length_loop()
             if trim_len == None:
                 continue
             for el in final_names:
                 el = el[:trim_len]
 
-        elif action == "tr":
+        elif action == "trim_range":
             trim_len = get_trim_length_loop()
             if trim_len == None:
                 continue
             pass
 
-        elif action == "ts":
+        elif action == "trim_specific":
             trim_len = get_trim_length_loop()
             if trim_len == None:
                 continue
             pass
 
-        elif action == "og":
+        elif action == "original_names":
             final_names = og_names
 
-        elif action == "s":
+        elif action == "save":
             return final_names
 
 
 def get_trim_length_loop() -> int:
     trim_len = 0
-    input_type = ask_length_type()
-    if input_type == None:
-        return None
+    while True:
+        input_type = ask_length_type()
 
-    elif input_type == "i":
-        trim_len = ask_length_int()
-        if trim_len == None:
-            return None
-        return trim_len
+        if input_type == "input_integer":
+            trim_len = ask_length_int()
+            if trim_len == None:
+                return None
+            return trim_len
 
-    elif input_type == "s":
-        trim_len = ask_length_str()
-        if trim_len == None:
+        elif input_type == "input_string":
+            trim_len = ask_length_str()
+            if trim_len == None:
+                return None
+            return trim_len
+
+        elif input_type == "return":
             return None
-        return trim_len

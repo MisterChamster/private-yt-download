@@ -14,9 +14,9 @@ from src.helpers_save_plist.utils import (name_file_on_plist,
                                           are_duplicates,
                                           del_indexes)
 from src.common.ydl_support import get_plist_dict
-from src.helpers_save_plist.loops import (trim_vids_loop,
-                                          numbering_loop,
-                                          trim_names_loop)
+from src.helpers_save_plist.loops.trim_vids import trim_vids_loop
+from src.helpers_save_plist.loops.numbering import numbering_loop
+from src.helpers_save_plist.loops.trim_names import trim_names_loop
 
 
 

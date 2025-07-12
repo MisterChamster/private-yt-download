@@ -67,6 +67,7 @@ def trim_names_loop(plist_list: list) -> list:
             list_vid_names(final_names)
             print()
             # START WORK HERE
+            # Ask first el, ask last el. Check if they are in plistlist[0], trim in a loop
             pass
 
         elif action == "original_names":

@@ -32,7 +32,7 @@ def trim_names_loop(plist_list: list) -> list:
                 continue
             final_names = [el[:trim_len] for el in final_names]
 
-        elif action == "trim_range":
+        elif action == "trim_specific":
             trim_len = get_trim_length_loop()
             print()
             if trim_len == None:
@@ -40,7 +40,7 @@ def trim_names_loop(plist_list: list) -> list:
             # START WORK HERE
             pass
 
-        elif action == "trim_specific":
+        elif action == "trim_range":
             trim_len = get_trim_length_loop()
             print()
             if trim_len == None:

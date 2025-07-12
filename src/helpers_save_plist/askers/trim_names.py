@@ -1,21 +1,21 @@
 def ask_trim_names_main_menu() -> str:
     returns_dict = {"tas": "trim_all_start",
                     "tae": "trim_all_end",
-                    "tr":  "trim_range",
                     "ts":  "trim_specific",
+                    "tr":  "trim_range",
                     "og":  "original_names",
                     "s":   "save"}
     while True:
         print("Choose element name trimming option:\n" \
               "tas - Trim all names at the start...\n" \
               "tae - Trim all names at the end...\n" \
-              "tr  - Trim name of elements in range... \n" \
               "ts  - Trim name of a specific element...\n" \
+              "tr  - Trim name of elements in range... \n" \
               "og  - Return all elements to original names\n" \
               "s   - Save\n>> ", end="")
         asker = str(input())
 
-        if asker not in ["tas", "tae", "tr", "ts", "og", "s"]:
+        if asker not in ["tas", "tae", "ts", "tr", "og", "s"]:
             print("Incorrect input.\n")
         else:
             return returns_dict[asker]

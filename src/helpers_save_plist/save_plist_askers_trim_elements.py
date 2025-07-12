@@ -1,4 +1,7 @@
 def ask_trimming_main_menu() -> str:
+    returns_dict = {"":   "all",
+                    "c":  "custom",
+                    "ls": "list"}
     while True:
         print("Choose which elements to download:\n" \
               "Enter - All current elements\n" \
@@ -9,23 +12,24 @@ def ask_trimming_main_menu() -> str:
         if not asker in ["", "c", "ls"]:
             print("Incorrect input.\n")
         else:
-            if asker == "":
-                return "all"
-            return asker
+            return returns_dict[asker]
 
 
 def ask_custom_trim() -> str:
+    returns_dict = {"te": "trim_element",
+                    "tr": "trim_range",
+                    "rt": "return"}
     while True:
         print("Choose custom trimming option:\n" \
               "te - Trim one element...\n" \
               "tr - Trim a range of elements...\n" \
-              "rt s- Return\n>> ", end="")
+              "rt - Return\n>> ", end="")
         asker = str(input())
 
         if asker not in ["te", "tr", "rt"]:
             print("Incorrect input.\n")
         else:
-            return asker
+            return returns_dict[asker]
 
 
 def ask_el_trim(plist_numbers: list) -> int:

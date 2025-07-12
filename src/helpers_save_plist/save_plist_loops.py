@@ -23,16 +23,17 @@ def trim_vids_loop(plist_list: list) -> list:
     while True:
         action = ask_trimming_main_menu()
         print()
+        print(f"ACTION!!!!!: {action}\n")
 
         if action == "all":
             return plist_list
 
-        elif action == "c":
+        elif action == "custom":
             plist_list = custom_trim_loop(plist_list)
             if plist_list == None:
                 return None
 
-        elif action == "ls":
+        elif action == "list":
             list_vids(plist_list)
             print()
 
@@ -49,7 +50,7 @@ def custom_trim_loop(plist_list: list) -> list:
         action = ask_custom_trim()
         print()
 
-        if action == "te":
+        if action == "trim_element":
             plist_numbers = [i[0] for i in plist_list]
             number_to_trim = ask_el_trim(plist_numbers)
             print()
@@ -57,7 +58,7 @@ def custom_trim_loop(plist_list: list) -> list:
                 continue
             plist_list = del_by_number(plist_list, number_to_trim)
 
-        elif action == "tr":
+        elif action == "trim_range":
             plist_numbers = [i[0] for i in plist_list]
             trim_range = ask_multiple_trim(plist_numbers)
             print()
@@ -65,7 +66,7 @@ def custom_trim_loop(plist_list: list) -> list:
                 continue
             plist_list = del_by_range(plist_list, trim_range[0], trim_range[1])
 
-        elif action == "rt":
+        elif action == "return":
             return plist_list
 
 

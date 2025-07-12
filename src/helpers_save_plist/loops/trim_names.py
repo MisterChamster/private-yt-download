@@ -3,6 +3,7 @@ from src.helpers_save_plist.askers.trim_names import (ask_trim_names_main_menu,
                                                       ask_length_type,
                                                       ask_length_int,
                                                       ask_length_str,
+                                                      ask_trim_front_back,
                                                       ask_el_name_trim,
                                                       ask_multiple_name_trim)
 
@@ -37,14 +38,34 @@ def trim_names_loop(plist_list: list) -> list:
             print()
             if trim_len == None:
                 continue
-            # START WORK HERE
-            pass
+            trim_side = ask_trim_front_back()
+            print()
+            list_vid_names(final_names)
+            print()
+            number_to_trim = ask_el_name_trim([el[0] for el in plist_list])
+            print()
+            if number_to_trim == None:
+                continue
+
+            i = 0
+            while i<len(final_names):
+                if number_to_trim == plist_list[i][0]:
+                    if trim_side == "start":
+                        final_names[i] = final_names[i][trim_len:]
+                    elif trim_side == "end":
+                        final_names[i] = final_names[i][:trim_len]
+                    break
+                i += 1
 
         elif action == "trim_range":
             trim_len = get_trim_length_loop()
             print()
             if trim_len == None:
                 continue
+            trim_side = ask_trim_front_back()
+            print()
+            list_vid_names(final_names)
+            print()
             # START WORK HERE
             pass
 
@@ -63,14 +84,12 @@ def get_trim_length_loop() -> int:
 
         if input_type == "input_integer":
             trim_len = ask_length_int()
-            print()
             if trim_len == None:
                 return None
             return trim_len
 
         elif input_type == "input_string":
             trim_len = ask_length_str()
-            print()
             if trim_len == None:
                 return None
             return trim_len

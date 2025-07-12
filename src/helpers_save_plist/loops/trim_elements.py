@@ -56,5 +56,3 @@ def custom_trim_loop(plist_list: list) -> list:
 
         elif action == "return":
             return plist_list
-
-

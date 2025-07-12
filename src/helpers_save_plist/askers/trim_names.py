@@ -63,9 +63,40 @@ def ask_length_str() -> str:
         return asker
 
 
-def ask_el_name_trim() -> int:
-    return
+def ask_trim_front_back() -> str:
+    returns_dict = {"s": "start",
+                    "e": "end"}
+    while True:
+        print("Cut characters from (to exit input 'exit'):\n" \
+              "s - start\n" \
+              "e - end\n>> ", end="")
+        asker = str(input())
+
+        if asker == "exit":
+            return None
+        elif asker not in ["s", "e"]:
+            print("Incorrect input.\n")
+        else:
+            return returns_dict[asker]
 
 
-def ask_multiple_name_trim() -> list:
+def ask_el_name_trim(plist_numbers: list) -> int:
+    while True:
+        print("Input number of the element to trim name:\n" \
+              "(to exit input 'exit')\n>> ", end="")
+        asker = str(input())
+
+        if asker == "exit":
+            return None
+        elif not asker.isdigit():
+            print("Incorrect input.\n")
+            continue
+        el_number = int(asker)
+        if el_number not in plist_numbers:
+            print("Number is not an element on videos list.\n")
+        else:
+            return el_number
+
+
+def ask_multiple_name_trim(plist_numbers: list) -> list:
     return

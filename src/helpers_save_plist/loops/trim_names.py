@@ -20,28 +20,35 @@ def trim_names_loop(plist_list: list) -> list:
         action = ask_trim_names_main_menu()
         print()
 
-        if action == "trim_all_start":
-            trim_len = get_trim_length_loop()
-            if trim_len == None:
-                continue
-            final_names = [el[trim_len:] for el in final_names]
-
-        elif action == "trim_all_end":
+        if action == "trim_all_elements":
             trim_len = get_trim_length_loop()
             print()
             if trim_len == None:
                 continue
-            final_names = [el[:trim_len] for el in final_names]
+
+            trim_side = ask_trim_front_back()
+            print()
+            if trim_side == None:
+                continue
+            elif trim_side == "start":
+                final_names = [el[trim_len:] for el in final_names]
+            elif trim_side == "end":
+                final_names = [el[:-trim_len] for el in final_names]
 
         elif action == "trim_specific":
             trim_len = get_trim_length_loop()
             print()
             if trim_len == None:
                 continue
+
             trim_side = ask_trim_front_back()
             print()
+            if trim_side == None:
+                continue
+
             list_vid_names(final_names)
             print()
+
             number_to_trim = ask_el_name_trim([el[0] for el in plist_list])
             print()
             if number_to_trim == None:
@@ -64,6 +71,8 @@ def trim_names_loop(plist_list: list) -> list:
                 continue
             trim_side = ask_trim_front_back()
             print()
+            if trim_side == None:
+                continue
             list_vid_names(final_names)
             print()
             # START WORK HERE

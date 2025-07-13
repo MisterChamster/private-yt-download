@@ -1,21 +1,19 @@
 def ask_trim_names_main_menu() -> str:
-    returns_dict = {"tas": "trim_all_start",
-                    "tae": "trim_all_end",
+    returns_dict = {"tan": "trim_all_elements",
                     "ts":  "trim_specific",
                     "tr":  "trim_range",
                     "og":  "original_names",
                     "s":   "save"}
     while True:
         print("Choose element name trimming option:\n" \
-              "tas - Trim all names at the start...\n" \
-              "tae - Trim all names at the end...\n" \
+              "tan - Trim all names...\n" \
               "ts  - Trim name of a specific element...\n" \
               "tr  - Trim name of elements in range... \n" \
               "og  - Return all elements to original names\n" \
               "s   - Save\n>> ", end="")
         asker = str(input())
 
-        if asker not in ["tas", "tae", "ts", "tr", "og", "s"]:
+        if asker not in ["tan", "ts", "tr", "og", "s"]:
             print("Incorrect input.\n")
         else:
             return returns_dict[asker]
@@ -48,6 +46,9 @@ def ask_length_int() -> int:
             return None
         elif not asker.isdigit():
             print("Incorrect input.\n")
+        asker_int = int(asker)
+        if asker_int == 0:
+            return None
         else:
             return int(asker)
 
@@ -58,9 +59,9 @@ def ask_length_str() -> str:
               "(to exit input 'exit')\n>> ", end="")
         asker = str(input())
 
-        if asker == "exit":
+        if asker == "exit" or asker == "":
             return None
-        return asker
+        return len(asker)
 
 
 def ask_trim_front_back() -> str:

@@ -97,9 +97,9 @@ def save_plist(plist_url: list) -> None:
     # - plist_list
     # - og_names
 
-    # - plist_el_titles
+    # - plist_el_titles (for metadata later)
     # - plist_el_titles_legal
-    # - plist_indexes
+    # - plist_indexes (for metadata later)
     # - plist_indexes_zeros
 
     return

@@ -52,10 +52,10 @@ def save_plist(plist_url: list) -> None:
 
     # Make user specify which elements to download
     plist_list = [[i+1, plist_el_titles[i], plist_urls[i]] for i in range(0, len(plist_urls))]
-    del(plist_urls)
     plist_list = trim_elements_loop(plist_list)
     if plist_list == None:
         return
+    plist_urls = [el[2] for el in plist_list]
 
     # Ask user to trim elements names
     # List with illegals (for metadata later)
@@ -88,6 +88,12 @@ def save_plist(plist_url: list) -> None:
 
     ydl_opts["paths"] = {"home": save_path + "/" + dir_name}
 
+    total_errors = 0
+    print(f"Downloading {plist_title}...")
+
+    for index in range(0, len(plist_urls)):
+        print(f"{plist_indexes_zeros[i]} ||| {plist_el_titles_legal[i]} ||| {plist_urls[i]}")
+
 
     # Now we have:
     # - plist_title
@@ -97,6 +103,7 @@ def save_plist(plist_url: list) -> None:
     # - plist_list
     # - og_names
 
+    # - plist_urls
     # - plist_el_titles (for metadata later)
     # - plist_el_titles_legal
     # - plist_indexes (for metadata later)
@@ -137,12 +144,12 @@ def save_plist(plist_url: list) -> None:
         chdir(dir_name)
 
         ydl_opts["paths"] = {"home": save_path + "/" + dir_name}
+
+        total_errors = 0
+        fileindex = ""
+        print(f"Downloading {plist_title}...")
     # END DEAD CODE
 
-
-    total_errors = 0
-    fileindex = ""
-    print(f"Downloading {plist_title}...")
 
     for index in range(index_range[0], index_range[1]):
         vid_url = plist_urls[index]

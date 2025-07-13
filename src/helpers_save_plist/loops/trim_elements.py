@@ -10,6 +10,10 @@ from src.helpers_save_plist.askers.trim_elements import(ask_trimming_main_menu,
 
 def trim_elements_loop(plist_list: list) -> list:
     while True:
+        print("Current elements in playlist:")
+        list_vids(plist_list)
+        print()
+
         action = ask_trimming_main_menu()
         print()
 
@@ -32,6 +36,7 @@ def custom_trim_loop(plist_list: list) -> list:
             print("All elements have been removed.\n\n")
             return None
 
+        print("Current elements in playlist:")
         list_vids(plist_list)
         print()
 
@@ -45,6 +50,7 @@ def custom_trim_loop(plist_list: list) -> list:
             if number_to_trim is None:
                 continue
             plist_list = del_by_number(plist_list, number_to_trim)
+            return plist_list
 
         elif action == "trim_range":
             plist_numbers = [i[0] for i in plist_list]
@@ -53,6 +59,7 @@ def custom_trim_loop(plist_list: list) -> list:
             if trim_range is None:
                 continue
             plist_list = del_by_range(plist_list, trim_range[0], trim_range[1])
+            return plist_list
 
         elif action == "return":
             return plist_list

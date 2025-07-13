@@ -64,7 +64,10 @@ def save_plist(plist_url: list) -> None:
     plist_el_titles_legal = [illegal_char_remover(el) for el in plist_el_titles]
 
     # Get indexing style from user
+    # Without zeros (for metadata later)
     plist_indexes = numbering_loop([el[0] for el in plist_list], plist_el_titles)
+    # With zeros    (for file naming)
+    plist_indexes_zeros = [zeros_at_beginning(el, max(plist_indexes)) for el in plist_indexes]
     is_numbered = True
     if plist_indexes == None:
         is_numbered = False
@@ -83,6 +86,8 @@ def save_plist(plist_url: list) -> None:
     mkdir(dir_name)
     chdir(dir_name)
 
+    ydl_opts["paths"] = {"home": save_path + "/" + dir_name}
+
 
     # Now we have:
     # - plist_title
@@ -95,6 +100,7 @@ def save_plist(plist_url: list) -> None:
     # - plist_el_titles
     # - plist_el_titles_legal
     # - plist_indexes
+    # - plist_indexes_zeros
 
     return
     # START DEAD CODE
@@ -129,12 +135,13 @@ def save_plist(plist_url: list) -> None:
             dir_name += "_d"
         mkdir(dir_name)
         chdir(dir_name)
+
+        ydl_opts["paths"] = {"home": save_path + "/" + dir_name}
     # END DEAD CODE
 
 
     total_errors = 0
     fileindex = ""
-    ydl_opts["paths"] = {"home": save_path + "/" + dir_name}
     print(f"Downloading {plist_title}...")
 
     for index in range(index_range[0], index_range[1]):

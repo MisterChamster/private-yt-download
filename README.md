@@ -19,7 +19,7 @@ cd private-yt-download
 ```bash
 #Windows
 python -m venv venv
-venv\Source\activate
+venv\Scripts\activate
 pip install -r requirements.txt
 python main.py
 ```

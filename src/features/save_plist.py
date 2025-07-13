@@ -58,9 +58,10 @@ def save_plist(plist_url: list) -> None:
         return
 
     # Ask user to trim elements names
+    # List with illegals (for metadata later)
     plist_el_titles = trim_names_loop([el[0] for el in plist_list], [el[1] for el in plist_list])
-    # START WORK HERE
-    # list with legals and list with illegals
+    # List with legals   (for file names)
+    plist_el_titles_legal = [illegal_char_remover(el) for el in plist_el_titles]
 
     # Get indexing style from user
     plist_indexes = numbering_loop([el[0] for el in plist_list], plist_el_titles)
@@ -92,6 +93,7 @@ def save_plist(plist_url: list) -> None:
     # - og_names
 
     # - plist_el_titles
+    # - plist_el_titles_legal
     # - plist_indexes
 
     return

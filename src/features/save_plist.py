@@ -5,32 +5,19 @@ from src.common.askers import (ask_save_ext,
 from src.common.utils import (illegal_char_remover,
                               is_internet_available,
                               get_ydl_options)
-from src.helpers_save_plist.askers_plist import (ask_del_duplicates,
-                                                    ask_num_of_tracks,
-                                                    ask_numbering,
-                                                    ask_read_trim_lens,
-                                                    ask_which_tracks)
-from src.helpers_save_plist.save_plist_utils import (name_file_on_plist,
-                                                     zeros_at_beginning,
-                                                     get_indexes_of_duplicates,
-                                                     are_duplicates,
-                                                     del_indexes)
+from src.helpers_save_plist.askers.delete_duplicates import ask_del_duplicates
+from src.helpers_save_plist.utils import (zeros_at_beginning,
+                                          get_indexes_of_duplicates,
+                                          are_duplicates,
+                                          del_indexes)
 from src.common.ydl_support import get_plist_dict
+from src.helpers_save_plist.loops.trim_elements import trim_elements_loop
+from src.helpers_save_plist.loops.numbering import numbering_loop
+from src.helpers_save_plist.loops.trim_names import trim_names_loop
 
 
 
-def save_plist(plist_url): 
-    """
-    Downloads elements from a youtube playlist.
-
-    Gets a list of all urls and their respective names from a playlist, handles
-    duplicates, reads number of tracks, numbering method and cutting names of 
-    files. Then, makes a directory on desktop and starts downloading them, 
-    assigning correct names to every file.
-
-    Args:
-        plist_url (str): URL of downloaded playlist.
-    """
+def save_plist(plist_url: list) -> None:
     # Get playlist dictionary
     plist_dict = get_plist_dict(plist_url)
     if plist_dict == None:
@@ -43,7 +30,8 @@ def save_plist(plist_url):
 
     # Get lists with videos data
     plist_urls = [el['url'] for el in plist_dict['entries']]
-    plist_vid_titles = [el['title'] for el in plist_dict['entries']]
+    plist_el_titles = [el['title'] for el in plist_dict['entries']]
+    del(plist_dict)
 
     # Check and handle duplicates
     if are_duplicates(plist_urls):
@@ -51,7 +39,7 @@ def save_plist(plist_url):
             dupli_indexes = get_indexes_of_duplicates(plist_urls)
 
             plist_urls = del_indexes(plist_urls, dupli_indexes)
-            plist_vid_titles = del_indexes(plist_vid_titles, dupli_indexes)
+            plist_el_titles = del_indexes(plist_el_titles, dupli_indexes)
         print()
     # I don't care about indexing b4 deleting duplicates and neither should you
 
@@ -60,73 +48,69 @@ def save_plist(plist_url):
     print()
     ydl_opts = get_ydl_options(extension)
 
-
-    # START WORK HERE
-    # ask_which_tracks
-
-    plist_len = len(plist_urls)
-    index_range = ask_num_of_tracks(plist_len)
+    # Make user specify which elements to download
+    plist_list = [[i+1, plist_el_titles[i], plist_urls[i]] for i in range(0, len(plist_urls))]
+    plist_list = trim_elements_loop(plist_list)
     print()
-    numbered = ask_numbering(index_range[0], index_range[1])
+    if plist_list == None:
+        return
+    plist_urls = [el[2] for el in plist_list]
+
+    # Ask user to trim elements names
+    # List with illegals (for metadata later)
+    plist_el_titles = trim_names_loop([el[0] for el in plist_list], [el[1] for el in plist_list])
     print()
-    if numbered[0] != "not":
-        temp_filenum = numbered[1]
-        if numbered[0] == "asc":
-            last_num = index_range[0] + plist_len
-        elif numbered[0] == "desc":
-            last_num = index_range[0] - plist_len
-    else:
-        temp_filenum = ""
+    # List with legals   (for file names)
+    plist_el_titles_legal = [illegal_char_remover(el) for el in plist_el_titles]
 
-    namecut_list = ask_read_trim_lens()
+    # Get indexing style from user
+    # Without zeros (for metadata later)
+    plist_indexes = numbering_loop([el[0] for el in plist_list], plist_el_titles)
+    # With zeros    (for file naming)
+    plist_indexes_zeros = [zeros_at_beginning(el, max(plist_indexes)) for el in plist_indexes]
+    is_numbered = True
+    if plist_indexes == None:
+        is_numbered = False
     print()
 
-    dir_name = illegal_char_remover(plist_title)
-
+    # Get save path from user
     save_path = ask_save_path()
     if save_path == "":
         print("Empty path was chosen.")
         return
     chdir(save_path)
 
+    # Get dir name and create it
+    dir_name = illegal_char_remover(plist_title)
     while path.exists(save_path + "/" + dir_name):
         dir_name += "_d"
     mkdir(dir_name)
     chdir(dir_name)
-    total_errors = 0
-    fileindex = ""
     ydl_opts["paths"] = {"home": save_path + "/" + dir_name}
+
+    total_errors = 0
     print(f"Downloading {plist_title}...")
 
-    for index in range(index_range[0], index_range[1]):
-        vid_url = plist_urls[index]
-        vid_og_name = plist_vid_titles[index]
+    for index in range(0, len(plist_urls)):
+        final_filename = plist_el_titles_legal[index]
+        if is_numbered:
+            final_filename = plist_indexes_zeros[index] + final_filename
 
-        if numbered[0] != "not":
-            fileindex = zeros_at_beginning(temp_filenum, last_num)
-
-        finalfilename = name_file_on_plist(vid_og_name, fileindex, namecut_list)
-
-        while finalfilename in listdir():
-            finalfilename += "_d"
-        ydl_opts["outtmpl"] = finalfilename
-
-        if numbered[0] == "asc":
-            temp_filenum += 1
-        elif numbered[0] == "desc":
-            temp_filenum -= 1
+        while final_filename in listdir():
+            final_filename += "_d"
+        ydl_opts["outtmpl"] = final_filename
 
         try:
             with YoutubeDL(ydl_opts) as ydl:
-                ydl.download([vid_url])
-            print(finalfilename)
+                ydl.download([plist_urls[index]])
+            print(final_filename)
         except:
             if not is_internet_available():
                 print("Internet connection failed.\n\n")
                 return
             else:
                 total_errors += 1
-                print(f"{finalfilename} could not be downloaded. Here's link to this video: {vid_url}")
+                print(f"{final_filename} could not be downloaded. Here's link to this video: {plist_urls[index]}")
 
     if total_errors == 0:
         print("\n" + plist_title + " playlist has been successfully downloaded.\n\n")
@@ -134,3 +118,18 @@ def save_plist(plist_url):
         print("\n" + "Downloading " + plist_title + " didn't go smooth. There has been 1 exception.\n\n")
     else:
         print("\n" + "Downloading " + plist_title + " didn't go smooth. There have been " + str(total_errors) + " exceptions.\n\n")
+
+
+    # Now we have:
+    # - plist_title
+    # - dir_name
+    # - extension
+    # - ydl_opts
+    # - plist_list
+    # - og_names
+
+    # - plist_urls
+    # - plist_el_titles (for metadata later)
+    # - plist_el_titles_legal
+    # - plist_indexes (for metadata later)
+    # - plist_indexes_zeros

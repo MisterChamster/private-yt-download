@@ -9,16 +9,7 @@ from src.common.ydl_support import get_video_title
 
 
 
-def save_single(url):
-    """
-    Downloads element from given URL
-
-    Extracts video title from URL, checks if it's correct, adjusts YoutubeDL 
-    object parameters and downloads.
-
-    Args:
-        url (str) - correct URL to youtube video
-    """
+def save_single(url: str) -> None:
     extension = ask_save_ext()
     print()
 

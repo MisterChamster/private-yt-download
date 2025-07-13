@@ -2,7 +2,7 @@ from src.common.utils import illegal_char_remover
 
 
 
-def zeros_at_beginning(number, max_element_number):
+def zeros_at_beginning(number: int, max_element_number: int) -> str:
     """
     Determines a number in name of element present in a playlist.
 
@@ -31,7 +31,7 @@ def zeros_at_beginning(number, max_element_number):
         return f"{gg * '0'}{number}. "
 
 
-def get_indexes_of_searched_item(list_of_items, searched_item):
+def get_indexes_of_searched_item(list_of_items: list, searched_item: int | str) -> list:
     indexes_list = []
     i = 0
     while i < len(list_of_items):
@@ -41,7 +41,7 @@ def get_indexes_of_searched_item(list_of_items, searched_item):
     return indexes_list
 
 
-def are_duplicates(list_of_items):
+def are_duplicates(list_of_items: list) -> bool:
     i = 0
     while i+1 < len(list_of_items):
         item_appearances = get_indexes_of_searched_item(list_of_items, list_of_items[i])
@@ -51,7 +51,7 @@ def are_duplicates(list_of_items):
     return False
 
 
-def get_indexes_of_duplicates(list_of_items):
+def get_indexes_of_duplicates(list_of_items: list) -> list:
     list_of_appearances = []
     list_of_lists_of_appearances = []
     i = 0
@@ -68,7 +68,7 @@ def get_indexes_of_duplicates(list_of_items):
     return list_of_appearances
 
 
-def del_indexes(list_of_items, indexes_list):
+def del_indexes(list_of_items: list, indexes_list: list) -> list:
     indexes_list.sort()
     indexes_list.reverse()
     for i in indexes_list:
@@ -76,39 +76,27 @@ def del_indexes(list_of_items, indexes_list):
     return list_of_items
 
 
-def name_file_on_plist(OGtitle, title_number, namecut_list):
-    """
-    Changes a string to match it with user's desired outcome.
+def list_vids(plist_list: list) -> None:
+    # print("Hello! I list videos. You're pretty.")
+    for i in range(0, len(plist_list)):
+        print(f"{plist_list[i][0]}. {plist_list[i][1]}")
 
-    Trims the title if needed, removes illegal signs and adds index.
-    Due to program's characteristics, function does not handle negative ints in namecut list.
 
-    Args:
-        title (str):                            Title of youtube video.
-        titleindex (str):                       Numbering in filename (after adding zeros).
-        namecut_list (list[a (int), b (int)]):  Number of characters to be cut from start end end of the title.
+def del_by_number(plist_list: list, number: int) -> list:
+    i = 0
+    while i < len(plist_list):
+        if plist_list[i][0] == number:
+            plist_list.pop(i)
+            return plist_list
+        i += 1
 
-    Returns:
-        str: Final name of a file.
-    """
-    lens = namecut_list[0]
-    lene = namecut_list[1]
-    policed_OGtitle = illegal_char_remover(OGtitle)
 
-    #nothing remains after trimming name
-    if (lens + lene >= len(OGtitle) or lens >= len(OGtitle) or lene > len(OGtitle)) and title_number == "":
-        if len(policed_OGtitle) != len(OGtitle):
-            print(f"Length of a trim is larger than the title. Returning original title with illegal chars removed...")
-        else:
-            print("Length of a trim is larger than the title. Returning original title...")
-        return policed_OGtitle
-    
-    if lene == 0:
-        ret_title = OGtitle[lens:]
-    else:
-        ret_title = OGtitle[lens:-lene]
-    policed_ret_title = illegal_char_remover(ret_title)
+def del_by_range(plist_list: list, start_el: int, end_el: int) -> list:
+    for i in range(start_el, end_el+1):
+        del_by_number(plist_list, i)
+    return plist_list
 
-    if len(policed_OGtitle) != len(OGtitle):
-        print(f"{OGtitle} - has been updated to not contain illegal characters")
-    return title_number + policed_ret_title
+
+def list_vid_names(plist_numbers: list, plist_vid_titles: list) -> None:
+    for i in range(0, len(plist_vid_titles)):
+        print(f"{plist_numbers[i]}. {plist_vid_titles[i]}")

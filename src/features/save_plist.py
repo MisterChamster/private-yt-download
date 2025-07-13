@@ -5,8 +5,7 @@ from src.common.askers import (ask_save_ext,
 from src.common.utils import (illegal_char_remover,
                               is_internet_available,
                               get_ydl_options)
-from src.helpers_save_plist.askers.common import (ask_del_duplicates,
-                                                  ask_read_trim_lens)
+from src.helpers_save_plist.askers.common import (ask_del_duplicates)
 from src.helpers_save_plist.askers.numbering import ask_numbering
 from src.helpers_save_plist.utils import (name_file_on_plist,
                                           zeros_at_beginning,
@@ -67,7 +66,6 @@ def save_plist(plist_url: list) -> None:
     is_numbered = True
     if plist_indexes == None:
         is_numbered = False
-    #integrate numbering with plist list
 
 
     # Now we have:
@@ -98,7 +96,7 @@ def save_plist(plist_url: list) -> None:
             temp_filenum = ""
     # END DEAD CODE
 
-    namecut_list = ask_read_trim_lens()
+    namecut_list = [0, 0] # ask_read_trim_lens()
     print()
 
     dir_name = illegal_char_remover(plist_title)

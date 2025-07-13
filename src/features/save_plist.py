@@ -32,7 +32,7 @@ def save_plist(plist_url: list) -> None:
 
     # Get lists with videos data
     plist_urls = [el['url'] for el in plist_dict['entries']]
-    plist_vid_titles = [el['title'] for el in plist_dict['entries']]
+    plist_el_titles = [el['title'] for el in plist_dict['entries']]
     del(plist_dict)
 
     # Check and handle duplicates
@@ -41,7 +41,7 @@ def save_plist(plist_url: list) -> None:
             dupli_indexes = get_indexes_of_duplicates(plist_urls)
 
             plist_urls = del_indexes(plist_urls, dupli_indexes)
-            plist_vid_titles = del_indexes(plist_vid_titles, dupli_indexes)
+            plist_el_titles = del_indexes(plist_el_titles, dupli_indexes)
         print()
     # I don't care about indexing b4 deleting duplicates and neither should you
 
@@ -51,7 +51,7 @@ def save_plist(plist_url: list) -> None:
     ydl_opts = get_ydl_options(extension)
 
     # Make user specify which elements to download
-    plist_list = [[i+1, plist_vid_titles[i], plist_urls[i]] for i in range(0, len(plist_urls))]
+    plist_list = [[i+1, plist_el_titles[i], plist_urls[i]] for i in range(0, len(plist_urls))]
     del(plist_urls)
     plist_list = trim_vids_loop(plist_list)
     if plist_list == None:
@@ -59,10 +59,11 @@ def save_plist(plist_url: list) -> None:
 
     # START WORK HERE
     # Ask user to trim elements names
-    plist_vid_titles = trim_names_loop(plist_list)
+    # og_names = 
+    plist_el_titles = trim_names_loop(plist_list)
 
     # Get indexing style from user
-    plist_indexes = numbering_loop([el[0] for el in plist_list], plist_vid_titles)
+    plist_indexes = numbering_loop([el[0] for el in plist_list], plist_el_titles)
     is_numbered = True
     if plist_indexes == None:
         is_numbered = False
@@ -89,7 +90,7 @@ def save_plist(plist_url: list) -> None:
     # - ydl_opts
     # - plist_list
 
-    # - plist_vid_titles
+    # - plist_el_titles
     # - plist_indexes
 
     return
@@ -135,7 +136,7 @@ def save_plist(plist_url: list) -> None:
 
     for index in range(index_range[0], index_range[1]):
         vid_url = plist_urls[index]
-        vid_og_name = plist_vid_titles[index]
+        vid_og_name = plist_el_titles[index]
 
         if numbered[0] != "not":
             fileindex = zeros_at_beginning(temp_filenum, last_num)

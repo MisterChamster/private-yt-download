@@ -100,4 +100,40 @@ def ask_el_name_trim(plist_numbers: list) -> int:
 
 
 def ask_multiple_name_trim(plist_numbers: list) -> list:
-    return
+    while True:
+        print("Input number of the first element to trim name:\n" \
+              "(to exit input 'exit')\n>> ", end="")
+        asker = str(input())
+
+        if asker == "exit":
+            return None
+        elif not asker.isdigit():
+            print("Incorrect input.\n")
+            continue
+
+        start_el = int(asker)
+        if start_el not in plist_numbers:
+            print("Number is not an element on videos list.\n")
+        else:
+            break
+
+    print()
+
+    while True:
+        print("Input number of the last element to trim name:\n" \
+              "(to exit input 'exit')\n>> ", end="")
+        asker2 = str(input())
+
+        if asker2 == "exit":
+            return None
+        elif not asker2.isdigit():
+            print("Incorrect input.\n")
+            continue
+
+        end_el = int(asker2)
+        if end_el not in plist_numbers:
+            print("Number is not an element on videos list.\n")
+        elif end_el < start_el:
+            print("End number can't be smaller than the start number.\n")
+        else:
+            return [start_el, end_el]

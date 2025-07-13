@@ -80,8 +80,7 @@ def trim_names_loop(plist_list: list) -> list:
 
             range_to_trim = ask_multiple_name_trim([el[0] for el in plist_list])
             # START WORK HERE
-            # Ask first el, ask last el. Check if they are in plistlist[0], trim in a loop
-            pass
+            # trim in a loop
 
         elif action == "original_names":
             final_names = og_names

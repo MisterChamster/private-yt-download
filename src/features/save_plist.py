@@ -5,7 +5,7 @@ from src.common.askers import (ask_save_ext,
 from src.common.utils import (illegal_char_remover,
                               is_internet_available,
                               get_ydl_options)
-from src.helpers_save_plist.askers.delete_duplicates import (ask_del_duplicates)
+from src.helpers_save_plist.askers.delete_duplicates import ask_del_duplicates
 from src.helpers_save_plist.askers.numbering import ask_numbering
 from src.helpers_save_plist.utils import (name_file_on_plist,
                                           zeros_at_beginning,
@@ -67,9 +67,24 @@ def save_plist(plist_url: list) -> None:
     if plist_indexes == None:
         is_numbered = False
 
+    # Get save path from user
+    save_path = ask_save_path()
+    if save_path == "":
+        print("Empty path was chosen.")
+        return
+    chdir(save_path)
+
+    # Get dir name and create it
+    dir_name = illegal_char_remover(plist_title)
+    while path.exists(save_path + "/" + dir_name):
+        dir_name += "_d"
+    mkdir(dir_name)
+    chdir(dir_name)
+
 
     # Now we have:
     # - plist_title
+    # - dir_name
     # - extension
     # - ydl_opts
     # - plist_list
@@ -94,23 +109,25 @@ def save_plist(plist_url: list) -> None:
                 last_num = index_range[0] - plist_len
         else:
             temp_filenum = ""
+
+        namecut_list = [0, 0] # ask_read_trim_lens()
+        print()
+
+        dir_name = illegal_char_remover(plist_title)
+
+        save_path = ask_save_path()
+        if save_path == "":
+            print("Empty path was chosen.")
+            return
+        chdir(save_path)
+
+        while path.exists(save_path + "/" + dir_name):
+            dir_name += "_d"
+        mkdir(dir_name)
+        chdir(dir_name)
     # END DEAD CODE
 
-    namecut_list = [0, 0] # ask_read_trim_lens()
-    print()
 
-    dir_name = illegal_char_remover(plist_title)
-
-    save_path = ask_save_path()
-    if save_path == "":
-        print("Empty path was chosen.")
-        return
-    chdir(save_path)
-
-    while path.exists(save_path + "/" + dir_name):
-        dir_name += "_d"
-    mkdir(dir_name)
-    chdir(dir_name)
     total_errors = 0
     fileindex = ""
     ydl_opts["paths"] = {"home": save_path + "/" + dir_name}

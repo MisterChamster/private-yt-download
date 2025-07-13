@@ -13,7 +13,7 @@ from src.helpers_save_plist.utils import (name_file_on_plist,
                                           are_duplicates,
                                           del_indexes)
 from src.common.ydl_support import get_plist_dict
-from src.helpers_save_plist.loops.trim_elements import trim_vids_loop
+from src.helpers_save_plist.loops.trim_elements import trim_elements_loop
 from src.helpers_save_plist.loops.numbering import numbering_loop
 from src.helpers_save_plist.loops.trim_names import trim_names_loop
 
@@ -53,7 +53,7 @@ def save_plist(plist_url: list) -> None:
     # Make user specify which elements to download
     plist_list = [[i+1, plist_el_titles[i], plist_urls[i]] for i in range(0, len(plist_urls))]
     del(plist_urls)
-    plist_list = trim_vids_loop(plist_list)
+    plist_list = trim_elements_loop(plist_list)
     if plist_list == None:
         return
 

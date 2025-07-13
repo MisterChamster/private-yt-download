@@ -8,7 +8,7 @@ from src.helpers_save_plist.askers.trim_elements import(ask_trimming_main_menu,
 
 
 
-def trim_vids_loop(plist_list: list) -> list:
+def trim_elements_loop(plist_list: list) -> list:
     while True:
         action = ask_trimming_main_menu()
         print()

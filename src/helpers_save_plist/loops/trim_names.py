@@ -60,7 +60,7 @@ def trim_names_loop(plist_list: list) -> list:
                     if trim_side == "start":
                         final_names[i] = final_names[i][trim_len:]
                     elif trim_side == "end":
-                        final_names[i] = final_names[i][:trim_len]
+                        final_names[i] = final_names[i][:-trim_len]
                     break
                 i += 1
 
@@ -69,12 +69,16 @@ def trim_names_loop(plist_list: list) -> list:
             print()
             if trim_len == None:
                 continue
+
             trim_side = ask_trim_front_back()
             print()
             if trim_side == None:
                 continue
+
             list_vid_names(final_names)
             print()
+
+            range_to_trim = ask_multiple_name_trim([el[0] for el in plist_list])
             # START WORK HERE
             # Ask first el, ask last el. Check if they are in plistlist[0], trim in a loop
             pass

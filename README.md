@@ -1,7 +1,14 @@
 # YT_download
 
-The Youtube downloader is back with new features, normal fixes, bug fixes and options. It is easy to use quick to work and is a reliable tool that helps with downloading videos however You like. The program was made mainly for people who want to download music and offers a few tools that improve download order and file naming.
+The Youtube downloader is a program allowing to download videos and whole playlists from YouTube. It has many customisation options for file naming, so that users can have tailor-made names of each and every element of the playlist.
 
+## Features
+- Downloading YouTube videos in playlists
+- 3 save formats
+- Multiple file name customization options
+- User-friendly GUI
+- Easy to use
+  
 ## Installation
 ```bash
 git clone https://github.com/MisterChamster/private-yt-download.git

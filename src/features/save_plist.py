@@ -52,9 +52,15 @@ def save_plist(plist_url: list) -> None:
 
     # Make user specify which elements to download
     plist_list = [[i+1, plist_el_titles[i], plist_urls[i]] for i in range(0, len(plist_urls))]
+    for el in plist_list:
+        print(el)
     plist_list = trim_elements_loop(plist_list)
+    print()
     if plist_list == None:
         return
+    # print("PRINTING LIST AFTER")
+    # for el in plist_list:
+    #     print(el)
     plist_urls = [el[2] for el in plist_list]
 
     # Ask user to trim elements names
@@ -62,6 +68,7 @@ def save_plist(plist_url: list) -> None:
     plist_el_titles = trim_names_loop([el[0] for el in plist_list], [el[1] for el in plist_list])
     # List with legals   (for file names)
     plist_el_titles_legal = [illegal_char_remover(el) for el in plist_el_titles]
+    print()
 
     # Get indexing style from user
     # Without zeros (for metadata later)
@@ -71,6 +78,7 @@ def save_plist(plist_url: list) -> None:
     is_numbered = True
     if plist_indexes == None:
         is_numbered = False
+    print()
 
     # Get save path from user
     save_path = ask_save_path()
@@ -92,7 +100,7 @@ def save_plist(plist_url: list) -> None:
     print(f"Downloading {plist_title}...")
 
     for index in range(0, len(plist_urls)):
-        print(f"{plist_indexes_zeros[i]} ||| {plist_el_titles_legal[i]} ||| {plist_urls[i]}")
+        print(f"{plist_indexes_zeros[index]} ||| {plist_el_titles_legal[index]} ||| {plist_urls[index]}")
 
 
     # Now we have:

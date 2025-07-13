@@ -13,7 +13,7 @@ def trim_names_loop(plist_numbers: list, og_names: list) -> list:
     final_names = og_names
     while True:
         print("Current names:")
-        list_vid_names(final_names)
+        list_vid_names(plist_numbers, final_names)
         print()
 
         action = ask_trim_names_main_menu()
@@ -45,7 +45,7 @@ def trim_names_loop(plist_numbers: list, og_names: list) -> list:
             if trim_side == None:
                 continue
 
-            list_vid_names(final_names)
+            list_vid_names(plist_numbers, final_names)
             print()
 
             number_to_trim = ask_el_name_trim(plist_numbers)
@@ -74,7 +74,7 @@ def trim_names_loop(plist_numbers: list, og_names: list) -> list:
             if trim_side == None:
                 continue
 
-            list_vid_names(final_names)
+            list_vid_names(plist_numbers, final_names)
             print()
 
             range_to_trim = ask_multiple_name_trim(plist_numbers)

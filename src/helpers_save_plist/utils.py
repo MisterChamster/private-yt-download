@@ -97,14 +97,9 @@ def del_by_range(plist_list: list, start_el: int, end_el: int) -> list:
     return plist_list
 
 
-def list_vids_custom_url(plist_vid_titles: list, plist_nums: list) -> None:
+def list_vid_names(plist_numbers: list, plist_vid_titles: list) -> None:
     for i in range(0, len(plist_vid_titles)):
-        print(f"{plist_nums[i]}. {plist_vid_titles[i]}")
-
-
-def list_vid_names(plist_vid_titles: list) -> None:
-    for i in range(0, len(plist_vid_titles)):
-        print(f"{i+1}. {plist_vid_titles[i]}")
+        print(f"{plist_numbers[i]}. {plist_vid_titles[i]}")
 
 
 def name_file_on_plist(OGtitle: str, title_number: str, namecut_list: list) -> str:

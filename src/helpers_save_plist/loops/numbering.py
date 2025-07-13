@@ -1,4 +1,4 @@
-from src.helpers_save_plist.utils import list_vids_custom_url
+from src.helpers_save_plist.utils import list_vid_names
 from src.helpers_save_plist.askers.numbering import (ask_numbering_main_menu,
                                                      ask_first_number,
                                                      ask_last_number)
@@ -9,7 +9,7 @@ def numbering_loop(og_numbering: list, plist_vid_titles: list) -> list:
     final_numbering = og_numbering
     while True:
         print("Current numbering:")
-        list_vids_custom_url(plist_vid_titles, final_numbering)
+        list_vid_names(final_numbering, plist_vid_titles)
         print()
 
         action = ask_numbering_main_menu()

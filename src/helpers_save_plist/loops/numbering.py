@@ -46,5 +46,4 @@ def numbering_loop(og_numbering: list, plist_vid_titles: list) -> list:
             print()
 
         elif action == "save":
-            print()
             return final_numbering

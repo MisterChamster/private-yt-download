@@ -6,7 +6,6 @@ from src.common.utils import (illegal_char_remover,
                               is_internet_available,
                               get_ydl_options)
 from src.helpers_save_plist.askers.delete_duplicates import ask_del_duplicates
-from src.helpers_save_plist.askers.numbering import ask_numbering
 from src.helpers_save_plist.utils import (zeros_at_beginning,
                                           get_indexes_of_duplicates,
                                           are_duplicates,
@@ -60,9 +59,9 @@ def save_plist(plist_url: list) -> None:
     # Ask user to trim elements names
     # List with illegals (for metadata later)
     plist_el_titles = trim_names_loop([el[0] for el in plist_list], [el[1] for el in plist_list])
+    print()
     # List with legals   (for file names)
     plist_el_titles_legal = [illegal_char_remover(el) for el in plist_el_titles]
-    print()
 
     # Get indexing style from user
     # Without zeros (for metadata later)
@@ -87,15 +86,38 @@ def save_plist(plist_url: list) -> None:
         dir_name += "_d"
     mkdir(dir_name)
     chdir(dir_name)
-
     ydl_opts["paths"] = {"home": save_path + "/" + dir_name}
 
     total_errors = 0
     print(f"Downloading {plist_title}...")
 
     for index in range(0, len(plist_urls)):
-        print(f"{plist_indexes_zeros[index]} ||| {plist_el_titles_legal[index]} ||| {plist_urls[index]}")
         final_filename = plist_el_titles_legal[index]
+        if is_numbered:
+            final_filename = plist_indexes_zeros[index] + final_filename
+
+        while final_filename in listdir():
+            final_filename += "_d"
+        ydl_opts["outtmpl"] = final_filename
+
+        try:
+            with YoutubeDL(ydl_opts) as ydl:
+                ydl.download([plist_urls[index]])
+            print(final_filename)
+        except:
+            if not is_internet_available():
+                print("Internet connection failed.\n\n")
+                return
+            else:
+                total_errors += 1
+                print(f"{final_filename} could not be downloaded. Here's link to this video: {plist_urls[index]}")
+
+    if total_errors == 0:
+        print("\n" + plist_title + " playlist has been successfully downloaded.\n\n")
+    elif total_errors == 1:
+        print("\n" + "Downloading " + plist_title + " didn't go smooth. There has been 1 exception.\n\n")
+    else:
+        print("\n" + "Downloading " + plist_title + " didn't go smooth. There have been " + str(total_errors) + " exceptions.\n\n")
 
 
     # Now we have:
@@ -111,82 +133,3 @@ def save_plist(plist_url: list) -> None:
     # - plist_el_titles_legal
     # - plist_indexes (for metadata later)
     # - plist_indexes_zeros
-
-    return
-    # START DEAD CODE
-    if True:
-        plist_len = len(plist_urls)
-        index_range = [0, 1]#ask_num_of_tracks(plist_len)
-        print()
-
-        numbered = ask_numbering(index_range[0], index_range[1])
-        print()
-        if numbered[0] != "not":
-            temp_filenum = numbered[1]
-            if numbered[0] == "asc":
-                last_num = index_range[0] + plist_len
-            elif numbered[0] == "desc":
-                last_num = index_range[0] - plist_len
-        else:
-            temp_filenum = ""
-
-        namecut_list = [0, 0] # ask_read_trim_lens()
-        print()
-
-        dir_name = illegal_char_remover(plist_title)
-
-        save_path = ask_save_path()
-        if save_path == "":
-            print("Empty path was chosen.")
-            return
-        chdir(save_path)
-
-        while path.exists(save_path + "/" + dir_name):
-            dir_name += "_d"
-        mkdir(dir_name)
-        chdir(dir_name)
-
-        ydl_opts["paths"] = {"home": save_path + "/" + dir_name}
-
-        total_errors = 0
-        fileindex = ""
-        print(f"Downloading {plist_title}...")
-    # END DEAD CODE
-
-
-    for index in range(index_range[0], index_range[1]):
-        vid_url = plist_urls[index]
-        vid_og_name = plist_el_titles[index]
-
-        if numbered[0] != "not":
-            fileindex = zeros_at_beginning(temp_filenum, last_num)
-
-        finalfilename = fileindex + vid_og_name # name_file_on_plist(vid_og_name, fileindex, namecut_list)
-
-        while finalfilename in listdir():
-            finalfilename += "_d"
-        ydl_opts["outtmpl"] = finalfilename
-
-        if numbered[0] == "asc":
-            temp_filenum += 1
-        elif numbered[0] == "desc":
-            temp_filenum -= 1
-
-        try:
-            with YoutubeDL(ydl_opts) as ydl:
-                ydl.download([vid_url])
-            print(finalfilename)
-        except:
-            if not is_internet_available():
-                print("Internet connection failed.\n\n")
-                return
-            else:
-                total_errors += 1
-                print(f"{finalfilename} could not be downloaded. Here's link to this video: {vid_url}")
-
-    if total_errors == 0:
-        print("\n" + plist_title + " playlist has been successfully downloaded.\n\n")
-    elif total_errors == 1:
-        print("\n" + "Downloading " + plist_title + " didn't go smooth. There has been 1 exception.\n\n")
-    else:
-        print("\n" + "Downloading " + plist_title + " didn't go smooth. There have been " + str(total_errors) + " exceptions.\n\n")

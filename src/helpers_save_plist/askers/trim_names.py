@@ -101,8 +101,6 @@ def ask_el_name_trim(plist_numbers: list) -> int:
 
 def ask_multiple_name_trim(plist_numbers: list) -> list:
     while True:
-        print("PLIST NUMBERS: ")
-        print(plist_numbers)
         print("Input number of the first element to trim name:\n" \
               "(to exit input 'exit')\n>> ", end="")
         asker = str(input())

@@ -52,15 +52,10 @@ def save_plist(plist_url: list) -> None:
 
     # Make user specify which elements to download
     plist_list = [[i+1, plist_el_titles[i], plist_urls[i]] for i in range(0, len(plist_urls))]
-    for el in plist_list:
-        print(el)
     plist_list = trim_elements_loop(plist_list)
     print()
     if plist_list == None:
         return
-    # print("PRINTING LIST AFTER")
-    # for el in plist_list:
-    #     print(el)
     plist_urls = [el[2] for el in plist_list]
 
     # Ask user to trim elements names

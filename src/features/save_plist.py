@@ -34,6 +34,7 @@ def save_plist(plist_url: list) -> None:
     # Get lists with videos data
     plist_urls = [el['url'] for el in plist_dict['entries']]
     plist_vid_titles = [el['title'] for el in plist_dict['entries']]
+    del(plist_dict)
 
     # Check and handle duplicates
     if are_duplicates(plist_urls):
@@ -52,6 +53,7 @@ def save_plist(plist_url: list) -> None:
 
     # Make user specify which elements to download
     plist_list = [[i+1, plist_vid_titles[i], plist_urls[i]] for i in range(0, len(plist_urls))]
+    del(plist_urls)
     plist_list = trim_vids_loop(plist_list)
     if plist_list == None:
         return
@@ -67,22 +69,33 @@ def save_plist(plist_url: list) -> None:
         is_numbered = False
     #integrate numbering with plist list
 
+
+    # Now we have:
+    # - plist_title
+    # - extension
+    # - ydl_opts
+    # - plist_list
+
+    # - plist_vid_titles
+    # - plist_indexes
+
     return
     # START DEAD CODE
-    plist_len = len(plist_urls)
-    index_range = [0, 1]#ask_num_of_tracks(plist_len)
-    print()
+    if True:
+        plist_len = len(plist_urls)
+        index_range = [0, 1]#ask_num_of_tracks(plist_len)
+        print()
 
-    numbered = ask_numbering(index_range[0], index_range[1])
-    print()
-    if numbered[0] != "not":
-        temp_filenum = numbered[1]
-        if numbered[0] == "asc":
-            last_num = index_range[0] + plist_len
-        elif numbered[0] == "desc":
-            last_num = index_range[0] - plist_len
-    else:
-        temp_filenum = ""
+        numbered = ask_numbering(index_range[0], index_range[1])
+        print()
+        if numbered[0] != "not":
+            temp_filenum = numbered[1]
+            if numbered[0] == "asc":
+                last_num = index_range[0] + plist_len
+            elif numbered[0] == "desc":
+                last_num = index_range[0] - plist_len
+        else:
+            temp_filenum = ""
     # END DEAD CODE
 
     namecut_list = ask_read_trim_lens()

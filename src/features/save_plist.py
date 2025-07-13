@@ -7,8 +7,7 @@ from src.common.utils import (illegal_char_remover,
                               get_ydl_options)
 from src.helpers_save_plist.askers.delete_duplicates import ask_del_duplicates
 from src.helpers_save_plist.askers.numbering import ask_numbering
-from src.helpers_save_plist.utils import (name_file_on_plist,
-                                          zeros_at_beginning,
+from src.helpers_save_plist.utils import (zeros_at_beginning,
                                           get_indexes_of_duplicates,
                                           are_duplicates,
                                           del_indexes)
@@ -96,6 +95,7 @@ def save_plist(plist_url: list) -> None:
 
     for index in range(0, len(plist_urls)):
         print(f"{plist_indexes_zeros[index]} ||| {plist_el_titles_legal[index]} ||| {plist_urls[index]}")
+        final_filename = plist_el_titles_legal[index]
 
 
     # Now we have:
@@ -161,7 +161,7 @@ def save_plist(plist_url: list) -> None:
         if numbered[0] != "not":
             fileindex = zeros_at_beginning(temp_filenum, last_num)
 
-        finalfilename = name_file_on_plist(vid_og_name, fileindex, namecut_list)
+        finalfilename = fileindex + vid_og_name # name_file_on_plist(vid_og_name, fileindex, namecut_list)
 
         while finalfilename in listdir():
             finalfilename += "_d"

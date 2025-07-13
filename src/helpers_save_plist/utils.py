@@ -97,9 +97,9 @@ def del_by_range(plist_list: list, start_el: int, end_el: int) -> list:
     return plist_list
 
 
-def list_vids_custom_url(plist_list: list, plist_urls: list) -> None:
+def list_vids_custom_url(plist_list: list, plist_nums: list) -> None:
     for i in range(0, len(plist_list)):
-        print(f"{plist_urls[i]}. {plist_list[i][1]}")
+        print(f"{plist_nums[i]}. {plist_list[i][1]}")
 
 
 def list_vid_names(plist_vid_titles: list) -> None:

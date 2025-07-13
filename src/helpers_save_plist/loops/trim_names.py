@@ -9,8 +9,7 @@ from src.helpers_save_plist.askers.trim_names import (ask_trim_names_main_menu,
 
 
 
-def trim_names_loop(plist_list: list) -> list:
-    og_names = [el[1] for el in plist_list]
+def trim_names_loop(plist_numbers: list, og_names: list) -> list:
     final_names = og_names
     while True:
         print("Current names:")
@@ -49,14 +48,14 @@ def trim_names_loop(plist_list: list) -> list:
             list_vid_names(final_names)
             print()
 
-            number_to_trim = ask_el_name_trim([el[0] for el in plist_list])
+            number_to_trim = ask_el_name_trim(plist_numbers)
             print()
             if number_to_trim == None:
                 continue
 
             i = 0
             while i<len(final_names):
-                if plist_list[i][0] == number_to_trim:
+                if plist_numbers[i] == number_to_trim:
                     if trim_side == "start":
                         final_names[i] = final_names[i][trim_len:]
                     elif trim_side == "end":
@@ -78,19 +77,19 @@ def trim_names_loop(plist_list: list) -> list:
             list_vid_names(final_names)
             print()
 
-            range_to_trim = ask_multiple_name_trim([el[0] for el in plist_list])
+            range_to_trim = ask_multiple_name_trim(plist_numbers)
             print()
             if range_to_trim == None:
                 continue
 
             i = 0
             while i<len(final_names):
-                if plist_list[i][0] >= range_to_trim[0]:
+                if plist_numbers[i] >= range_to_trim[0]:
                     if trim_side == "start":
                         final_names[i] = final_names[i][trim_len:]
                     elif trim_side == "end":
                         final_names[i] = final_names[i][:-trim_len]
-                if plist_list[i][0] == range_to_trim[1]:
+                if plist_numbers[i] == range_to_trim[1]:
                     break
                 i += 1
             # START WORK HERE

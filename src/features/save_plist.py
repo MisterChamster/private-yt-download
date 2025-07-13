@@ -57,10 +57,10 @@ def save_plist(plist_url: list) -> None:
     if plist_list == None:
         return
 
-    # START WORK HERE
     # Ask user to trim elements names
-    # og_names = 
-    plist_el_titles = trim_names_loop(plist_list)
+    plist_el_titles = trim_names_loop([el[0] for el in plist_list], [el[1] for el in plist_list])
+    # START WORK HERE
+    # list with legals and list with illegals
 
     # Get indexing style from user
     plist_indexes = numbering_loop([el[0] for el in plist_list], plist_el_titles)
@@ -89,6 +89,7 @@ def save_plist(plist_url: list) -> None:
     # - extension
     # - ydl_opts
     # - plist_list
+    # - og_names
 
     # - plist_el_titles
     # - plist_indexes

@@ -4,7 +4,7 @@ def ask_del_duplicates() -> bool:
         print("Duplicates detected. Choose handling option:\n" \
               "d - Delete duplicates\n" \
               "l - Leave duplicates\n>> ", end="")
-        user_input = str(input())
+        user_input = input()
 
         if user_input == "d":
             return True

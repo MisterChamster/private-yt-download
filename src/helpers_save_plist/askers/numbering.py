@@ -6,6 +6,7 @@ def ask_numbering_main_menu() -> str:
                     "r":  "reverse_numbering",
                     "og": "original_numbering",
                     "s":  "save"}
+
     while True:
         print("Choose numbering option:\n" \
               "o  - Starting on 1\n" \
@@ -15,7 +16,7 @@ def ask_numbering_main_menu() -> str:
               "r  - Reverse current numbering\n" \
               "og - Original numbering\n" \
               "s  - Save\n>> ", end="")
-        action = str(input())
+        action = input()
 
         if action not in ["o", "n", "b", "e", "r", "og", "s"]:
             print("Incorrect input.\n")
@@ -27,7 +28,7 @@ def ask_first_number() -> int:
     while True:
         print("Input the number of the first element:\n" \
               "(to exit input 'exit')\n>> ", end="")
-        asker = str(input())
+        asker = input()
 
         if asker == "exit":
             return None
@@ -43,7 +44,7 @@ def ask_last_number(plist_len: int) -> int:
     while True:
         print(f"Input the number of the last element ({lowest_possible} or higher):\n" \
               "(to exit input 'exit')\n>> ", end="")
-        asker = str(input())
+        asker = input()
 
         if asker == "exit":
             return None

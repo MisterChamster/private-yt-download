@@ -2,12 +2,13 @@ def ask_trimming_main_menu() -> str:
     returns_dict = {"":   "all",
                     "c":  "custom",
                     "ls": "list"}
+
     while True:
         print("Choose which elements to download:\n" \
               "Enter - All current elements\n" \
               "c     - Custom settings...\n" \
               "ls    - List all current elements\n>> ", end="")
-        asker = str(input())
+        asker = input()
 
         if not asker in ["", "c", "ls"]:
             print("Incorrect input.\n")
@@ -19,12 +20,13 @@ def ask_custom_trim() -> str:
     returns_dict = {"te": "trim_element",
                     "tr": "trim_range",
                     "rt": "return"}
+
     while True:
         print("Choose custom trimming option:\n" \
               "te - Trim one element...\n" \
               "tr - Trim a range of elements...\n" \
               "rt - Return\n>> ", end="")
-        asker = str(input())
+        asker = input()
 
         if asker not in ["te", "tr", "rt"]:
             print("Incorrect input.\n")
@@ -36,7 +38,7 @@ def ask_el_trim(plist_numbers: list) -> int:
     while True:
         print("Input number of the element to trim:\n" \
               "(to exit input 'exit')\n>> ", end="")
-        asker = str(input())
+        asker = input()
 
         if asker == "exit":
             return None
@@ -54,7 +56,7 @@ def ask_multiple_trim(plist_numbers: list) -> int:
     while True:
         print("Input number of the first element to trim:\n" \
               "(to exit input 'exit')\n>> ", end="")
-        asker = str(input())
+        asker = input()
 
         if asker == "exit":
             return None
@@ -73,7 +75,7 @@ def ask_multiple_trim(plist_numbers: list) -> int:
     while True:
         print("Input number of the last element to trim:\n" \
               "(to exit input 'exit')\n>> ", end="")
-        asker2 = str(input())
+        asker2 = input()
 
         if asker2 == "exit":
             return None

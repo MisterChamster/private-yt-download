@@ -5,37 +5,28 @@ def ask_url():
     print("Enter URL of YouTube video or playlist:\n" \
     "(to exit input 'exit')" \
     "\n>> ", end="")
-    url = str(input())
+
+    url = input()
     if '&list=' in url:
         url = url[:url.find('&list=')]
     return url
 
 
 def ask_save_ext():
-    """
-    Asks user for extension.
-
-    In infinite loop, forces user to input either 4, 3 or f
-    to get proper extension.
-
-    Returns:
-        str: Extenstion chosen by user.
-    """
+    returns_dict = {"4": "mp4",
+                    "3": "mp3",
+                    "f": "flac"}
     while True:
         print("Choose file format for saving:\n" \
         "4 - mp4\n" \
         "3 - mp3\n" \
         "f - flac\n>> ", end="")
-        user_input = str(input())
+        asker = input()
 
-        if user_input == "4":
-            return "mp4"
-        elif user_input == "3":
-            return "mp3"
-        elif user_input == "f":
-            return "flac"
-        else:
+        if asker not in ["4", "3", "f"]:
             print("Invalid input!\n")
+        else:
+            return returns_dict[asker]
 
 
 def ask_save_path():

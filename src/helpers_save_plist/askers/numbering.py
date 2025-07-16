@@ -5,20 +5,20 @@ def ask_numbering_main_menu() -> str:
                     "e":  "end_on_integer",
                     "r":  "reverse_numbering",
                     "og": "original_numbering",
-                    "s":  "save"}
+                    "":  "save"}
 
     while True:
         print("Choose numbering option:\n" \
-              "o  - Starting on 1\n" \
-              "n  - No numbering\n" \
-              "b  - Beginning on integer...\n" \
-              "e  - Ending on integer...\n" \
-              "r  - Reverse current numbering\n" \
-              "og - Original numbering\n" \
-              "s  - Save\n>> ", end="")
+              "o     - Starting on 1\n" \
+              "n     - No numbering\n" \
+              "b     - Beginning on integer...\n" \
+              "e     - Ending on integer...\n" \
+              "r     - Reverse current numbering\n" \
+              "og    - Original numbering\n" \
+              "Enter - Save current style\n>> ", end="")
         action = input()
 
-        if action not in ["o", "n", "b", "e", "r", "og", "s"]:
+        if action not in ["o", "n", "b", "e", "r", "og", ""]:
             print("Incorrect input.\n")
         else:
             return returns_dict[action]

@@ -1,16 +1,16 @@
 def ask_trimming_main_menu() -> str:
-    returns_dict = {"":   "all",
-                    "c":  "custom",
-                    "ls": "list"}
+    returns_dict = {"c":  "custom",
+                    "ls": "list",
+                    "":   "all"}
 
     while True:
         print("Choose which elements to download:\n" \
-              "Enter - All current elements\n" \
               "c     - Custom settings...\n" \
-              "ls    - List all current elements\n>> ", end="")
+              "ls    - List all current elements\n" \
+              "Enter - Save current list of elements\n>> ", end="")
         asker = input()
 
-        if not asker in ["", "c", "ls"]:
+        if not asker in ["c", "ls", ""]:
             print("Incorrect input.\n")
         else:
             return returns_dict[asker]

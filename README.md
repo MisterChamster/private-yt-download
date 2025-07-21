@@ -11,7 +11,7 @@ The yt-downloader is a program allowing to download videos and whole playlists f
   
 ## Installation
 ```bash
-git clone https://github.com/MisterChamster/private-yt-download.git yt-download
+git clone https://github.com/MisterChamster/private-yt-downloader.git yt-download
 cd yt-download
 ```
 

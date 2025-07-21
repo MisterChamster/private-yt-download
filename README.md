@@ -11,8 +11,8 @@ The Youtube downloader is a program allowing to download videos and whole playli
   
 ## Installation
 ```bash
-git clone https://github.com/MisterChamster/private-yt-download.git
-cd private-yt-download
+git clone https://github.com/MisterChamster/private-yt-download.git yt-download
+cd yt-download
 ```
 
 ## Usage

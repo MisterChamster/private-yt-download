@@ -30,3 +30,6 @@ source venv/bin/activate
 pip install -r requirements.txt
 python3 main.py
 ```
+
+## Additional notes
+This is the second rendition of this program with updated gui and functionality. All are welcome to use it and download whatever You want!

@@ -78,10 +78,10 @@ def ask_trim_front_back() -> str:
 
         if asker == "exit":
             return None
-        elif asker not in ["s", "e"]:
-            print("Incorrect input.\n")
-        else:
+        elif asker in returns_dict:
             return returns_dict[asker]
+        else:
+            print("Incorrect input.\n")
 
 
 def ask_el_name_trim(plist_numbers: list) -> int:

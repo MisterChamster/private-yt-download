@@ -1,12 +1,14 @@
 def ask_del_duplicates() -> bool:
-    user_input = " "
+    returns_dict = {"d": True,
+                    "l": False}
+
     while True:
         print("Duplicates detected. Choose handling option:\n" \
               "d - Delete duplicates\n" \
               "l - Leave duplicates\n>> ", end="")
-        user_input = input()
+        asker = input()
 
-        if user_input == "d":
-            return True
-        elif user_input == "l":
-            return False
+        if asker in returns_dict:
+            return returns_dict[asker]
+        else:
+            print("Incorrect input.\n\n")

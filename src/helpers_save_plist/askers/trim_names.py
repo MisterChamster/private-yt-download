@@ -14,10 +14,10 @@ def ask_trim_names_main_menu() -> str:
               "Enter - Save current names\n>> ", end="")
         asker = input()
 
-        if asker not in ["tan", "ts", "tr", "og", ""]:
-            print("Incorrect input.\n")
-        else:
+        if asker in returns_dict:
             return returns_dict[asker]
+        else:
+            print("Incorrect input.\n")
 
 
 def ask_length_type() -> str:
@@ -32,10 +32,10 @@ def ask_length_type() -> str:
               "rt - Return\n>> ", end="")
         asker = input()
 
-        if asker not in ["i", "s", "rt"]:
-            print("Incorrect input.\n")
-        else:
+        if asker in returns_dict:
             return returns_dict[asker]
+        else:
+            print("Incorrect input.\n")
 
 
 def ask_length_int() -> int:
@@ -78,10 +78,10 @@ def ask_trim_front_back() -> str:
 
         if asker == "exit":
             return None
-        elif asker not in ["s", "e"]:
-            print("Incorrect input.\n")
-        else:
+        elif asker in returns_dict:
             return returns_dict[asker]
+        else:
+            print("Incorrect input.\n")
 
 
 def ask_el_name_trim(plist_numbers: list) -> int:

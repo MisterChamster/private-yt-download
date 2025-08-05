@@ -10,10 +10,10 @@ def ask_trimming_main_menu() -> str:
               "Enter - Save current list of elements\n>> ", end="")
         asker = input()
 
-        if not asker in ["c", "ls", ""]:
-            print("Incorrect input.\n")
-        else:
+        if asker in returns_dict:
             return returns_dict[asker]
+        else:
+            print("Incorrect input.\n")
 
 
 def ask_custom_trim() -> str:
@@ -28,10 +28,10 @@ def ask_custom_trim() -> str:
               "rt - Return\n>> ", end="")
         asker = input()
 
-        if asker not in ["te", "tr", "rt"]:
-            print("Incorrect input.\n")
-        else:
+        if asker in returns_dict:
             return returns_dict[asker]
+        else:
+            print("Incorrect input.\n")
 
 
 def ask_el_trim(plist_numbers: list) -> int:

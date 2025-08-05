@@ -32,10 +32,10 @@ def ask_length_type() -> str:
               "rt - Return\n>> ", end="")
         asker = input()
 
-        if asker not in ["i", "s", "rt"]:
-            print("Incorrect input.\n")
-        else:
+        if asker in returns_dict:
             return returns_dict[asker]
+        else:
+            print("Incorrect input.\n")
 
 
 def ask_length_int() -> int:

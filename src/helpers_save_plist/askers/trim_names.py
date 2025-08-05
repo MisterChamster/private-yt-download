@@ -14,10 +14,10 @@ def ask_trim_names_main_menu() -> str:
               "Enter - Save current names\n>> ", end="")
         asker = input()
 
-        if asker not in ["tan", "ts", "tr", "og", ""]:
-            print("Incorrect input.\n")
-        else:
+        if asker in returns_dict:
             return returns_dict[asker]
+        else:
+            print("Incorrect input.\n")
 
 
 def ask_length_type() -> str:

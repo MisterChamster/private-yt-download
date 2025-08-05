@@ -5,7 +5,7 @@ def ask_numbering_main_menu() -> str:
                     "e":  "end_on_integer",
                     "r":  "reverse_numbering",
                     "og": "original_numbering",
-                    "":  "save"}
+                    "":   "save"}
 
     while True:
         print("Choose numbering option:\n" \
@@ -18,10 +18,10 @@ def ask_numbering_main_menu() -> str:
               "Enter - Save current style\n>> ", end="")
         action = input()
 
-        if action not in ["o", "n", "b", "e", "r", "og", ""]:
-            print("Incorrect input.\n")
-        else:
+        if action in returns_dict:
             return returns_dict[action]
+        else:
+            print("Incorrect input.\n")
 
 
 def ask_first_number() -> int:
